@@ -56,5 +56,25 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="stat-item"><div class="stat-num"></div><div class="stat-label">参与投票</div></div>
 </div>
 </div><div class="container"></div><div class="footer">PiHub · 规划情报中枢<br>每日自动更新 | <a href="https://github.com/xrefxref/pihub-site">GitHub</a></div>
+<script>
+const VOTE_API='https://pihub-vote.401455902.workers.dev';
+async function vote(news_id,type){
+  const bar=document.getElementById('votes-'+news_id);
+  const btns=bar.querySelectorAll('.vote-btn');
+  btns.forEach(b=>b.disabled=true);
+  try{
+    const r=await fetch(VOTE_API+'/vote',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({news_id:String(news_id),vote_type:type})});
+    const d=await r.json();
+    if(d.ok){
+      const v=d.votes;
+      btns[0].innerHTML='🔥 重要 <span class=c>'+v.important+'</span>';
+      btns[1].innerHTML='📌 一般 <span class=c>'+v.normal+'</span>';
+      btns[2].innerHTML='➖ 无关 <span class=c>'+v.irrelevant+'</span>';
+      bar.querySelector('.vote-count').innerHTML='| <span class=c>'+v.total+'</span>票';
+    }
+  }catch(e){}
+  btns.forEach(b=>b.disabled=false);
+}
+</script>
 </body>
 </html>
