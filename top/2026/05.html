@@ -58,20 +58,31 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div><div class="container"><div class="category-section"><div class="category-title">👤 高层 (0)</div><div style="background:#fff;border-radius:8px;padding:16px;margin-bottom:10px;color:#999;font-size:13px;text-align:center">今日无重要动态</div></div><div class="category-section"><div class="category-title">🏛️ 部委 (0)</div><div style="background:#fff;border-radius:8px;padding:16px;margin-bottom:10px;color:#999;font-size:13px;text-align:center">今日无重要动态</div></div><div class="category-section"><div class="category-title">🏙️ 省市 (0)</div><div style="background:#fff;border-radius:8px;padding:16px;margin-bottom:10px;color:#999;font-size:13px;text-align:center">今日无重要动态</div></div><div class="category-section"><div class="category-title">📊 行业 (0)</div><div style="background:#fff;border-radius:8px;padding:16px;margin-bottom:10px;color:#999;font-size:13px;text-align:center">今日无重要动态</div></div></div><div class="footer">PiHub · 规划情报中枢<br>每日自动更新 | <a href="https://github.com/xrefxref/pihub-site">GitHub</a></div>
 <script>
 const VOTE_API='https://yunkaifa20260626-d0el5yg4df33bbf-1406845757.ap-shanghai.app.tcloudbase.com/vote';
+const uid=(()=>{let u=localStorage.getItem('pihub_uid');if(!u){u='u_'+Math.random().toString(36).substr(2,9)+Date.now().toString(36);localStorage.setItem('pihub_uid',u)}return u})();
 async function vote(news_id,type){
   const bar=document.getElementById('votes-'+news_id);
   const btns=bar.querySelectorAll('.vote-btn');
   btns.forEach(b=>b.disabled=true);
   try{
-    const r=await fetch(VOTE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({news_id:String(news_id),vote_type:type})});
-    if(r.ok){
-      const s=await fetch(VOTE_API+'?news_id='+news_id);
-      const d=await s.json();
-      btns[0].innerHTML='🔥 重要 <span class=c>'+(d.important||0)+'</span>';
-      btns[1].innerHTML='📌 一般 <span class=c>'+(d.normal||0)+'</span>';
-      btns[2].innerHTML='➖ 无关 <span class=c>'+(d.irrelevant||0)+'</span>';
-      bar.querySelector('.vote-count').innerHTML='| <span class=c>'+(d.total||0)+'</span>票';
+    const r=await fetch(VOTE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({news_id:String(news_id),vote_type:type,user_id:uid})});
+    const d=await r.json();
+    if(d.ok){
+      if(d.votes){
+        btns[0].innerHTML='🔥 重要 <span class=c>'+(d.votes.important||0)+'</span>';
+        btns[1].innerHTML='📌 一般 <span class=c>'+(d.votes.normal||0)+'</span>';
+        btns[2].innerHTML='➖ 无关 <span class=c>'+(d.votes.irrelevant||0)+'</span>';
+        bar.querySelector('.vote-count').innerHTML='| <span class=c>'+(d.votes.total||0)+'</span>票';
+      }
+    }else if(d.error==='已投过票'){
+      alert('您已经投过票了，可以改投其他选项');
     }
+    // Always refresh counts
+    const s=await fetch(VOTE_API+'?news_id='+news_id);
+    const v=await s.json();
+    btns[0].innerHTML='🔥 重要 <span class=c>'+(v.important||0)+'</span>';
+    btns[1].innerHTML='📌 一般 <span class=c>'+(v.normal||0)+'</span>';
+    btns[2].innerHTML='➖ 无关 <span class=c>'+(v.irrelevant||0)+'</span>';
+    bar.querySelector('.vote-count').innerHTML='| <span class=c>'+(v.total||0)+'</span>票';
   }catch(e){}
   btns.forEach(b=>b.disabled=false);
 }
