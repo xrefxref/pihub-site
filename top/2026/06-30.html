@@ -42,12 +42,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
 .year-section{margin-bottom:24px}
 .year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
+.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
+.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
+.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.tts-bar button:hover{background:#40a9ff}
+.tts-bar button.stop{background:#ff4d4f}
+.tts-bar button.stop:hover{background:#ff7875}
+.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
+.speak-btn:hover{border-color:#1890ff;color:#1890ff}
+.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
 </style>
 </head>
 <body>
 <div class="header">
   <h1>📰 2026年6月30日 规划情报</h1>
   <div class="subtitle">PiHub · 历史新闻回顾</div>
+</div>
+<div class="tts-bar">
+  <span class="tts-title">🔊 语音播报</span>
+  <button onclick="speakAll()">▶ 朗读本页全部</button>
+  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
+  <span class="tts-status" id="tts-status"></span>
 </div>
 <div class="nav"><a href="/" class="">今日</a><a href="/top/week.html" class="">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="active">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
 <div class="stats">
@@ -59,6 +76,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>"六张网"夯实中国式现代化战略底座</h3>
   <div class="news-meta">👤 党中央 · 06-26 · <span class="stars">★★★★</span> 7.0分 · <a href="https://news.cyol.com/gb/keji/articles/2026-06/26/content_EA073gHp2g.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：党中央部署“六张网”建设，助力中国式现代化。<br><br>▍要点：<br>• 要点1：加强水网、新型电网、算力网等“六张网”建设。<br>• 要点2：旨在夯实中国式现代化战略底座。<br>• 要点3：“十五五”开局之年，党中央部署实施。<br><br>▍行业影响：积极推动城市规划与基础设施建设协同发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(102)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-102">
     <button class="vote-btn" onclick="vote(102,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(102,'normal')">📌 一般 <span class="c">0</span></button>
@@ -69,6 +87,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>国务院印发《教育发展"十五五"规划》</h3>
   <div class="news-meta">👤 国务院 · 06-29 · <span class="stars">★★</span> 3.0分 · <a href="https://view.inews.qq.com/a/20260629A08JMO00" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院发布《教育发展"十五五"规划》，聚焦减轻教师负担。<br><br>▍要点：<br>• 要点1：规划涵盖五个方面，23项重点任务，实施至2030年。<br>• 要点2：首次提出减轻教师非教育教学任务负担，写入国务院文件。<br>• 要点3：规划旨在提升教育质量，优化教育资源配置。<br><br>▍行业影响：对规划设计工作影响正面，有利于教育环境改善。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(100)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-100">
     <button class="vote-btn" onclick="vote(100,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(100,'normal')">📌 一般 <span class="c">0</span></button>
@@ -79,6 +98,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>国务院办公厅完善大中型水库移民后期扶持政策，水利部负责核定</h3>
   <div class="news-meta">🏛️ 水利部 · 06-29 · <span class="stars">★★★★</span> 7.0分 · <a href="http://btslj.xjbt.gov.cn/c/2026-06-29/8491211.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院办公厅发布政策，完善大中型水库移民后期扶持，水利部负责核定。<br><br>▍要点：<br>• 要点1：后期扶持人口由水利部核定，时间节点至2026年6月30日。<br>• 要点2：新建水库移民每年核定一次。<br>• 要点3：政策涉及大中型水库移民后期扶持，旨在保障移民权益。<br><br>▍行业影响：政策有利于规范水库移民后期扶持工作，对规划设计工作提出更高要求。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(106)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-106">
     <button class="vote-btn" onclick="vote(106,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(106,'normal')">📌 一般 <span class="c">0</span></button>
@@ -89,6 +109,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>完善现代化综合交通运输体系 加快建设交通强国</h3>
   <div class="news-meta">🏛️ 交通运输部 · 06-26 · <span class="stars">★★★</span> 6.0分 · <a href="https://cpc.people.com.cn/n1/2026/0626/c64387-40747806.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：交通运输部发布加快完善现代化综合交通运输体系、建设交通强国战略部署。<br><br>▍要点：<br>• 要点1：强调“十四五”时期交通运输事业取得重大成就。<br>• 要点2：提出加快完善现代化综合交通运输体系。<br>• 要点3：部署建设交通强国战略。<br><br>▍行业影响：有利于推动城市规划与交通规划的深度融合。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(103)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-103">
     <button class="vote-btn" onclick="vote(103,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(103,'normal')">📌 一般 <span class="c">0</span></button>
@@ -99,6 +120,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>2026年6月城市更新发展报告：首部国家级更新规划印发</h3>
   <div class="news-meta">🏙️ 深圳市 · 06-26 · <span class="stars">★★★★</span> 9.0分 · <a href="https://news.sohu.com/a/1042127777_655634" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：首部国家级城市更新规划印发，明确2030年与2035年城市更新目标及重点任务。<br><br>▍要点：<br>• 要点1：明确2030年城市更新取得重要进展，2035年基本建成现代化人民城市。<br>• 要点2：部署6方面重点任务与14项重大工程，产业与公共空间更新力度提升。<br>• 要点3：与“十四五”相比，产业与公共空间更新成为重点。<br><br>▍行业影响：推动城市更新工作迈向新</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(104)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-104">
     <button class="vote-btn" onclick="vote(104,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(104,'normal')">📌 一般 <span class="c">0</span></button>
@@ -109,6 +131,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>西安高新区发布商业航天高质量发展三年行动计划（2026-2028年）</h3>
   <div class="news-meta">🏙️ 西安市 · 06-29 · <span class="stars">★★</span> 3.0分 · <a href="https://news.qq.com/rain/a/20260629A06PYJ00" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：西安高新区发布商业航天高质量发展三年行动计划，推动航天产业升级。<br><br>▍要点：<br>• 要点1：行动计划旨在2026-2028年实现商业航天产业高质量发展。<br>• 要点2：包括配套专项支持政策，鼓励创新和投资。<br>• 要点3：行动计划将聚焦航天技术研发、产业集聚和人才培养。<br><br>▍行业影响：有利于推动航天产业与城市规划的深度融合，促进区域经济发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(101)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-101">
     <button class="vote-btn" onclick="vote(101,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(101,'normal')">📌 一般 <span class="c">0</span></button>
@@ -119,6 +142,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>清华同衡潘芳：城市更新"国家队"再添15城，三年累计50座</h3>
   <div class="news-meta">📊 清华同衡 · 06-26 · <span class="stars">★★★★</span> 8.0分 · <a href="https://m.thepaper.cn/newsDetail_forward_33465357" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：城市更新“国家队”三年内增至50城，每城最高获12亿财政支持。<br><br>▍要点：<br>• 要点1：新增15城加入城市更新“国家队”，累计达50座。<br>• 要点2：每城最高可获12亿元财政支持，助力城市更新。<br>• 要点3：政策从试点探索转向系统推进，强调规划设计的重要性。<br><br>▍行业影响：政策将推动城市更新加速，对规划设计工作提出更高要求。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(105)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-105">
     <button class="vote-btn" onclick="vote(105,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(105,'normal')">📌 一般 <span class="c">0</span></button>
@@ -156,6 +180,89 @@ async function vote(news_id,type){
   }catch(e){}
   btns.forEach(b=>b.disabled=false);
 }
+
+/* ===== 语音播报（Web Speech API）===== */
+const synth = window.speechSynthesis;
+let ttsVoices = [];
+function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
+loadVoices();
+if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
+
+function pickZhVoice(){
+  if(!ttsVoices.length) return null;
+  let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
+  if(v) return v;
+  return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
+}
+function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
+function speakOne(text, onend){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = pickZhVoice();
+  if(v) u.voice = v;
+  u.lang = v ? v.lang : 'zh-CN';
+  u.rate = 1; u.pitch = 1;
+  u.onend = onend; u.onerror = onend;
+  synth.speak(u);
+}
+function cardText(card){
+  const h = card.querySelector('h3');
+  const s = card.querySelector('.news-summary');
+  const title = h ? h.innerText : '';
+  const sum = s ? s.innerText : '';
+  return (title + '。' + sum).replace(/\s+/g,' ').trim();
+}
+function clearSpeaking(){
+  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
+  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
+}
+let ttsStop = false;
+function stopSpeak(){
+  ttsStop = true;
+  if(synth) synth.cancel();
+  clearSpeaking();
+  setStatus('已停止');
+}
+function speakAll(){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  stopSpeak();
+  ttsStop = false;
+  const cards = Array.from(document.querySelectorAll('.news-card'));
+  if(!cards.length){ setStatus('本页暂无新闻'); return; }
+  let i = 0;
+  function next(){
+    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
+    const card = cards[i];
+    card.classList.add('speaking');
+    const btn = card.querySelector('.speak-btn');
+    if(btn) btn.classList.add('playing');
+    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
+    speakOne(cardText(card), function(){
+      card.classList.remove('speaking');
+      if(btn) btn.classList.remove('playing');
+      i++; next();
+    });
+  }
+  next();
+}
+function speakNews(id){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  const card = document.getElementById('news-' + id);
+  if(!card) return;
+  stopSpeak();
+  card.classList.add('speaking');
+  const btn = card.querySelector('.speak-btn');
+  if(btn) btn.classList.add('playing');
+  setStatus('朗读中…');
+  speakOne(cardText(card), function(){
+    card.classList.remove('speaking');
+    if(btn) btn.classList.remove('playing');
+    setStatus('');
+  });
+}
+/* 无新闻页隐藏语音条 */
+(function(){ if(!document.querySelector('.news-card')){ const b=document.querySelector('.tts-bar'); if(b) b.style.display='none'; } })();
 </script>
 </body>
 </html>

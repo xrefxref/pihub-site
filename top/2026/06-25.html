@@ -42,12 +42,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
 .year-section{margin-bottom:24px}
 .year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
+.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
+.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
+.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.tts-bar button:hover{background:#40a9ff}
+.tts-bar button.stop{background:#ff4d4f}
+.tts-bar button.stop:hover{background:#ff7875}
+.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
+.speak-btn:hover{border-color:#1890ff;color:#1890ff}
+.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
 </style>
 </head>
 <body>
 <div class="header">
   <h1>📰 2026年6月25日 规划情报</h1>
   <div class="subtitle">PiHub · 历史新闻回顾</div>
+</div>
+<div class="tts-bar">
+  <span class="tts-title">🔊 语音播报</span>
+  <button onclick="speakAll()">▶ 朗读本页全部</button>
+  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
+  <span class="tts-status" id="tts-status"></span>
 </div>
 <div class="nav"><a href="/" class="">今日</a><a href="/top/week.html" class="">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="active">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
 <div class="stats">
@@ -59,6 +76,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>国新办举行国务院政策例行吹风会介绍《城市更新十五五规划》</h3>
   <div class="news-meta">👤 党中央 · <span class="stars">★★★★</span> 9.0分 · <a href="http://www.scio.gov.cn/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院发布《城市更新十五五规划》。<br><br>▍要点：<br>• 要点1：规划旨在提升城市品质，优化空间布局。<br>• 要点2：强调历史文化保护与城市更新相结合。<br>• 要点3：推动老旧小区改造，改善居民生活环境。<br><br>▍行业影响：对规划设计工作具有深远影响。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(76)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-76">
     <button class="vote-btn" onclick="vote(76,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(76,'normal')">📌 一般 <span class="c">0</span></button>
@@ -69,6 +87,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>加强生态文明建设推进绿色低碳发展</h3>
   <div class="news-meta">🏛️ 生态环境部 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.gov.cn/gzjxs/2024zyn/zczhq/jqstwmjstjlsdtfz/index.htm" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院常务会议强调推进生态文明建设，加强绿色低碳发展。<br><br>▍要点：<br>• 要点1：贯彻落实全国生态环境保护大会精神。<br>• 要点2：全面推进美丽中国建设工作。<br>• 要点3：强化绿色低碳发展政策。<br><br>▍行业影响：有利于推动城市规划向绿色、低碳、可持续方向发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(78)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-78">
     <button class="vote-btn" onclick="vote(78,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(78,'normal')">📌 一般 <span class="c">0</span></button>
@@ -79,6 +98,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>广东省国土空间规划（2021-2035年）</h3>
   <div class="news-meta">🏙️ 广东省 · <span class="stars">★★★★</span> 9.0分 · <a href="https://www.gd.gov.cn/attachment/0/540/540798/4332417.pdf" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：广东省发布《国土空间规划（2021-2035年）》。<br><br>▍要点：<br>• 要点1：贯彻落实“多规合一”改革，整合土地利用、城乡规划等规划。<br>• 要点2：规划期限至2035年，涵盖广东省全域国土空间。<br>• 要点3：强调生态保护、绿色发展，优化城市空间布局。<br><br>▍行业影响：积极推动规划设计工作向“多规合一”转型，提升规划的科学性和前瞻性。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(79)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-79">
     <button class="vote-btn" onclick="vote(79,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(79,'normal')">📌 一般 <span class="c">0</span></button>
@@ -89,6 +109,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>环球房产周报：中央财政970亿元支持城市更新</h3>
   <div class="news-meta">🏙️ 地方 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.sohu.com/a/1036679937_120385677" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：中央财政投入970亿元支持城市更新项目。<br><br>▍要点：<br>• 要点1：中央预算内投资970亿元，专项用于城市更新。<br>• 要点2：自然资源部推动存量用地盘活。<br>• 要点3：政策旨在提升城市品质，促进经济发展。<br><br>▍行业影响：利好城市规划行业，推动城市更新项目加速。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(77)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-77">
     <button class="vote-btn" onclick="vote(77,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(77,'normal')">📌 一般 <span class="c">0</span></button>
@@ -99,6 +120,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>山东省自然资源厅国土空间规划</h3>
   <div class="news-meta">🏙️ 山东省 · <span class="stars">★★★★</span> 7.0分 · <a href="http://dnr.shandong.gov.cn/zxzt/ywzt/gtkjgh/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：山东省发布《2021-2035年国土空间规划》。<br><br>▍要点：<br>• 要点1：规划期限为2021年至2035年，涵盖山东省全域国土空间。<br>• 要点2：强调生态优先、绿色低碳发展，优化城市布局和产业结构。<br>• 要点3：明确区域发展定位，推动新旧动能转换。<br><br>▍行业影响：积极推动山东省国土空间规划实施，对规划设计工作提出更高要求。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(80)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-80">
     <button class="vote-btn" onclick="vote(80,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(80,'normal')">📌 一般 <span class="c">0</span></button>
@@ -109,6 +131,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>广州城市更新2026半年报：老黄埔全能王强势登顶</h3>
   <div class="news-meta">🏙️ 广州市 · <span class="stars">★★★</span> 6.0分 · <a href="https://www.sohu.com/a/1038622410_100032554" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：广州城市更新2026半年报显示，老黄埔区域成为城市更新投资热点。<br><br>▍要点：<br>• 要点1：2026年广州城市更新投资规模预计达2000亿至2200亿元。<br>• 要点2：老黄埔区域在城市更新项目中表现突出。<br>• 要点3：城市更新进入高质量推进阶段。<br><br>▍行业影响：积极。该政策将推动城市更新项目加速，为规划设计工作带来更多机遇。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(83)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-83">
     <button class="vote-btn" onclick="vote(83,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(83,'normal')">📌 一般 <span class="c">0</span></button>
@@ -119,6 +142,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>国际人士献计海南自贸港封关后发展</h3>
   <div class="news-meta">🏙️ 海南省 · 06-24 · <span class="stars">★★</span> 5.0分 · <a href="https://www.chinanews.com.cn/cj/2026/06-24/10646630.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：海南自贸港封关后发展吸引国际人士献策。<br><br>▍要点：<br>• 要点1：海南自贸港封关已半年，自由化便利化政策实施。<br>• 要点2：中国美国商会提出多领域对接空间。<br>• 要点3：国际人士关注自贸港发展。<br><br>▍行业影响：海南自贸港发展将推动区域规划与设计创新。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(81)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-81">
     <button class="vote-btn" onclick="vote(81,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(81,'normal')">📌 一般 <span class="c">0</span></button>
@@ -129,6 +153,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>西安市十五五规划重大项目谋划座谈会</h3>
   <div class="news-meta">🏙️ 西安市 · <span class="stars">★★</span> 5.0分 · <a href="http://xadrc.xa.gov.cn/xxgk/ghjh/1.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：西安市召开十五五规划重大项目谋划座谈会。<br><br>▍要点：<br>• 要点1：西安市发改委组织召开座谈会，旨在谋划十五五规划重大项目。<br>• 要点2：座谈会涵盖多领域，涉及城市规划、交通、环保等。<br>• 要点3：会议旨在推动西安市未来五年发展，优化城市布局。<br><br>▍行业影响：对规划设计工作具有积极推动作用。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(82)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-82">
     <button class="vote-btn" onclick="vote(82,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(82,'normal')">📌 一般 <span class="c">0</span></button>
@@ -139,6 +164,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>同济大学建筑城规学院、同济规划院与同济咨询战略合作签约</h3>
   <div class="news-meta">📊 同济规划院 · <span class="stars">★★</span> 5.0分 · <a href="https://www2.tjupdi.com/new/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：同济大学建筑城规学院、同济规划院与同济咨询达成战略合作，共同推进城市更新产教融合。<br><br>▍要点：<br>• 要点1：合作旨在推进城市更新领域产教融合，提升人才培养质量。<br>• 要点2：三方将共同开展城市更新相关研究、项目实践和人才培养。<br>• 要点3：合作将促进城市规划、设计、咨询等领域的协同发展。<br><br>▍行业影响：积极。有助于推动行业产教融合，提升人才培养与行</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(85)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-85">
     <button class="vote-btn" onclick="vote(85,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(85,'normal')">📌 一般 <span class="c">0</span></button>
@@ -149,6 +175,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>蕾奥规划参股成立深圳市蕾奥山河文化科技有限公司</h3>
   <div class="news-meta">📊 蕾奥规划 · <span class="stars">★★</span> 5.0分 · <a href="https://www.msn.cn/zh-cn/money/技术/蕾奥规划-300989-参股成立深圳市蕾奥山河文化科技有限公司-持股比例20/ar-AA25OSCx" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：蕾奥规划参股成立文化科技公司，涉足城市公园管理和规划设计。<br><br>▍要点：<br>• 要点1：蕾奥规划参股20%，涉足城市公园管理和规划设计管理。<br>• 要点2：新公司名为深圳市蕾奥山河文化科技有限公司。<br>• 要点3：此举可能拓展蕾奥规划的业务范围，增强市场竞争力。<br><br>▍行业影响：积极。蕾奥规划通过多元化发展，有望提升在规划设计领域的综合实力。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(88)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-88">
     <button class="vote-btn" onclick="vote(88,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(88,'normal')">📌 一般 <span class="c">0</span></button>
@@ -159,6 +186,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>蕾奥规划6月24日主力资金净买入628万元</h3>
   <div class="news-meta">📊 蕾奥规划 · 06-24 · <span class="stars">★★</span> 3.0分 · <a href="https://www.msn.cn/zh-cn/money/热门股/蕾奥规划-300989-6月24日主力资金净买入628-46万元/ar-AA26pMru" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：蕾奥规划6月24日主力资金净买入628万元，股价下跌1.99%。<br><br>▍要点：<br>• 要点1：蕾奥规划6月24日主力资金净买入628万元，显示市场对其未来发展有一定信心。<br>• 要点2：股价下跌1.99%，可能受市场情绪、行业政策或公司业绩等因素影响。<br>• 要点3：AI评分3分，表明新闻对行业影响有限。<br><br>▍行业影响：蕾奥规划资金流入，但股价下跌，对规划</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(87)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-87">
     <button class="vote-btn" onclick="vote(87,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(87,'normal')">📌 一般 <span class="c">0</span></button>
@@ -196,6 +224,89 @@ async function vote(news_id,type){
   }catch(e){}
   btns.forEach(b=>b.disabled=false);
 }
+
+/* ===== 语音播报（Web Speech API）===== */
+const synth = window.speechSynthesis;
+let ttsVoices = [];
+function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
+loadVoices();
+if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
+
+function pickZhVoice(){
+  if(!ttsVoices.length) return null;
+  let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
+  if(v) return v;
+  return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
+}
+function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
+function speakOne(text, onend){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = pickZhVoice();
+  if(v) u.voice = v;
+  u.lang = v ? v.lang : 'zh-CN';
+  u.rate = 1; u.pitch = 1;
+  u.onend = onend; u.onerror = onend;
+  synth.speak(u);
+}
+function cardText(card){
+  const h = card.querySelector('h3');
+  const s = card.querySelector('.news-summary');
+  const title = h ? h.innerText : '';
+  const sum = s ? s.innerText : '';
+  return (title + '。' + sum).replace(/\s+/g,' ').trim();
+}
+function clearSpeaking(){
+  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
+  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
+}
+let ttsStop = false;
+function stopSpeak(){
+  ttsStop = true;
+  if(synth) synth.cancel();
+  clearSpeaking();
+  setStatus('已停止');
+}
+function speakAll(){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  stopSpeak();
+  ttsStop = false;
+  const cards = Array.from(document.querySelectorAll('.news-card'));
+  if(!cards.length){ setStatus('本页暂无新闻'); return; }
+  let i = 0;
+  function next(){
+    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
+    const card = cards[i];
+    card.classList.add('speaking');
+    const btn = card.querySelector('.speak-btn');
+    if(btn) btn.classList.add('playing');
+    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
+    speakOne(cardText(card), function(){
+      card.classList.remove('speaking');
+      if(btn) btn.classList.remove('playing');
+      i++; next();
+    });
+  }
+  next();
+}
+function speakNews(id){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  const card = document.getElementById('news-' + id);
+  if(!card) return;
+  stopSpeak();
+  card.classList.add('speaking');
+  const btn = card.querySelector('.speak-btn');
+  if(btn) btn.classList.add('playing');
+  setStatus('朗读中…');
+  speakOne(cardText(card), function(){
+    card.classList.remove('speaking');
+    if(btn) btn.classList.remove('playing');
+    setStatus('');
+  });
+}
+/* 无新闻页隐藏语音条 */
+(function(){ if(!document.querySelector('.news-card')){ const b=document.querySelector('.tts-bar'); if(b) b.style.display='none'; } })();
 </script>
 </body>
 </html>

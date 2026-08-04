@@ -42,12 +42,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
 .year-section{margin-bottom:24px}
 .year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
+.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
+.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
+.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.tts-bar button:hover{background:#40a9ff}
+.tts-bar button.stop{background:#ff4d4f}
+.tts-bar button.stop:hover{background:#ff7875}
+.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
+.speak-btn:hover{border-color:#1890ff;color:#1890ff}
+.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
 </style>
 </head>
 <body>
 <div class="header">
   <h1>📰 2026年7月14日 规划情报</h1>
   <div class="subtitle">PiHub · 历史新闻回顾</div>
+</div>
+<div class="tts-bar">
+  <span class="tts-title">🔊 语音播报</span>
+  <button onclick="speakAll()">▶ 朗读本页全部</button>
+  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
+  <span class="tts-status" id="tts-status"></span>
 </div>
 <div class="nav"><a href="/" class="">今日</a><a href="/top/week.html" class="">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="active">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
 <div class="stats">
@@ -59,6 +76,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>持续扩大内需 大力提振消费——扩大消费十五五规划解读</h3>
   <div class="news-meta">🏛️ 发改委 · 07-13 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.ce.cn/xwzx/gnsz/gdxw/202607/t20260714_3085392.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国家发改委、商务部解读扩大消费规划，强调消费对经济增长的贡献。<br><br>▍要点：<br>• 要点1：十四五期间，最终消费支出对经济增长的平均贡献率达58.8%。<br>• 要点2：扩大消费规划旨在持续扩大内需，提振消费。<br>• 要点3：规划涉及多个领域，包括消费环境、消费政策等。<br><br>▍行业影响：积极。扩大消费将促进城市规划与设计工作，关注消费空间布局与设施配套。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(159)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-159">
     <button class="vote-btn" onclick="vote(159,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(159,'normal')">📌 一般 <span class="c">0</span></button>
@@ -69,6 +87,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>多部门发文推进农村客货邮融合发展 打造22万个服务点</h3>
   <div class="news-meta">🏛️ 交通运输部 · 07-13 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.workercn.cn/papers/grrb/2026/07/13/4/news-6.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：交通运输部等六部门联合发布行动方案，推动农村客货邮融合发展，计划到2027年底全国服务站点达22万个。<br><br>▍要点：<br>• 要点1：政策旨在提升农村物流效率，促进城乡商品流通。<br>• 要点2：全国将新增22万个服务站点，覆盖农村地区。<br>• 要点3：方案涉及交通运输、邮政等多个部门，协同推进。<br><br>▍行业影响：积极。该政策将促进农村地区物流基础设施完善，为规</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(161)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-161">
     <button class="vote-btn" onclick="vote(161,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(161,'normal')">📌 一般 <span class="c">0</span></button>
@@ -79,6 +98,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>国家发改委发布第四监管周期省级电网输配电价通知</h3>
   <div class="news-meta">🏛️ 发改委 · 07-13 · <span class="stars">★★★</span> 6.0分 · <a href="https://cj.sina.com.cn/article/norm_detail?url=https%3A%2F%2Ffinance.sina.com.cn%2Fjjxw%2F2026-07-13%2Fdoc-inihscma8919595.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国家发改委发布第四监管周期省级电网输配电价通知，自2026年8月1日起执行。<br><br>▍要点：<br>• 要点1：核定第四监管周期省级电网输配电价，调整电价结构。<br>• 要点2：电价调整将影响电力行业成本，进而影响城市能源规划和建设。<br>• 要点3：通知涉及全国省级电网，影响范围广泛。<br><br>▍行业影响：对规划设计工作影响深远，需关注电价变动对城市能源规划和建设的影响</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(160)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-160">
     <button class="vote-btn" onclick="vote(160,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(160,'normal')">📌 一般 <span class="c">0</span></button>
@@ -89,6 +109,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>山东省发布关于推动水经济高质量发展的实施意见</h3>
   <div class="news-meta">🏙️ 山东省 · 07-13 · <span class="stars">★★</span> 3.0分 · <a href="http://www.shandong.gov.cn/art/2026/7/13/art_267492_80677.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：山东省发布推动水经济高质量发展实施意见，目标2030年总规模超1万亿。<br><br>▍要点：<br>• 要点1：政策旨在推动水经济高质量发展，强调水资源合理利用和生态环境保护。<br>• 要点2：设定2030年水经济总规模突破1万亿元的目标，涉及水利、渔业、旅游等多个领域。<br>• 要点3：提出一系列支持措施，包括加大财政投入、优化产业结构、提升科技创新能力等。<br><br>▍行业影</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(162)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-162">
     <button class="vote-btn" onclick="vote(162,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(162,'normal')">📌 一般 <span class="c">0</span></button>
@@ -99,6 +120,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>广州拟十五五期间制定修订70项政府规章</h3>
   <div class="news-meta">🏙️ 广州市 · 07-13 · <span class="stars">★★</span> 3.0分 · <a href="https://m.21jingji.com/article/20260713/herald/7da5266fdea4c7b82e01c480925ac933.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：广州市政府规划制定修订70项政府规章，助力未来五年城市发展。<br><br>▍要点：<br>• 要点1：规划涵盖2026-2030年，涉及城市规划、建设、管理等多个领域。<br>• 要点2：修订内容旨在优化政府管理，提升城市治理效能。<br>• 要点3：强调规章与上位法相衔接，确保政策实施的有效性。<br><br>▍行业影响：积极。政策将推动城市规划与建设规范化，提升规划设计工作的质量与效</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(163)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-163">
     <button class="vote-btn" onclick="vote(163,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(163,'normal')">📌 一般 <span class="c">0</span></button>
@@ -136,6 +158,89 @@ async function vote(news_id,type){
   }catch(e){}
   btns.forEach(b=>b.disabled=false);
 }
+
+/* ===== 语音播报（Web Speech API）===== */
+const synth = window.speechSynthesis;
+let ttsVoices = [];
+function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
+loadVoices();
+if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
+
+function pickZhVoice(){
+  if(!ttsVoices.length) return null;
+  let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
+  if(v) return v;
+  return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
+}
+function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
+function speakOne(text, onend){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = pickZhVoice();
+  if(v) u.voice = v;
+  u.lang = v ? v.lang : 'zh-CN';
+  u.rate = 1; u.pitch = 1;
+  u.onend = onend; u.onerror = onend;
+  synth.speak(u);
+}
+function cardText(card){
+  const h = card.querySelector('h3');
+  const s = card.querySelector('.news-summary');
+  const title = h ? h.innerText : '';
+  const sum = s ? s.innerText : '';
+  return (title + '。' + sum).replace(/\s+/g,' ').trim();
+}
+function clearSpeaking(){
+  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
+  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
+}
+let ttsStop = false;
+function stopSpeak(){
+  ttsStop = true;
+  if(synth) synth.cancel();
+  clearSpeaking();
+  setStatus('已停止');
+}
+function speakAll(){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  stopSpeak();
+  ttsStop = false;
+  const cards = Array.from(document.querySelectorAll('.news-card'));
+  if(!cards.length){ setStatus('本页暂无新闻'); return; }
+  let i = 0;
+  function next(){
+    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
+    const card = cards[i];
+    card.classList.add('speaking');
+    const btn = card.querySelector('.speak-btn');
+    if(btn) btn.classList.add('playing');
+    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
+    speakOne(cardText(card), function(){
+      card.classList.remove('speaking');
+      if(btn) btn.classList.remove('playing');
+      i++; next();
+    });
+  }
+  next();
+}
+function speakNews(id){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  const card = document.getElementById('news-' + id);
+  if(!card) return;
+  stopSpeak();
+  card.classList.add('speaking');
+  const btn = card.querySelector('.speak-btn');
+  if(btn) btn.classList.add('playing');
+  setStatus('朗读中…');
+  speakOne(cardText(card), function(){
+    card.classList.remove('speaking');
+    if(btn) btn.classList.remove('playing');
+    setStatus('');
+  });
+}
+/* 无新闻页隐藏语音条 */
+(function(){ if(!document.querySelector('.news-card')){ const b=document.querySelector('.tts-bar'); if(b) b.style.display='none'; } })();
 </script>
 </body>
 </html>

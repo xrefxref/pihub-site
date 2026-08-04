@@ -42,12 +42,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
 .year-section{margin-bottom:24px}
 .year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
+.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
+.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
+.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.tts-bar button:hover{background:#40a9ff}
+.tts-bar button.stop{background:#ff4d4f}
+.tts-bar button.stop:hover{background:#ff7875}
+.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
+.speak-btn:hover{border-color:#1890ff;color:#1890ff}
+.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
 </style>
 </head>
 <body>
 <div class="header">
   <h1>📰 2026年7月4日 规划情报</h1>
   <div class="subtitle">PiHub · 历史新闻回顾</div>
+</div>
+<div class="tts-bar">
+  <span class="tts-title">🔊 语音播报</span>
+  <button onclick="speakAll()">▶ 朗读本页全部</button>
+  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
+  <span class="tts-status" id="tts-status"></span>
 </div>
 <div class="nav"><a href="/" class="">今日</a><a href="/top/week.html" class="">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="active">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
 <div class="stats">
@@ -59,6 +76,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>时政_央广网</h3>
   <div class="news-meta">👤 党中央 · 07-03 · <span class="stars">★★★★</span> 8.0分 · <a href="https://news.cnr.cn/native/gd/sz/index.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：习近平总书记向“七一勋章”获得者颁授勋章，庆祝中国共产党成立105周年。<br><br>▍要点：<br>• 要点1：强调党的领导地位和党员先锋模范作用。<br>• 要点2：表彰为党的事业作出突出贡献的个人。<br>• 要点3：激励全体党员不忘初心，继续前进。<br><br>▍行业影响：有利于强化城市规划领域的党建，提升规划师的政治素养和职业道德。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(133)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-133">
     <button class="vote-btn" onclick="vote(133,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(133,'normal')">📌 一般 <span class="c">0</span></button>
@@ -69,6 +87,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>新一轮国补继续！7月第三批国补625亿已下达</h3>
   <div class="news-meta">🏛️ 发改委 · 07-03 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.dzwww.com/xinwen/jishixinwen/202607/t20260703_17897507.htm" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国家第三批专项补贴625亿已下达，全国申领通道全面开放。<br><br>▍要点：<br>• 要点1：本年度国补总额2500亿，分四批等额投放。<br>• 要点2：第三批625亿资金已拨付全国，7月起全面开放申领通道。<br>• 要点3：补贴涉及城市规划、基础设施建设等领域。<br><br>▍行业影响：有利于促进城市规划与建设领域的资金投入，推动行业发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(134)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-134">
     <button class="vote-btn" onclick="vote(134,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(134,'normal')">📌 一般 <span class="c">0</span></button>
@@ -79,6 +98,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>物业新规最新政策：住建部启动《物业管理条例》修订</h3>
   <div class="news-meta">🏛️ 住建部 · 07-03 · <span class="stars">★★★★</span> 8.0分 · <a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_8766a475f3484152" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：住建部启动《物业管理条例》修订，规范物业收费行为。<br><br>▍要点：<br>• 要点1：修订后条例更名为《物业服务条例》，强调服务性质。<br>• 要点2：禁止物业违规催缴物业费，违规企业最高罚款30万元。<br>• 要点3：空置房屋业主可申请最高50%物业费减免。<br><br>▍行业影响：规范物业服务市场，提升行业服务质量。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(136)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-136">
     <button class="vote-btn" onclick="vote(136,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(136,'normal')">📌 一般 <span class="c">0</span></button>
@@ -89,6 +109,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>财政部办公厅 住房城乡建设部办公厅 关于开展2026年度中央财政支持实施城市更新行动的通知</h3>
   <div class="news-meta">🏛️ 住建部 · 07-03 · <span class="stars">★★★★</span> 8.0分 · <a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_55469e0c9c900252" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：中央财政支持城市更新行动，评选不超过15个城市开展样板片区和机制建设。<br><br>▍要点：<br>• 要点1：中央财政定额补助支持城市更新，聚焦重点样板片区和机制建设。<br>• 要点2：支持范围限于地级及以上城市，评选不超过15个城市。<br>• 要点3：旨在推动城市更新，提升城市品质和可持续发展。<br><br>▍行业影响：有利于推动城市更新工作，提升规划设计工作的深度和广度。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(137)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-137">
     <button class="vote-btn" onclick="vote(137,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(137,'normal')">📌 一般 <span class="c">0</span></button>
@@ -99,6 +120,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>住建部关于《住房公积金管理条例(修订征求意见稿)》公开征求意见</h3>
   <div class="news-meta">🏛️ 住建部 · 07-03 · <span class="stars">★★★★</span> 8.0分 · <a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_8976a22cffb92052" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：住建部公开征求意见修订《住房公积金管理条例》。<br><br>▍要点：<br>• 要点1：深化住房公积金制度改革，满足缴存人多元化住房需求。<br>• 要点2：修订工作向社会公开征求意见，增强政策透明度和公众参与。<br>• 要点3：涉及住房公积金的提取、使用、管理等各方面。<br><br>▍行业影响：有利于优化住房公积金政策，提升规划设计工作的针对性。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(138)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-138">
     <button class="vote-btn" onclick="vote(138,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(138,'normal')">📌 一般 <span class="c">0</span></button>
@@ -136,6 +158,89 @@ async function vote(news_id,type){
   }catch(e){}
   btns.forEach(b=>b.disabled=false);
 }
+
+/* ===== 语音播报（Web Speech API）===== */
+const synth = window.speechSynthesis;
+let ttsVoices = [];
+function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
+loadVoices();
+if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
+
+function pickZhVoice(){
+  if(!ttsVoices.length) return null;
+  let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
+  if(v) return v;
+  return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
+}
+function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
+function speakOne(text, onend){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = pickZhVoice();
+  if(v) u.voice = v;
+  u.lang = v ? v.lang : 'zh-CN';
+  u.rate = 1; u.pitch = 1;
+  u.onend = onend; u.onerror = onend;
+  synth.speak(u);
+}
+function cardText(card){
+  const h = card.querySelector('h3');
+  const s = card.querySelector('.news-summary');
+  const title = h ? h.innerText : '';
+  const sum = s ? s.innerText : '';
+  return (title + '。' + sum).replace(/\s+/g,' ').trim();
+}
+function clearSpeaking(){
+  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
+  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
+}
+let ttsStop = false;
+function stopSpeak(){
+  ttsStop = true;
+  if(synth) synth.cancel();
+  clearSpeaking();
+  setStatus('已停止');
+}
+function speakAll(){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  stopSpeak();
+  ttsStop = false;
+  const cards = Array.from(document.querySelectorAll('.news-card'));
+  if(!cards.length){ setStatus('本页暂无新闻'); return; }
+  let i = 0;
+  function next(){
+    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
+    const card = cards[i];
+    card.classList.add('speaking');
+    const btn = card.querySelector('.speak-btn');
+    if(btn) btn.classList.add('playing');
+    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
+    speakOne(cardText(card), function(){
+      card.classList.remove('speaking');
+      if(btn) btn.classList.remove('playing');
+      i++; next();
+    });
+  }
+  next();
+}
+function speakNews(id){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  const card = document.getElementById('news-' + id);
+  if(!card) return;
+  stopSpeak();
+  card.classList.add('speaking');
+  const btn = card.querySelector('.speak-btn');
+  if(btn) btn.classList.add('playing');
+  setStatus('朗读中…');
+  speakOne(cardText(card), function(){
+    card.classList.remove('speaking');
+    if(btn) btn.classList.remove('playing');
+    setStatus('');
+  });
+}
+/* 无新闻页隐藏语音条 */
+(function(){ if(!document.querySelector('.news-card')){ const b=document.querySelector('.tts-bar'); if(b) b.style.display='none'; } })();
 </script>
 </body>
 </html>

@@ -42,12 +42,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
 .year-section{margin-bottom:24px}
 .year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
+.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
+.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
+.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.tts-bar button:hover{background:#40a9ff}
+.tts-bar button.stop{background:#ff4d4f}
+.tts-bar button.stop:hover{background:#ff7875}
+.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
+.speak-btn:hover{border-color:#1890ff;color:#1890ff}
+.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
 </style>
 </head>
 <body>
 <div class="header">
   <h1>📰 2026年7月24日 规划情报</h1>
   <div class="subtitle">PiHub · 历史新闻回顾</div>
+</div>
+<div class="tts-bar">
+  <span class="tts-title">🔊 语音播报</span>
+  <button onclick="speakAll()">▶ 朗读本页全部</button>
+  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
+  <span class="tts-status" id="tts-status"></span>
 </div>
 <div class="nav"><a href="/" class="">今日</a><a href="/top/week.html" class="">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="active">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
 <div class="stats">
@@ -59,6 +76,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>中共中央 国务院印发《关于加强新时代社会工作的意见》</h3>
   <div class="news-meta">👤 国务院 · 07-23 · <span class="stars">★★★★</span> 8.0分 · <a href="https://new.qq.com/rain/a/20260724A034UO00" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：中共中央、国务院发布《关于加强新时代社会工作的意见》，部署新时代社会工作。<br><br>▍要点：<br>• 要点1：强调社会工作是党和国家工作的重要组成部分，关乎党长期执政和国家长治久安。<br>• 要点2：部署加强新时代社会工作，旨在提升社会服务质量和水平。<br>• 要点3：意见将指导社会工作政策制定和实施。<br><br>▍行业影响：有利于推动城市规划与社区服务深度融合，提升城市规</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(198)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-198">
     <button class="vote-btn" onclick="vote(198,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(198,'normal')">📌 一般 <span class="c">0</span></button>
@@ -69,6 +87,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>国家发改委、国家能源局发布《可再生能源发展十五五规划》</h3>
   <div class="news-meta">🏛️ 发改委 · 07-23 · <span class="stars">★★★★</span> 8.0分 · <a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_1396a61711791852" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：发布《可再生能源发展十五五规划》，设定2030年可再生能源发展目标。<br><br>▍要点：<br>• 要点1：2030年可再生能源消费总量目标为18亿吨标准煤。<br>• 要点2：2030年风电和太阳能发电总装机目标为28亿千瓦以上。<br>• 要点3：发电总装机目标为35亿千瓦。<br><br>▍行业影响：推动能源结构转型，对规划设计工作提出更高要求。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(199)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-199">
     <button class="vote-btn" onclick="vote(199,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(199,'normal')">📌 一般 <span class="c">0</span></button>
@@ -79,6 +98,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>自然资源部 国家林业和草原局关于进一步做好自然资源要素保障的通知</h3>
   <div class="news-meta">🏛️ 自然资源部 · 07-23 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.lxs.gov.cn/lxs/zwgk/zjdbmxx/bm/lxszrzyj/fdzdgknr/BMWJ/art/2026/art_47b24535db794f3c8021374ed8590c69.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：自然资源部与国家林业和草原局发布通知，强化国土空间规划许可和动态维护机制。<br><br>▍要点：<br>• 要点1：加强规划引领和项目前期工作，确保自然资源合理利用。<br>• 要点2：探索建立健全国土空间规划许可制度，规范项目审批流程。<br>• 要点3：建立规划动态维护机制，确保规划实施与调整的及时性。<br><br>▍行业影响：有利于提升规划设计工作的规范性和效率。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(200)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-200">
     <button class="vote-btn" onclick="vote(200,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(200,'normal')">📌 一般 <span class="c">0</span></button>
@@ -89,6 +109,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>《交通运输数据安全管理办法》政策解读</h3>
   <div class="news-meta">🏛️ 交通运输部 · 07-23 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.mot.gov.cn/gongkai/zcjd/202607/t20260723_4210294.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：交通运输部发布《交通运输数据安全管理办法》，强化数据安全保护。<br><br>▍要点：<br>• 要点1：实施日期为7月1日，共7章41条，建立数据安全保护制度。<br>• 要点2：强化数据全生命周期管控，包括分类分级保护。<br>• 要点3：涉及交通运输领域，旨在提升数据安全。<br><br>▍行业影响：有利于提升规划设计数据安全，规范行业数据管理。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(201)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-201">
     <button class="vote-btn" onclick="vote(201,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(201,'normal')">📌 一般 <span class="c">0</span></button>
@@ -99,6 +120,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>深圳荔园新村老牌住宅小区更新改造迎关键转折</h3>
   <div class="news-meta">🏙️ 深圳市 · 07-23 · <span class="stars">★★★★</span> 7.0分 · <a href="https://new.qq.com/rain/a/20260723A0DMDS00" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：深圳荔园新村老牌住宅小区更新改造政策调整，取消强制配建保障房。<br><br>▍要点：<br>• 要点1：政策调整，取消强制配建保障房。<br>• 要点2：由拆不起到重启更新，政策成为破局关键。<br>• 要点3：官方判定拆不起，更新改造面临转折。<br><br>▍行业影响：政策调整有利于提高更新改造项目的可行性，但需关注保障房需求平衡。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(203)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-203">
     <button class="vote-btn" onclick="vote(203,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(203,'normal')">📌 一般 <span class="c">0</span></button>
@@ -109,6 +131,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>海口洋浦港被列入《口岸现代化十五五规划》</h3>
   <div class="news-meta">🏙️ 海口市 · 07-24 · <span class="stars">★★★★</span> 7.0分 · <a href="http://hq.news.cn/20260724/e76f07e5de5646948072507c84f6217a/c.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：海口洋浦港被纳入国家口岸现代化规划，重点推进基础设施改造和智慧口岸建设。<br><br>▍要点：<br>• 要点1：洋浦港被列入基础设施改造工程，将提升港口硬件设施。<br>• 要点2：海口被纳入智慧口岸建设工程，推动口岸智能化发展。<br>• 要点3：规划涉及海关总署和发改委，政策支持力度大。<br><br>▍行业影响：利好海口洋浦港及海口市城市规划与建设，推动区域经济发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(204)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-204">
     <button class="vote-btn" onclick="vote(204,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(204,'normal')">📌 一般 <span class="c">0</span></button>
@@ -119,6 +142,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>浙江开展缩小三大差距用地保障专项行动</h3>
   <div class="news-meta">🏙️ 浙江省 · 07-23 · <span class="stars">★★</span> 3.0分 · <a href="https://www.xuexidajun.com/guxiangxinwen/1828055.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：浙江省启动用地保障专项行动，缩小城乡、区域、收入差距。<br><br>▍要点：<br>• 要点1：省自然资源厅首次部署用地保障，针对缩小三大差距。<br>• 要点2：实施五大保障机制，包括用地指标、审批流程、资金支持等。<br>• 要点3：专项行动覆盖城乡、区域、收入三大差距建设项目。<br><br>▍行业影响：有利于优化土地资源配置，提升规划设计工作的针对性和有效性。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(202)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-202">
     <button class="vote-btn" onclick="vote(202,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(202,'normal')">📌 一般 <span class="c">0</span></button>
@@ -129,6 +153,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>蕾奥规划斩获2026WLA世界景观建筑奖文化景观类别大奖</h3>
   <div class="news-meta">📊 蕾奥规划 · 07-23 · <span class="stars">★★★★</span> 7.0分 · <a href="https://stock.10jqka.com.cn/20260723/c678395521.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：蕾奥规划凭借四川泸沽湖项目荣获2026WLA世界景观建筑奖文化景观类别大奖。<br><br>▍要点：<br>• 要点1：蕾奥规划与荷兰KCAP合作，在文化景观类别中脱颖而出。<br>• 要点2：项目获得本届WLA唯一专项大奖，彰显中国公司在国际舞台上的竞争力。<br>• 要点3：奖项认可了蕾奥规划在文化景观领域的专业能力和创新实践。<br><br>▍行业影响：该奖项提升了中国景观建筑在国际</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(205)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-205">
     <button class="vote-btn" onclick="vote(205,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(205,'normal')">📌 一般 <span class="c">0</span></button>
@@ -166,6 +191,89 @@ async function vote(news_id,type){
   }catch(e){}
   btns.forEach(b=>b.disabled=false);
 }
+
+/* ===== 语音播报（Web Speech API）===== */
+const synth = window.speechSynthesis;
+let ttsVoices = [];
+function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
+loadVoices();
+if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
+
+function pickZhVoice(){
+  if(!ttsVoices.length) return null;
+  let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
+  if(v) return v;
+  return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
+}
+function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
+function speakOne(text, onend){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = pickZhVoice();
+  if(v) u.voice = v;
+  u.lang = v ? v.lang : 'zh-CN';
+  u.rate = 1; u.pitch = 1;
+  u.onend = onend; u.onerror = onend;
+  synth.speak(u);
+}
+function cardText(card){
+  const h = card.querySelector('h3');
+  const s = card.querySelector('.news-summary');
+  const title = h ? h.innerText : '';
+  const sum = s ? s.innerText : '';
+  return (title + '。' + sum).replace(/\s+/g,' ').trim();
+}
+function clearSpeaking(){
+  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
+  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
+}
+let ttsStop = false;
+function stopSpeak(){
+  ttsStop = true;
+  if(synth) synth.cancel();
+  clearSpeaking();
+  setStatus('已停止');
+}
+function speakAll(){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  stopSpeak();
+  ttsStop = false;
+  const cards = Array.from(document.querySelectorAll('.news-card'));
+  if(!cards.length){ setStatus('本页暂无新闻'); return; }
+  let i = 0;
+  function next(){
+    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
+    const card = cards[i];
+    card.classList.add('speaking');
+    const btn = card.querySelector('.speak-btn');
+    if(btn) btn.classList.add('playing');
+    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
+    speakOne(cardText(card), function(){
+      card.classList.remove('speaking');
+      if(btn) btn.classList.remove('playing');
+      i++; next();
+    });
+  }
+  next();
+}
+function speakNews(id){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  const card = document.getElementById('news-' + id);
+  if(!card) return;
+  stopSpeak();
+  card.classList.add('speaking');
+  const btn = card.querySelector('.speak-btn');
+  if(btn) btn.classList.add('playing');
+  setStatus('朗读中…');
+  speakOne(cardText(card), function(){
+    card.classList.remove('speaking');
+    if(btn) btn.classList.remove('playing');
+    setStatus('');
+  });
+}
+/* 无新闻页隐藏语音条 */
+(function(){ if(!document.querySelector('.news-card')){ const b=document.querySelector('.tts-bar'); if(b) b.style.display='none'; } })();
 </script>
 </body>
 </html>

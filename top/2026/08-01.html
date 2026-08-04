@@ -42,12 +42,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
 .year-section{margin-bottom:24px}
 .year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
+.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
+.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
+.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.tts-bar button:hover{background:#40a9ff}
+.tts-bar button.stop{background:#ff4d4f}
+.tts-bar button.stop:hover{background:#ff7875}
+.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
+.speak-btn:hover{border-color:#1890ff;color:#1890ff}
+.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
 </style>
 </head>
 <body>
 <div class="header">
   <h1>📰 2026年8月1日 规划情报</h1>
   <div class="subtitle">PiHub · 历史新闻回顾</div>
+</div>
+<div class="tts-bar">
+  <span class="tts-title">🔊 语音播报</span>
+  <button onclick="speakAll()">▶ 朗读本页全部</button>
+  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
+  <span class="tts-status" id="tts-status"></span>
 </div>
 <div class="nav"><a href="/" class="">今日</a><a href="/top/week.html" class="">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="active">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
 <div class="stats">
@@ -59,6 +76,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>中共中央政治局召开会议 决定召开二十届五中全会 分析研究当前经济形势和经济工作</h3>
   <div class="news-meta">👤 党中央 · 07-31 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.gov.cn/yaowen/liebiao/202607/content_7077056.htm" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：中共中央政治局决定召开二十届五中全会，分析研究当前经济形势和经济工作。<br><br>▍要点：<br>• 要点1：会议旨在分析当前经济形势，为未来经济工作提供政策指导。<br>• 要点2：二十届五中全会将聚焦经济议题，可能涉及城市规划与建设相关内容。<br>• 要点3：会议决策将对国家经济政策产生重大影响，间接影响城市规划与实施。<br><br>▍行业影响：对城市规划与建设领域产生重要指导</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(240)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-240">
     <button class="vote-btn" onclick="vote(240,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(240,'normal')">📌 一般 <span class="c">0</span></button>
@@ -69,6 +87,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>中共中央政治局集体学习：高质量推进国防和军队现代化</h3>
   <div class="news-meta">👤 党中央 · 08-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.cnr.cn/newscenter/native/gd/sz/20260801/t20260801_527741023.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：中共中央政治局集体学习，强调高质量推进国防和军队现代化。<br><br>▍要点：<br>• 要点1：强化政治引领，确保国防和军队现代化与国家发展战略相协调。<br>• 要点2：深化创新发展，推动国防科技和军事理论创新。<br>• 要点3：提升军队现代化水平，优化军事资源配置。<br><br>▍行业影响：推动城市规划与国防需求紧密结合，促进城市安全与可持续发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(241)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-241">
     <button class="vote-btn" onclick="vote(241,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(241,'normal')">📌 一般 <span class="c">0</span></button>
@@ -79,6 +98,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>优化财政金融协同促内需政策 下半年中国经济工作这样干</h3>
   <div class="news-meta">👤 党中央 · 08-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.toutiao.com/article/7668901336897667618/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：中共中央政治局部署下半年经济工作，优化财政金融协同促内需。<br><br>▍要点：<br>• 要点1：会议强调优化财政金融协同，促进内需增长。<br>• 要点2：部署下半年经济工作，旨在稳定经济增长。<br>• 要点3：政策将影响各级政府财政支出和金融资源配置。<br><br>▍行业影响：有利于推动城市规划与经济发展紧密结合。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(242)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-242">
     <button class="vote-btn" onclick="vote(242,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(242,'normal')">📌 一般 <span class="c">0</span></button>
@@ -89,6 +109,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>以习近平同志为核心的党中央引领人民军队书写强军兴军新篇章</h3>
   <div class="news-meta">👤 党中央 · 08-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.gov.cn?chamber/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：党中央领导推动军队现代化建设。<br><br>▍要点：<br>• 要点1：党中央以习近平同志为核心，强化军队现代化建设。<br>• 要点2：强调强军兴军，提升军队整体实力。<br>• 要点3：涉及国防和军队改革，优化军事布局。<br><br>▍行业影响：积极推动城市规划与国防安全相结合。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(243)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-243">
     <button class="vote-btn" onclick="vote(243,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(243,'normal')">📌 一般 <span class="c">0</span></button>
@@ -99,6 +120,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>国务院关于印发《实施就业优先战略「十五五」规划》的通知</h3>
   <div class="news-meta">👤 国务院 · 07-31 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.gov.cn?nbewo/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院发布就业优先战略规划及自然保护区、风景名胜区整合优化方案。<br><br>▍要点：<br>• 要点1：规划强调就业优先，推动经济高质量发展。<br>• 要点2：涉及浙江、福建、山东等3省自然保护区和风景名胜区整合优化。<br>• 要点3：提出具体措施，包括政策支持、产业布局等。<br><br>▍行业影响：积极。规划将促进区域经济与生态环境协调发展，为规划设计工作提供政策导向。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(239)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-239">
     <button class="vote-btn" onclick="vote(239,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(239,'normal')">📌 一般 <span class="c">0</span></button>
@@ -109,6 +131,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>国务院印发《知识产权保护和运用「十五五」规划》</h3>
   <div class="news-meta">👤 国务院 · 08-01 · <span class="stars">★★★</span> 6.0分 · <a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_3276a6d209662952" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院发布《知识产权保护和运用「十五五」规划》，明确知识产权工作目标和任务。<br><br>▍要点：<br>• 要点1：规划明确了「十五五」时期知识产权工作的目标指标和重点任务。<br>• 要点2：规划涉及多个领域，包括创新主体、创新环境、创新服务等。<br>• 要点3：规划提出实施专项工程，强化知识产权保护和运用。<br><br>▍行业影响：有利于提升城市规划领域的创新能力和竞争力。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(238)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-238">
     <button class="vote-btn" onclick="vote(238,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(238,'normal')">📌 一般 <span class="c">0</span></button>
@@ -119,6 +142,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>公布《国务院关于出境入境管理的规定》</h3>
   <div class="news-meta">👤 国务院 · 08-01 · <span class="stars">★★</span> 5.0分 · <a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_9686a6d482170952" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院发布新规定，调整出境入境管理，2026年9月15日起施行。<br><br>▍要点：<br>• 要点1：调整出境入境管理政策，优化流程，提高效率。<br>• 要点2：规定自2026年9月15日起正式实施，涉及国内外人员流动。<br>• 要点3：新规定旨在促进国际交流与合作，优化营商环境。<br><br>▍行业影响：有利于优化城市规划中的国际交流与合作，提升城市国际化水平。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(237)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-237">
     <button class="vote-btn" onclick="vote(237,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(237,'normal')">📌 一般 <span class="c">0</span></button>
@@ -129,6 +153,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>实施更加积极有为宏观政策 有效扩大国内需求</h3>
   <div class="news-meta">🏛️ 发改委 · 08-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.163.com/dy/article/L37OU58V053469RG_pdya11y.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国家发改委发布下半年宏观调控政策，强调扩大国内需求。<br><br>▍要点：<br>• 要点1：政策强调宏观调控、产业培育、市场改革。<br>• 要点2：具体措施包括扩大有效投资、促进消费、深化改革开放等。<br>• 要点3：政策旨在稳定经济增长，推动高质量发展。<br><br>▍行业影响：有利于推动城市规划与建设，促进城市可持续发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(244)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-244">
     <button class="vote-btn" onclick="vote(244,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(244,'normal')">📌 一般 <span class="c">0</span></button>
@@ -139,6 +164,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>提升通勤效率 促进都市圈一体化发展</h3>
   <div class="news-meta">🏛️ 交通运输部 · 08-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://cj.sina.com.cn/article/norm_detail?url=https%3A%2F%2Ffinance.sina.com.cn%2Fjjxw%2F2026-08-01%2Fdoc-inikurwm3948791.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：发布《都市圈城际通勤效率提升工程实施方案》，旨在提升都市圈通勤效率。<br><br>▍要点：<br>• 要点1：政策旨在打造综合通勤廊道，完善综合交通枢纽。<br>• 要点2：实施时间跨度为2026年至2030年。<br>• 要点3：涉及交通运输部等八部门联合发布。<br><br>▍行业影响：有利于推动城市规划与交通规划的协同发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(245)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-245">
     <button class="vote-btn" onclick="vote(245,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(245,'normal')">📌 一般 <span class="c">0</span></button>
@@ -149,6 +175,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>水利部部署八上关键期七方面防汛重点</h3>
   <div class="news-meta">🏛️ 水利部 · 08-01 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.sohu.com/a/1057493997_162758" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：水利部部署防汛关键期七方面重点工作。<br><br>▍要点：<br>• 要点1：水利部召开专题会商，分析「八上」防汛关键期汛情发展态势。<br>• 要点2：系统安排部署防汛重点工作，涉及七方面内容。<br>• 要点3：旨在加强防洪减灾能力，保障人民生命财产安全。<br><br>▍行业影响：有利于提升城市防洪规划和设计水平。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(246)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-246">
     <button class="vote-btn" onclick="vote(246,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(246,'normal')">📌 一般 <span class="c">0</span></button>
@@ -159,6 +186,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>广东积极推进国土绿化空间规划 破解耕林矛盾</h3>
   <div class="news-meta">🏙️ 广东省 · 07-31 · <span class="stars">★★★★</span> 7.0分 · <a href="https://lyj.gd.gov.cn/news/forestry/content/post_4907204.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：广东省推进国土绿化空间规划，缓解耕林空间矛盾。<br>▍要点：<br>• 要点1：广东省着力解决林田空间矛盾，优化国土绿化布局。<br>• 要点2：规划旨在提高土地利用效率，促进生态与农业和谐发展。<br>• 要点3：政策将引导规划设计工作更加注重生态保护和农业发展平衡。<br>▍行业影响：有利于推动规划设计工作更加注重生态与农业的协调发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(247)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-247">
     <button class="vote-btn" onclick="vote(247,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(247,'normal')">📌 一般 <span class="c">0</span></button>
@@ -169,6 +197,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>《重庆市推进科技创新中心建设条例》出台 川渝联合构建创新共同体</h3>
   <div class="news-meta">🏙️ 重庆市 · 07-31 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.chinanews.com/cj/2026/07-31/10669855.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：《重庆市推进科技创新中心建设条例》正式实施，川渝联合构建创新共同体。<br><br>▍要点：<br>• 要点1：条例旨在推进科技创新中心建设，自2026年10月1日起施行。<br>• 要点2：川渝两地将联合构建创新共同体，促进区域科技创新。<br>• 要点3：条例涉及科技创新政策、资金支持、人才引进等方面。<br><br>▍行业影响：有利于推动区域科技创新，提升规划设计工作的科技含量。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(249)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-249">
     <button class="vote-btn" onclick="vote(249,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(249,'normal')">📌 一般 <span class="c">0</span></button>
@@ -179,6 +208,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>《西安都市圈建设「十五五」实施方案》印发</h3>
   <div class="news-meta">🏙️ 西安市 · 07-31 · <span class="stars">★★</span> 5.0分 · <a href="https://xafbapp.xiancn.com/newxawb/pad/html/202607/31/content_360556.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：《西安都市圈建设「十五五」实施方案》印发，聚焦六方面推进20项重点任务。<br><br>▍要点：<br>• 要点1：实施方案聚焦创新驱动、产业升级、生态保护等六方面。<br>• 要点2：实施20项重点任务，包括基础设施建设、产业协同发展等。<br>• 要点3：方案旨在提升西安都市圈的综合竞争力。<br><br>▍行业影响：对规划设计工作具有积极推动作用。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(250)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-250">
     <button class="vote-btn" onclick="vote(250,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(250,'normal')">📌 一般 <span class="c">0</span></button>
@@ -189,6 +219,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>川渝协同立法上新 共筑科技创新中心法治根基</h3>
   <div class="news-meta">🏙️ 四川省 · 07-31 · <span class="stars">★★</span> 3.0分 · <a href="https://www.toutiao.com/article/7668671456129122868/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：川渝两地协同立法，共同推进科技创新中心建设。<br><br>▍要点：<br>• 要点1：四川省和重庆市分别通过《四川省推进科技创新中心建设条例》和《重庆市推进科技创新中心建设条例》。<br>• 要点2：条例将于10月1日起同步施行，标志着川渝两地科技创新合作进入新阶段。<br>• 要点3：条例旨在优化科技创新环境，提升科技创新能力，为建设科技创新中心提供法治保障。<br><br>▍行业影响</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(248)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-248">
     <button class="vote-btn" onclick="vote(248,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(248,'normal')">📌 一般 <span class="c">0</span></button>
@@ -199,6 +230,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>蕾奥规划青海丹噶尔古城运营招商项目顺利收官</h3>
   <div class="news-meta">📊 蕾奥规划 · 07-31 · <span class="stars">★★★★</span> 7.0分 · <a href="https://stock.10jqka.com.cn/20260731/c678587339.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：蕾奥规划成功完成青海丹噶尔古城运营招商项目。<br><br>▍要点：<br>• 要点1：蕾奥规划采用“行动规划+运营咨询”理念，在高原环境下实现全链条运营招商。<br>• 要点2：项目顺利收官，验证了蕾奥规划在特殊环境下的运营能力。<br>• 要点3：项目涉及古城保护和开发，体现了对历史文化传承的重视。<br><br>▍行业影响：蕾奥规划在古城运营招商领域的成功案例，为行业提供了可借鉴的经</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(251)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-251">
     <button class="vote-btn" onclick="vote(251,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(251,'normal')">📌 一般 <span class="c">0</span></button>
@@ -236,6 +268,89 @@ async function vote(news_id,type){
   }catch(e){}
   btns.forEach(b=>b.disabled=false);
 }
+
+/* ===== 语音播报（Web Speech API）===== */
+const synth = window.speechSynthesis;
+let ttsVoices = [];
+function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
+loadVoices();
+if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
+
+function pickZhVoice(){
+  if(!ttsVoices.length) return null;
+  let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
+  if(v) return v;
+  return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
+}
+function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
+function speakOne(text, onend){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = pickZhVoice();
+  if(v) u.voice = v;
+  u.lang = v ? v.lang : 'zh-CN';
+  u.rate = 1; u.pitch = 1;
+  u.onend = onend; u.onerror = onend;
+  synth.speak(u);
+}
+function cardText(card){
+  const h = card.querySelector('h3');
+  const s = card.querySelector('.news-summary');
+  const title = h ? h.innerText : '';
+  const sum = s ? s.innerText : '';
+  return (title + '。' + sum).replace(/\s+/g,' ').trim();
+}
+function clearSpeaking(){
+  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
+  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
+}
+let ttsStop = false;
+function stopSpeak(){
+  ttsStop = true;
+  if(synth) synth.cancel();
+  clearSpeaking();
+  setStatus('已停止');
+}
+function speakAll(){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  stopSpeak();
+  ttsStop = false;
+  const cards = Array.from(document.querySelectorAll('.news-card'));
+  if(!cards.length){ setStatus('本页暂无新闻'); return; }
+  let i = 0;
+  function next(){
+    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
+    const card = cards[i];
+    card.classList.add('speaking');
+    const btn = card.querySelector('.speak-btn');
+    if(btn) btn.classList.add('playing');
+    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
+    speakOne(cardText(card), function(){
+      card.classList.remove('speaking');
+      if(btn) btn.classList.remove('playing');
+      i++; next();
+    });
+  }
+  next();
+}
+function speakNews(id){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  const card = document.getElementById('news-' + id);
+  if(!card) return;
+  stopSpeak();
+  card.classList.add('speaking');
+  const btn = card.querySelector('.speak-btn');
+  if(btn) btn.classList.add('playing');
+  setStatus('朗读中…');
+  speakOne(cardText(card), function(){
+    card.classList.remove('speaking');
+    if(btn) btn.classList.remove('playing');
+    setStatus('');
+  });
+}
+/* 无新闻页隐藏语音条 */
+(function(){ if(!document.querySelector('.news-card')){ const b=document.querySelector('.tts-bar'); if(b) b.style.display='none'; } })();
 </script>
 </body>
 </html>

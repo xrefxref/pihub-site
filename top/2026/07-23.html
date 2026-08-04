@@ -42,12 +42,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
 .year-section{margin-bottom:24px}
 .year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
+.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
+.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
+.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.tts-bar button:hover{background:#40a9ff}
+.tts-bar button.stop{background:#ff4d4f}
+.tts-bar button.stop:hover{background:#ff7875}
+.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
+.speak-btn:hover{border-color:#1890ff;color:#1890ff}
+.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
 </style>
 </head>
 <body>
 <div class="header">
   <h1>📰 2026年7月23日 规划情报</h1>
   <div class="subtitle">PiHub · 历史新闻回顾</div>
+</div>
+<div class="tts-bar">
+  <span class="tts-title">🔊 语音播报</span>
+  <button onclick="speakAll()">▶ 朗读本页全部</button>
+  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
+  <span class="tts-status" id="tts-status"></span>
 </div>
 <div class="nav"><a href="/" class="">今日</a><a href="/top/week.html" class="">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="active">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
 <div class="stats">
@@ -59,6 +76,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>推进跨区域跨流域大通道建设 十五五时期交通网将有这些新变化</h3>
   <div class="news-meta">🏛️ 交通运输部 · 07-22 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.cnr.cn/newscenter/native/gd/20260722/t20260722_527724179.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：交通运输部发布“十五五”重点建设四类通道，推动交通网升级。<br><br>▍要点：<br>• 要点1：重点建设沿海沿边沿江通道、出疆入藏通道、西部陆海新通道、跨江跨海跨湾通道。<br>• 要点2：三峡水运新通道已开工。<br>• 要点3：政策旨在优化区域交通布局，提升物流效率。<br><br>▍行业影响：有利于提升城市规划与交通规划的协同性，促进区域经济一体化发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(194)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-194">
     <button class="vote-btn" onclick="vote(194,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(194,'normal')">📌 一般 <span class="c">0</span></button>
@@ -69,6 +87,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>《深汕特别合作区国土空间总体规划动态维护方案》获准 划定中心南等5大重点优化区域</h3>
   <div class="news-meta">🏙️ 广东省 · 07-22 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.sznews.com/news/content/2026-07/22/content_32128523.htm" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：深汕特别合作区国土空间总体规划动态维护方案获准，划定5大重点优化区域。<br><br>▍要点：<br>• 要点1：方案获广东省自然资源厅核准，成为全省首批通过核准的规划动态维护成果。<br>• 要点2：规划涵盖深汕特别合作区，涉及国土空间布局、功能分区等。<br>• 要点3：划定中心南等5大重点优化区域，强调区域发展重点。<br><br>▍行业影响：有利于提升深汕特别合作区规划管理水平，推</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(195)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-195">
     <button class="vote-btn" onclick="vote(195,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(195,'normal')">📌 一般 <span class="c">0</span></button>
@@ -79,6 +98,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>深圳市规划和自然资源局福田管理局关于福田区沙头街道文化创意园城市更新单元项目总平面图的公示</h3>
   <div class="news-meta">🏙️ 深圳市 · 07-22 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.sz.gov.cn/cn/xxgk/zfxxgj/tzgg/content/post_12903064.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：深圳市福田区沙头街道文化创意园城市更新单元项目总平面图公示。<br><br>▍要点：<br>• 要点1：公示总平面图，涉及城市更新单元项目。<br>• 要点2：项目位于福田区沙头街道，聚焦文化创意产业。<br>• 要点3：公示旨在征询公众意见，确保规划合理。<br><br>▍行业影响：有利于推动文化创意产业与城市更新的融合，提升区域活力。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(197)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-197">
     <button class="vote-btn" onclick="vote(197,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(197,'normal')">📌 一般 <span class="c">0</span></button>
@@ -89,6 +109,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>江苏多地明晰"十五五"科技创新"路线图"</h3>
   <div class="news-meta">🏙️ 江苏省 · 07-22 · <span class="stars">★★</span> 3.0分 · <a href="https://www.js.chinanews.com.cn/news/2026/0722/234577.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：江苏多地发布未来五年科技创新发展路线图。<br><br>▍要点：<br>• 要点1：江苏各设区市明确“十五五”期间科技创新发展目标。<br>• 要点2：路线图涵盖高新技术产业、研发创新平台、人才引进等方面。<br>• 要点3：路线图旨在推动区域经济高质量发展。<br><br>▍行业影响：积极。路线图将促进城市规划与科技创新深度融合，推动城市功能优化和产业升级。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(196)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-196">
     <button class="vote-btn" onclick="vote(196,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(196,'normal')">📌 一般 <span class="c">0</span></button>
@@ -126,6 +147,89 @@ async function vote(news_id,type){
   }catch(e){}
   btns.forEach(b=>b.disabled=false);
 }
+
+/* ===== 语音播报（Web Speech API）===== */
+const synth = window.speechSynthesis;
+let ttsVoices = [];
+function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
+loadVoices();
+if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
+
+function pickZhVoice(){
+  if(!ttsVoices.length) return null;
+  let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
+  if(v) return v;
+  return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
+}
+function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
+function speakOne(text, onend){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = pickZhVoice();
+  if(v) u.voice = v;
+  u.lang = v ? v.lang : 'zh-CN';
+  u.rate = 1; u.pitch = 1;
+  u.onend = onend; u.onerror = onend;
+  synth.speak(u);
+}
+function cardText(card){
+  const h = card.querySelector('h3');
+  const s = card.querySelector('.news-summary');
+  const title = h ? h.innerText : '';
+  const sum = s ? s.innerText : '';
+  return (title + '。' + sum).replace(/\s+/g,' ').trim();
+}
+function clearSpeaking(){
+  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
+  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
+}
+let ttsStop = false;
+function stopSpeak(){
+  ttsStop = true;
+  if(synth) synth.cancel();
+  clearSpeaking();
+  setStatus('已停止');
+}
+function speakAll(){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  stopSpeak();
+  ttsStop = false;
+  const cards = Array.from(document.querySelectorAll('.news-card'));
+  if(!cards.length){ setStatus('本页暂无新闻'); return; }
+  let i = 0;
+  function next(){
+    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
+    const card = cards[i];
+    card.classList.add('speaking');
+    const btn = card.querySelector('.speak-btn');
+    if(btn) btn.classList.add('playing');
+    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
+    speakOne(cardText(card), function(){
+      card.classList.remove('speaking');
+      if(btn) btn.classList.remove('playing');
+      i++; next();
+    });
+  }
+  next();
+}
+function speakNews(id){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  const card = document.getElementById('news-' + id);
+  if(!card) return;
+  stopSpeak();
+  card.classList.add('speaking');
+  const btn = card.querySelector('.speak-btn');
+  if(btn) btn.classList.add('playing');
+  setStatus('朗读中…');
+  speakOne(cardText(card), function(){
+    card.classList.remove('speaking');
+    if(btn) btn.classList.remove('playing');
+    setStatus('');
+  });
+}
+/* 无新闻页隐藏语音条 */
+(function(){ if(!document.querySelector('.news-card')){ const b=document.querySelector('.tts-bar'); if(b) b.style.display='none'; } })();
 </script>
 </body>
 </html>

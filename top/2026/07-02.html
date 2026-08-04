@@ -42,12 +42,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
 .year-section{margin-bottom:24px}
 .year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
+.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
+.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
+.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.tts-bar button:hover{background:#40a9ff}
+.tts-bar button.stop{background:#ff4d4f}
+.tts-bar button.stop:hover{background:#ff7875}
+.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
+.speak-btn:hover{border-color:#1890ff;color:#1890ff}
+.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
 </style>
 </head>
 <body>
 <div class="header">
   <h1>📰 2026年7月2日 规划情报</h1>
   <div class="subtitle">PiHub · 历史新闻回顾</div>
+</div>
+<div class="tts-bar">
+  <span class="tts-title">🔊 语音播报</span>
+  <button onclick="speakAll()">▶ 朗读本页全部</button>
+  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
+  <span class="tts-status" id="tts-status"></span>
 </div>
 <div class="nav"><a href="/" class="">今日</a><a href="/top/week.html" class="">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="active">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
 <div class="stats">
@@ -59,6 +76,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>习近平：在庆祝中国共产党成立105周年大会上的讲话</h3>
   <div class="news-meta">👤 党中央 · 07-01 · <span class="stars">★★★★★</span> 10.0分 · <a href="https://www.qstheory.cn/20260701/51590b47764642219f6d62be4cf66bd0/c.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：习近平在庆祝中国共产党成立105周年大会上发表重要讲话。<br><br>▍要点：<br>• 要点1：讲话强调党的历史使命和未来发展方向。<br>• 要点2：提出加强党的建设，推动全面深化改革。<br>• 要点3：强调以人民为中心的发展思想。<br><br>▍行业影响：讲话对城市规划工作具有重要指导意义。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(119)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-119">
     <button class="vote-btn" onclick="vote(119,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(119,'normal')">📌 一般 <span class="c">0</span></button>
@@ -69,6 +87,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>中共中央关于授予七一勋章的决定</h3>
   <div class="news-meta">👤 党中央 · 07-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://ljktx.dbw.cn/system/2026/07/01/059564671.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：中共中央表彰优秀共产党员。<br><br>▍要点：<br>• 要点1：表彰对象为优秀共产党员，体现党的先进性和纯洁性。<br>• 要点2：授予七一勋章，强化党员荣誉感和使命感。<br>• 要点3：表彰决定对全国党员具有激励作用。<br><br>▍行业影响：对规划设计工作无直接影响。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(120)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-120">
     <button class="vote-btn" onclick="vote(120,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(120,'normal')">📌 一般 <span class="c">0</span></button>
@@ -79,6 +98,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>7月起一批新规施行：行政复议法实施条例等正式生效</h3>
   <div class="news-meta">👤 国务院 · 07-01 · <span class="stars">★★★</span> 6.0分 · <a href="https://news.qq.com/rain/a/20260629A00N7A00" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：新修订的行政复议法实施条例及社保新规7月1日起正式实施。<br><br>▍要点：<br>• 要点1：行政复议法实施条例修订，强化行政复议程序，保障公民合法权益。<br>• 要点2：社保大变革四大新规落地，涉及养老保险、医疗保险等，优化社会保障体系。<br>• 要点3：新规对政府决策和执行提出更高要求，强化规划设计的政策依据。<br><br>▍行业影响：有利于提升规划设计工作的政策合规性和社</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(118)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-118">
     <button class="vote-btn" onclick="vote(118,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(118,'normal')">📌 一般 <span class="c">0</span></button>
@@ -89,6 +109,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>交通运输部政策解读最新信息发布</h3>
   <div class="news-meta">🏛️ 交通运输部 · 07-01 · <span class="stars">★★★</span> 6.0分 · <a href="https://www.mot.gov.cn/gongkai/zcjd/index.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：交通运输部发布最新政策解读，聚焦综合交通运输体系建设。<br><br>▍要点：<br>• 要点1：政策解读聚焦综合交通运输体系建设，强调提升运输效率和服务水平。<br>• 要点2：涉及交通基础设施、运输组织、科技创新等方面，旨在构建现代化综合交通网络。<br>• 要点3：政策强调绿色、智能、高效发展，推动交通运输行业转型升级。<br><br>▍行业影响：政策将推动规划设计工作向绿色、智能、</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(115)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-115">
     <button class="vote-btn" onclick="vote(115,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(115,'normal')">📌 一般 <span class="c">0</span></button>
@@ -99,6 +120,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>第三批625亿元国补下达 7月继续申领消费品以旧换新补贴</h3>
   <div class="news-meta">🏛️ 发改委 · 07-01 · <span class="stars">★★</span> 4.0分 · <a href="https://finance.sina.com.cn/tjhz/2026-07-01/doc-inifhmie3114174.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国家发放第三批625亿元消费品以旧换新补贴，覆盖乘用车、家电等。<br><br>▍要点：<br>• 要点1：补贴总额达625亿元，覆盖乘用车、一级能效家电、3C数码等。<br>• 要点2：补贴申领时间为7月，旨在促进消费升级。<br>• 要点3：政策支持绿色环保，鼓励淘汰落后产品。<br><br>▍行业影响：有利于促进城市规划中的绿色消费和循环经济发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(114)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-114">
     <button class="vote-btn" onclick="vote(114,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(114,'normal')">📌 一般 <span class="c">0</span></button>
@@ -109,6 +131,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>技能自贸港五年行动方案(2026-2030年)印发</h3>
   <div class="news-meta">🏙️ 海南省 · 07-01 · <span class="stars">★★★★</span> 7.0分 · <a href="https://hrss.hainan.gov.cn/hrss/zyjnds/202607/a250adfd4c694767a740ec1f01c45a4b.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：海南省发布技能自贸港五年行动方案，旨在培养高素质技能人才。<br><br>▍要点：<br>• 要点1：方案旨在构建现代化产业体系所需的高素质技能人才队伍。<br>• 要点2：方案实施期限为2026年至2030年。<br>• 要点3：方案涉及技能培训、职业资格认证等方面。<br><br>▍行业影响：有利于提升海南自贸港规划设计人才素质，推动产业升级。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(117)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-117">
     <button class="vote-btn" onclick="vote(117,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(117,'normal')">📌 一般 <span class="c">0</span></button>
@@ -146,6 +169,89 @@ async function vote(news_id,type){
   }catch(e){}
   btns.forEach(b=>b.disabled=false);
 }
+
+/* ===== 语音播报（Web Speech API）===== */
+const synth = window.speechSynthesis;
+let ttsVoices = [];
+function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
+loadVoices();
+if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
+
+function pickZhVoice(){
+  if(!ttsVoices.length) return null;
+  let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
+  if(v) return v;
+  return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
+}
+function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
+function speakOne(text, onend){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = pickZhVoice();
+  if(v) u.voice = v;
+  u.lang = v ? v.lang : 'zh-CN';
+  u.rate = 1; u.pitch = 1;
+  u.onend = onend; u.onerror = onend;
+  synth.speak(u);
+}
+function cardText(card){
+  const h = card.querySelector('h3');
+  const s = card.querySelector('.news-summary');
+  const title = h ? h.innerText : '';
+  const sum = s ? s.innerText : '';
+  return (title + '。' + sum).replace(/\s+/g,' ').trim();
+}
+function clearSpeaking(){
+  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
+  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
+}
+let ttsStop = false;
+function stopSpeak(){
+  ttsStop = true;
+  if(synth) synth.cancel();
+  clearSpeaking();
+  setStatus('已停止');
+}
+function speakAll(){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  stopSpeak();
+  ttsStop = false;
+  const cards = Array.from(document.querySelectorAll('.news-card'));
+  if(!cards.length){ setStatus('本页暂无新闻'); return; }
+  let i = 0;
+  function next(){
+    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
+    const card = cards[i];
+    card.classList.add('speaking');
+    const btn = card.querySelector('.speak-btn');
+    if(btn) btn.classList.add('playing');
+    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
+    speakOne(cardText(card), function(){
+      card.classList.remove('speaking');
+      if(btn) btn.classList.remove('playing');
+      i++; next();
+    });
+  }
+  next();
+}
+function speakNews(id){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  const card = document.getElementById('news-' + id);
+  if(!card) return;
+  stopSpeak();
+  card.classList.add('speaking');
+  const btn = card.querySelector('.speak-btn');
+  if(btn) btn.classList.add('playing');
+  setStatus('朗读中…');
+  speakOne(cardText(card), function(){
+    card.classList.remove('speaking');
+    if(btn) btn.classList.remove('playing');
+    setStatus('');
+  });
+}
+/* 无新闻页隐藏语音条 */
+(function(){ if(!document.querySelector('.news-card')){ const b=document.querySelector('.tts-bar'); if(b) b.style.display='none'; } })();
 </script>
 </body>
 </html>

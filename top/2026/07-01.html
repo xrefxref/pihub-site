@@ -42,12 +42,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
 .year-section{margin-bottom:24px}
 .year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
+.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
+.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
+.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.tts-bar button:hover{background:#40a9ff}
+.tts-bar button.stop{background:#ff4d4f}
+.tts-bar button.stop:hover{background:#ff7875}
+.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
+.speak-btn:hover{border-color:#1890ff;color:#1890ff}
+.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
 </style>
 </head>
 <body>
 <div class="header">
   <h1>📰 2026年7月1日 规划情报</h1>
   <div class="subtitle">PiHub · 历史新闻回顾</div>
+</div>
+<div class="tts-bar">
+  <span class="tts-title">🔊 语音播报</span>
+  <button onclick="speakAll()">▶ 朗读本页全部</button>
+  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
+  <span class="tts-status" id="tts-status"></span>
 </div>
 <div class="nav"><a href="/" class="">今日</a><a href="/top/week.html" class="">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="active">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
 <div class="stats">
@@ -59,6 +76,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>国务院印发《教育发展「十五五」规划》 一份文件讲清教育未来五年 ...</h3>
   <div class="news-meta">👤 国务院 · 06-30 · <span class="stars">★★</span> 3.0分 · <a href="https://news.china.com.cn/2026-06/30/content_118574441.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院发布《教育发展「十五五」规划》，规划未来五年教育发展。<br><br>▍要点：<br>• 要点1：规划涵盖教育发展目标、重点任务和保障措施。<br>• 要点2：强调教育公平、质量提升和人才培养。<br>• 要点3：涉及各级各类教育，包括基础教育、职业教育、高等教育等。<br><br>▍行业影响：积极。规划将引导教育资源配置，对城市规划中的教育设施布局和公共空间设计提出新要求。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(107)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-107">
     <button class="vote-btn" onclick="vote(107,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(107,'normal')">📌 一般 <span class="c">0</span></button>
@@ -69,6 +87,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>【政策解读】速看！国务院印发十五五就业规划，县域产业、智慧 ...</h3>
   <div class="news-meta">👤 国务院 · 06-30 · <span class="stars">★★</span> 3.0分 · <a href="https://www.sohu.com/a/1041498801_120537338" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院发布《实施就业优先战略「十五五」规划》。<br><br>▍要点：<br>• 要点1：规划强调县域产业和智慧城市建设，推动就业增长。<br>• 要点2：提出优化产业结构，提升产业竞争力，促进就业。<br>• 要点3：强化城市规划与就业布局的协同，提升城市就业承载力。<br><br>▍行业影响：有利于推动城市规划与就业发展紧密结合，提升规划设计的就业导向性。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(108)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-108">
     <button class="vote-btn" onclick="vote(108,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(108,'normal')">📌 一般 <span class="c">0</span></button>
@@ -79,6 +98,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>未来五年，教育强国这样建设</h3>
   <div class="news-meta">👤 国务院 · 06-29 · <span class="stars">★★</span> 3.0分 · <a href="https://www.chinanews.com.cn/edu/2026/06-29/10649372.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院发布《教育发展「十五五」规划》，明确教育强国建设目标和政策。<br><br>▍要点：<br>• 要点1：规划明确「十五五」时期教育强国建设目标任务。<br>• 要点2：提出一系列政策举措，包括加大教育投入、优化教育结构等。<br>• 要点3：规划涉及重大项目，如教育基础设施建设。<br><br>▍行业影响：对规划设计工作有积极推动作用。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(109)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-109">
     <button class="vote-btn" onclick="vote(109,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(109,'normal')">📌 一般 <span class="c">0</span></button>
@@ -89,6 +109,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>国务院印发《教育发展「十五五」规划》</h3>
   <div class="news-meta">👤 国务院 · 06-29 · <span class="stars">★★</span> 3.0分 · <a href="https://politics.people.com.cn/n1/2026/0629/c1001-40750000.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院发布《教育发展「十五五」规划》，部署教育强国建设。<br><br>▍要点：<br>• 要点1：规划明确「十五五」时期教育发展目标，强调教育强国建设。<br>• 要点2：规划涉及各级各类教育，涵盖基础教育、职业教育、高等教育等。<br>• 要点3：规划提出加强教育基础设施建设，优化教育资源配置。<br><br>▍行业影响：对规划设计工作具有积极推动作用。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(110)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-110">
     <button class="vote-btn" onclick="vote(110,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(110,'normal')">📌 一般 <span class="c">0</span></button>
@@ -99,6 +120,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>浙江发布规划推动共同富裕：到2030年「取得决定性进展」</h3>
   <div class="news-meta">🏙️ 浙江省 · 06-30 · <span class="stars">★★★★</span> 7.0分 · <a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_2126a38ff0254352" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：浙江省发布推动共同富裕的五年规划，目标2030年取得决定性进展。<br><br>▍要点：<br>• 要点1：规划旨在通过高质量发展实现共同富裕，涵盖经济、社会、文化、生态等多个领域。<br>• 要点2：提出到2030年实现居民收入和经济增长同步，缩小城乡、区域发展差距。<br>• 要点3：强调创新驱动和绿色低碳发展，提升公共服务和民生福祉。<br><br>▍行业影响：积极推动，为规划设计工</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(111)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-111">
     <button class="vote-btn" onclick="vote(111,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(111,'normal')">📌 一般 <span class="c">0</span></button>
@@ -109,6 +131,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>广州连发「新政组合拳」：低效楼宇更新、国企收房破题、空间规划升级</h3>
   <div class="news-meta">🏙️ 广州市 · 06-30 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.sohu.com/a/1043287362_100116740" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：广州发布新政组合拳，推动低效楼宇更新和空间规划升级。<br><br>▍要点：<br>• 要点1：发布《广州市关于推进低效楼宇更新提升的实施意见》，鼓励低效楼宇更新。<br>• 要点2：国企参与收房，破题低效楼宇问题。<br>• 要点3：空间规划升级，优化城市布局。<br><br>▍行业影响：有利于推动城市规划行业转型升级，提升城市空间利用效率。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(113)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-113">
     <button class="vote-btn" onclick="vote(113,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(113,'normal')">📌 一般 <span class="c">0</span></button>
@@ -119,6 +142,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>深耕自贸沃土 智赋文旅华章——海南旅游发展研究院成立三年创新纪实</h3>
   <div class="news-meta">🏙️ 海南省 · 06-30 · <span class="stars">★★</span> 5.0分 · <a href="https://news.qq.com/rain/a/20260630A08BJY00" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：海南旅游发展研究院成立三年，聚焦文旅创新。<br><br>▍要点：<br>• 要点1：政策要点：海南自贸港政策支持，推动文旅产业创新发展。<br>• 要点2：影响范围：覆盖海南全域，辐射全国文旅产业。<br>• 要点3：具体影响：为规划设计提供创新思路，助力文旅项目落地。<br><br>▍行业影响：积极推动文旅产业规划创新，提升行业竞争力。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(112)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-112">
     <button class="vote-btn" onclick="vote(112,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(112,'normal')">📌 一般 <span class="c">0</span></button>
@@ -156,6 +180,89 @@ async function vote(news_id,type){
   }catch(e){}
   btns.forEach(b=>b.disabled=false);
 }
+
+/* ===== 语音播报（Web Speech API）===== */
+const synth = window.speechSynthesis;
+let ttsVoices = [];
+function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
+loadVoices();
+if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
+
+function pickZhVoice(){
+  if(!ttsVoices.length) return null;
+  let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
+  if(v) return v;
+  return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
+}
+function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
+function speakOne(text, onend){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = pickZhVoice();
+  if(v) u.voice = v;
+  u.lang = v ? v.lang : 'zh-CN';
+  u.rate = 1; u.pitch = 1;
+  u.onend = onend; u.onerror = onend;
+  synth.speak(u);
+}
+function cardText(card){
+  const h = card.querySelector('h3');
+  const s = card.querySelector('.news-summary');
+  const title = h ? h.innerText : '';
+  const sum = s ? s.innerText : '';
+  return (title + '。' + sum).replace(/\s+/g,' ').trim();
+}
+function clearSpeaking(){
+  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
+  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
+}
+let ttsStop = false;
+function stopSpeak(){
+  ttsStop = true;
+  if(synth) synth.cancel();
+  clearSpeaking();
+  setStatus('已停止');
+}
+function speakAll(){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  stopSpeak();
+  ttsStop = false;
+  const cards = Array.from(document.querySelectorAll('.news-card'));
+  if(!cards.length){ setStatus('本页暂无新闻'); return; }
+  let i = 0;
+  function next(){
+    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
+    const card = cards[i];
+    card.classList.add('speaking');
+    const btn = card.querySelector('.speak-btn');
+    if(btn) btn.classList.add('playing');
+    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
+    speakOne(cardText(card), function(){
+      card.classList.remove('speaking');
+      if(btn) btn.classList.remove('playing');
+      i++; next();
+    });
+  }
+  next();
+}
+function speakNews(id){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  const card = document.getElementById('news-' + id);
+  if(!card) return;
+  stopSpeak();
+  card.classList.add('speaking');
+  const btn = card.querySelector('.speak-btn');
+  if(btn) btn.classList.add('playing');
+  setStatus('朗读中…');
+  speakOne(cardText(card), function(){
+    card.classList.remove('speaking');
+    if(btn) btn.classList.remove('playing');
+    setStatus('');
+  });
+}
+/* 无新闻页隐藏语音条 */
+(function(){ if(!document.querySelector('.news-card')){ const b=document.querySelector('.tts-bar'); if(b) b.style.display='none'; } })();
 </script>
 </body>
 </html>

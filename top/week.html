@@ -42,12 +42,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
 .year-section{margin-bottom:24px}
 .year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
+.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
+.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
+.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.tts-bar button:hover{background:#40a9ff}
+.tts-bar button.stop{background:#ff4d4f}
+.tts-bar button.stop:hover{background:#ff7875}
+.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
+.speak-btn:hover{border-color:#1890ff;color:#1890ff}
+.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
 </style>
 </head>
 <body>
 <div class="header">
   <h1>📰 过去一周热门新闻</h1>
   <div class="subtitle">PiHub · 最近7天热门新闻</div>
+</div>
+<div class="tts-bar">
+  <span class="tts-title">🔊 语音播报</span>
+  <button onclick="speakAll()">▶ 朗读本页全部</button>
+  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
+  <span class="tts-status" id="tts-status"></span>
 </div>
 <div class="nav"><a href="/" class="">今日</a><a href="/top/week.html" class="active">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
 <div class="stats">
@@ -59,6 +76,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>下半年宏观政策重点划定：加快新型政策性金融工具资金投放</h3>
   <div class="news-meta">👤 党中央 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.ce.cn/xwzx/gnsz/gdxw/202608/t20260803_3123685.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国家将加快新型政策性金融工具资金投放，以扩大内需。<br><br>▍要点：<br>• 要点1：国家发展改革委正研究制定扩大内需战略实施方案。<br>• 要点2：计划投放8000亿元新型政策性金融工具资金。<br>• 要点3：资金主要用于支持基础设施、民生等领域。<br><br>▍行业影响：有利于促进城市规划与建设项目的资金保障，推动城市更新和基础设施建设。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(270)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-270">
     <button class="vote-btn" onclick="vote(270,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(270,'normal')">📌 一般 <span class="c">0</span></button>
@@ -69,6 +87,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>国常会：扎实推进"六张网"规划建设 更好发挥住房公积金功能作用</h3>
   <div class="news-meta">👤 国务院 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.stcn.com/article/detail/4053426.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院推进“六张网”规划建设，修改住房公积金管理条例。<br>▍要点：<br>• 要点1：加快实施“十五五”规划重大项目，推进“六张网”建设。<br>• 要点2：修改住房公积金管理条例，拓宽提取和使用范围。<br>• 要点3：强调住房公积金在住房保障中的作用。<br>▍行业影响：有利于优化住房保障体系，提升规划设计工作的针对性和实效性。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(267)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-267">
     <button class="vote-btn" onclick="vote(267,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(267,'normal')">📌 一般 <span class="c">0</span></button>
@@ -79,6 +98,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>优化财政金融协同促内需政策释放出积极信号 下半年中国经济工作这样干</h3>
   <div class="news-meta">👤 党中央 · 08-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://news.cctv.com/2026/08/01/ARTIaCfQVD4QtplI5tTVNsh3260801.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：中共中央政治局部署下半年经济工作，优化财政金融协同促内需政策。<br><br>▍要点：<br>• 要点1：会议强调优化财政金融协同，促进内需增长。<br>• 要点2：下半年经济工作重点部署，旨在稳定经济增长。<br>• 要点3：政策释放积极信号，为经济稳定提供支持。<br><br>▍行业影响：有利于稳定房地产市场，促进城市规划和建设项目的推进。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(257)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-257">
     <button class="vote-btn" onclick="vote(257,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(257,'normal')">📌 一般 <span class="c">0</span></button>
@@ -89,6 +109,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>习近平在中共中央政治局第二十七次集体学习时强调 强化政治引领 深化创新发展 高质量推进国防和军队现代化</h3>
   <div class="news-meta">👤 党中央 · 08-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.xzdw.gov.cn/xwzx/gnyw/202608/t20260801_687658.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：习近平强调强化政治引领，深化创新发展，高质量推进国防和军队现代化。<br><br>▍要点：<br>• 要点1：强化政治引领，确保国防和军队现代化与国家发展战略相一致。<br>• 要点2：深化创新发展，推动国防科技和军事理论创新。<br>• 要点3：高质量推进，提升国防和军队现代化水平。<br><br>▍行业影响：对规划设计工作影响深远，需强化规划与国防需求结合，提升创新设计能力。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(256)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-256">
     <button class="vote-btn" onclick="vote(256,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(256,'normal')">📌 一般 <span class="c">0</span></button>
@@ -99,6 +120,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>政治局会议定调下半年经济工作 明确加快推动新旧动能转换</h3>
   <div class="news-meta">👤 党中央 · 08-02 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.cnr.cn/rdjj/house/kcb/20260802/t20260802_527742158.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：政治局会议强调加快新旧动能转换，实施积极财政和宽松货币政策。<br>▍要点：<br>• 要点1：强调加快新旧动能转换，推动经济高质量发展。<br>• 要点2：实施更加积极的财政政策和适度宽松的货币政策。<br>• 要点3：部署下半年经济工作，分析当前经济形势。<br>▍行业影响：有利于城市规划与建设，促进城市可持续发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(255)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-255">
     <button class="vote-btn" onclick="vote(255,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(255,'normal')">📌 一般 <span class="c">0</span></button>
@@ -109,6 +131,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>李强主持召开国务院常务会议 学习贯彻习近平总书记关于上半年经济形势和做好下半年经济工作的重要讲话精神</h3>
   <div class="news-meta">👤 国务院 · 08-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.liuzhi.gov.cn/newsite/zwdt_5753277/szyw/202608/t20260801_90684816.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院常务会议审议通过修改住房公积金管理条例等决定。<br><br>▍要点：<br>• 要点1：会议审议通过修改《住房公积金管理条例》的决定，可能涉及公积金提取、使用等方面的调整。<br>• 要点2：核准辽宁庄河一期等四个核电项目，对能源结构调整和城市规划中的能源设施布局有重要影响。<br>• 要点3：研究健康优先发展战略，可能涉及城市规划中的公共健康设施和居住环境优化。<br><br>▍</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(252)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-252">
     <button class="vote-btn" onclick="vote(252,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(252,'normal')">📌 一般 <span class="c">0</span></button>
@@ -119,6 +142,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>以习近平同志为核心的党中央引领人民军队书写强军兴军新篇章</h3>
   <div class="news-meta">👤 党中央 · 08-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.gov.cn?chamber/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：党中央领导推动军队现代化建设。<br><br>▍要点：<br>• 要点1：党中央以习近平同志为核心，强化军队现代化建设。<br>• 要点2：强调强军兴军，提升军队整体实力。<br>• 要点3：涉及国防和军队改革，优化军事布局。<br><br>▍行业影响：积极推动城市规划与国防安全相结合。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(243)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-243">
     <button class="vote-btn" onclick="vote(243,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(243,'normal')">📌 一般 <span class="c">0</span></button>
@@ -129,6 +153,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>优化财政金融协同促内需政策 下半年中国经济工作这样干</h3>
   <div class="news-meta">👤 党中央 · 08-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.toutiao.com/article/7668901336897667618/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：中共中央政治局部署下半年经济工作，优化财政金融协同促内需。<br><br>▍要点：<br>• 要点1：会议强调优化财政金融协同，促进内需增长。<br>• 要点2：部署下半年经济工作，旨在稳定经济增长。<br>• 要点3：政策将影响各级政府财政支出和金融资源配置。<br><br>▍行业影响：有利于推动城市规划与经济发展紧密结合。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(242)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-242">
     <button class="vote-btn" onclick="vote(242,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(242,'normal')">📌 一般 <span class="c">0</span></button>
@@ -139,6 +164,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>中共中央政治局集体学习：高质量推进国防和军队现代化</h3>
   <div class="news-meta">👤 党中央 · 08-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.cnr.cn/newscenter/native/gd/sz/20260801/t20260801_527741023.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：中共中央政治局集体学习，强调高质量推进国防和军队现代化。<br><br>▍要点：<br>• 要点1：强化政治引领，确保国防和军队现代化与国家发展战略相协调。<br>• 要点2：深化创新发展，推动国防科技和军事理论创新。<br>• 要点3：提升军队现代化水平，优化军事资源配置。<br><br>▍行业影响：推动城市规划与国防需求紧密结合，促进城市安全与可持续发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(241)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-241">
     <button class="vote-btn" onclick="vote(241,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(241,'normal')">📌 一般 <span class="c">0</span></button>
@@ -149,6 +175,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>中共中央政治局召开会议 决定召开二十届五中全会 分析研究当前经济形势和经济工作</h3>
   <div class="news-meta">👤 党中央 · 07-31 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.gov.cn/yaowen/liebiao/202607/content_7077056.htm" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：中共中央政治局决定召开二十届五中全会，分析研究当前经济形势和经济工作。<br><br>▍要点：<br>• 要点1：会议旨在分析当前经济形势，为未来经济工作提供政策指导。<br>• 要点2：二十届五中全会将聚焦经济议题，可能涉及城市规划与建设相关内容。<br>• 要点3：会议决策将对国家经济政策产生重大影响，间接影响城市规划与实施。<br><br>▍行业影响：对城市规划与建设领域产生重要指导</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(240)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-240">
     <button class="vote-btn" onclick="vote(240,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(240,'normal')">📌 一般 <span class="c">0</span></button>
@@ -159,6 +186,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>中央政治局召开会议分析研究当前经济形势 部署下半年经济工作</h3>
   <div class="news-meta">👤 国务院 · 07-31 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.ce.cn/xwzx/gnsz/gdxw/202607/t20260731_3118640.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：中央政治局部署下半年经济工作，强调稳定房地产市场和资本市场。<br><br>▍要点：<br>• 要点1：会议提出稳定房地产市场，可能涉及调控政策调整，影响住房供需关系。<br>• 要点2：提升资本市场韧性和信心，可能涉及金融政策优化，影响投资环境。<br>• 要点3：加大逆周期调节力度，可能涉及财政和货币政策，影响宏观经济。<br><br>▍行业影响：有利于城市规划行业稳定发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(224)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-224">
     <button class="vote-btn" onclick="vote(224,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(224,'normal')">📌 一般 <span class="c">0</span></button>
@@ -169,6 +197,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>两部门联合印发"十五五"公共机构节能降碳工作方案</h3>
   <div class="news-meta">👤 国务院 · <span class="stars">★★★★</span> 7.0分 · <a href="https://news.cctv.cn/2026/08/01/ARTI6v16NlZUnJBplg1b3ijt260801.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国管局、国家发展改革委发布《"十五五"公共机构节能降碳工作方案》，设定2030年单位建筑面积碳排放下降目标。<br><br>▍要点：<br>• 要点1：政策旨在推动公共机构节能降碳，设定具体减排目标。<br>• 要点2：目标为到2030年单位建筑面积碳排放下降8.5%。<br>• 要点3：涉及公共机构，包括政府机关、事业单位等。<br><br>▍行业影响：有利于推动绿色建筑和可持续发展理念</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(269)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-269">
     <button class="vote-btn" onclick="vote(269,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(269,'normal')">📌 一般 <span class="c">0</span></button>
@@ -179,6 +208,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>国务院印发《知识产权保护和运用"十五五"规划》</h3>
   <div class="news-meta">👤 国务院 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.toutiao.com/article/7668875695115846171/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院发布《知识产权保护和运用"十五五"规划》，部署知识产权保护与运用任务。<br><br>▍要点：<br>• 要点1：规划部署知识产权保护与运用四方面重点任务。<br>• 要点2：设立12个专项工程，强化知识产权保护。<br>• 要点3：规划旨在提升国家创新体系整体效能。<br><br>▍行业影响：有利于提升城市规划中创新要素的知识产权保护，促进城市可持续发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(268)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-268">
     <button class="vote-btn" onclick="vote(268,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(268,'normal')">📌 一般 <span class="c">0</span></button>
@@ -189,6 +219,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>2026年幸福河湖建设项目公布 水利部印发实施方案</h3>
   <div class="news-meta">🏛️ 水利部 · <span class="stars">★★★★</span> 8.0分 · <a href="https://cj.sina.com.cn/article/norm_detail?url=https://finance.sina.com.cn/wm/2026-08-02/doc-inikxmte9626878.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：水利部发布《全国幸福河湖建设项目实施方案》，2026年启动45个项目，河流治理总长超5000公里。<br><br>▍要点：<br>• 要点1：实施方案涵盖2026-2028年，旨在提升河湖生态环境。<br>• 要点2：45个项目覆盖全国，涉及河流治理、生态修复等。<br>• 要点3：项目实施将提升河湖景观，改善水环境质量。<br><br>▍行业影响：有利于推动河湖生态保护与修复，对规划设计</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(282)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-282">
     <button class="vote-btn" onclick="vote(282,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(282,'normal')">📌 一般 <span class="c">0</span></button>
@@ -199,6 +230,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>环境法典施行倒计时18天，生态环境部：抓紧推进配套制度制修订</h3>
   <div class="news-meta">🏛️ 生态环境部 · <span class="stars">★★★★</span> 8.0分 · <a href="https://cj.sina.com.cn/article/norm_detail?url=https://finance.sina.com.cn/jjxw/2026-08-02/doc-inikxwii6559279.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：生态环境法典施行倒计时，生态环境部推进配套制度修订。<br><br>▍要点：<br>• 要点1：法典将于8月15日施行，要求清理70余处配套文件。<br>• 要点2：生态环境部统筹推进标准制修订，确保法典有效实施。<br>• 要点3：强调配套制度制修订的重要性，以适应法典要求。<br><br>▍行业影响：有利于规范生态环境规划与设计，提升行业规范化水平。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(280)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-280">
     <button class="vote-btn" onclick="vote(280,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(280,'normal')">📌 一般 <span class="c">0</span></button>
@@ -209,6 +241,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>绿色税制助力打好蓝天保卫战：三部门联合发布征收挥发性有机物环境保护税试点办法</h3>
   <div class="news-meta">🏛️ 生态环境部 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.ce.cn/xwzx/gnsz/gdxw/202608/t20260803_3123353.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：三部门发布挥发性有机物环境保护税试点办法，试点行业8个。<br><br>▍要点：<br>• 要点1：试点办法自2027年1月1日起实施，涉及8个行业。<br>• 要点2：试点办法旨在征收挥发性有机物环境保护税，以减少大气污染。<br>• 要点3：试点办法由财政部、国家税务总局、生态环境部联合发布。<br><br>▍行业影响：有利于推动行业绿色转型，提升规划设计工作的环保标准。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(279)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-279">
     <button class="vote-btn" onclick="vote(279,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(279,'normal')">📌 一般 <span class="c">0</span></button>
@@ -219,6 +252,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>《综合运输服务发展"十五五"规划》印发</h3>
   <div class="news-meta">🏛️ 交通运输部 · <span class="stars">★★★★</span> 8.0分 · <a href="https://society.people.com.cn/n1/2026/0803/c1008-40772530.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：《综合运输服务发展"十五五"规划》印发，旨在2030年建成现代化综合运输服务体系。<br><br>▍要点：<br>• 要点1：规划提出到2030年实现综合运输服务现代化。<br>• 要点2：涉及交通运输部等四部门联合发布。<br>• 要点3：规划强调提升运输服务效率和质量。<br><br>▍行业影响：规划将推动运输服务现代化，对规划设计工作提出更高要求。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(277)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-277">
     <button class="vote-btn" onclick="vote(277,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(277,'normal')">📌 一般 <span class="c">0</span></button>
@@ -229,6 +263,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>住建部最新部署！老旧小区加装电梯迎多项重要调整</h3>
   <div class="news-meta">🏛️ 住建部 · <span class="stars">★★★★</span> 8.0分 · <a href="https://new.qq.com/rain/a/20260801A0BA5C00" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：住建部部署老旧小区加装电梯补助政策，补助力度加大。<br>▍要点：<br>• 要点1：2026年起，老旧小区加装电梯首次纳入“两新”支持范围。<br>• 要点2：4-6层加装电梯每台补助25万元。<br>• 要点3：补助政策旨在提升老旧小区居住品质。<br>▍行业影响：有利于推动老旧小区改造，提升城市居住环境。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(276)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-276">
     <button class="vote-btn" onclick="vote(276,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(276,'normal')">📌 一般 <span class="c">0</span></button>
@@ -239,6 +274,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>拓宽提取和使用范围 公积金条例迎修订</h3>
   <div class="news-meta">🏛️ 住建部 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.ce.cn/xwzx/gnsz/gdxw/202608/t20260803_3123687.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：住房公积金条例修订，扩大缴存和使用范围。<br><br>▍要点：<br>• 要点1：扩大缴存覆盖面，提高公积金使用灵活性。<br>• 要点2：拓宽使用范围，包括购房、租房、医疗等。<br>• 要点3：住建部启动修订工作，确保条例实施。<br><br>▍行业影响：利好规划设计工作，促进住房市场健康发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(275)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-275">
     <button class="vote-btn" onclick="vote(275,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(275,'normal')">📌 一般 <span class="c">0</span></button>
@@ -249,6 +285,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>自然资源部等印发《黄岩岛国家级自然保护区管理办法》</h3>
   <div class="news-meta">🏛️ 自然资源部 · <span class="stars">★★★★</span> 8.0分 · <a href="https://gk.mnr.gov.cn/zc/zxgfxwj/202608/t20260801_2935562.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：自然资源部等发布《黄岩岛国家级自然保护区管理办法》。<br><br>▍要点：<br>• 要点1：明确黄岩岛国家级自然保护区的管理职责和范围。<br>• 要点2：规范保护区内的自然资源利用和保护措施。<br>• 要点3：强化对违规行为的处罚力度。<br><br>▍行业影响：有利于提升自然保护区规划设计的规范性和科学性。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(273)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-273">
     <button class="vote-btn" onclick="vote(273,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(273,'normal')">📌 一般 <span class="c">0</span></button>
@@ -259,6 +296,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>两部门印发可再生能源消费最低比重目标实施办法 8月1日起施行</h3>
   <div class="news-meta">🏛️ 发改委 · <span class="stars">★★★★</span> 8.0分 · <a href="https://new.qq.com/rain/a/20260730A09WFY00" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国家发改委、国家能源局发布《可再生能源消费最低比重目标和可再生能源电力消纳责任权重制度实施办法》，自2026年8月1日起施行。<br><br>▍要点：<br>• 要点1：明确可再生能源消费最低比重目标，推动能源结构优化。<br>• 要点2：设立可再生能源电力消纳责任权重制度，强化电力系统灵活性。<br>• 要点3：实施日期为2026年8月1日，为政策落地预留时间。<br><br>▍行业影响</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(272)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-272">
     <button class="vote-btn" onclick="vote(272,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(272,'normal')">📌 一般 <span class="c">0</span></button>
@@ -269,6 +307,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>央行等9部门印发通知——加强科技金融领域数据开发利用</h3>
   <div class="news-meta">🏛️ 发改委 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.toutiao.com/article/7668716210476909094/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：央行等9部门发布通知，加强科技金融领域数据开发利用。<br><br>▍要点：<br>• 要点1：发布《全国科技金融领域数据开发利用目录1.0》。<br>• 要点2：涉及中国人民银行、国家发展改革委等9部门。<br>• 要点3：旨在加强科技金融领域数据资源整合和共享。<br><br>▍行业影响：有利于提升城市规划中的科技金融支持力度。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(271)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-271">
     <button class="vote-btn" onclick="vote(271,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(271,'normal')">📌 一般 <span class="c">0</span></button>
@@ -279,6 +318,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>群众身边水体保护治理行动方案强化源头治理</h3>
   <div class="news-meta">🏛️ 生态环境部 · 08-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://k.sina.com.cn/article_5952915720_162d2490806704lhfi.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院强化群众身边水体源头治理。<br><br>▍要点：<br>• 要点1：国务院办公厅转发《群众身边水体保护治理行动方案》。<br>• 要点2：方案强调源头治理，提升水体保护效果。<br>• 要点3：方案涉及全国范围，旨在改善水环境质量。<br><br>▍行业影响：有利于提升规划设计工作对水体保护的重视程度。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(263)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-263">
     <button class="vote-btn" onclick="vote(263,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(263,'normal')">📌 一般 <span class="c">0</span></button>
@@ -289,6 +329,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>十五五期间单位国内生产总值二氧化碳排放将降低17%</h3>
   <div class="news-meta">🏛️ 生态环境部 · 08-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://cj.sina.com.cn/article/norm_detail?url=https://finance.sina.com.cn/roll/2026-08-01/doc-inikurwe8965636.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：我国发布《国家应对气候变化十五五规划》，设定2030年单位GDP二氧化碳排放降低17%目标。<br><br>▍要点：<br>• 要点1：规划由生态环境部联合18部门发布，旨在应对气候变化。<br>• 要点2：目标设定为2030年单位GDP二氧化碳排放较2025年降低17%。<br>• 要点3：涉及多个部门协同推进，强调政策协同效应。<br><br>▍行业影响：有利于推动城市规划与绿色低碳发</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(262)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-262">
     <button class="vote-btn" onclick="vote(262,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(262,'normal')">📌 一般 <span class="c">0</span></button>
@@ -299,6 +340,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>六部门印发规划 保护土壤、地下水和农业农村生态环境</h3>
   <div class="news-meta">🏛️ 生态环境部 · 08-02 · <span class="stars">★★★★</span> 8.0分 · <a href="https://new.qq.com/rain/a/20260802A04LUA00" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：六部门联合发布《土壤、地下水和农业农村生态环境保护十五五规划》。<br><br>▍要点：<br>• 要点1：规划提出到2030年农用地和建设用地土壤环境安全得到有效保障。<br>• 要点2：涉及生态环境部、住房城乡建设部等六部门。<br>• 要点3：规划旨在保护土壤、地下水和农业农村生态环境。<br><br>▍行业影响：对规划设计工作具有积极推动作用。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(261)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-261">
     <button class="vote-btn" onclick="vote(261,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(261,'normal')">📌 一般 <span class="c">0</span></button>
@@ -309,6 +351,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>《交通运输纵深推进全国统一大市场建设实施方案》政策解读</h3>
   <div class="news-meta">🏛️ 交通运输部 · 08-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.topnews.cn/news/145ED4ED46BE4B71" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：《交通运输纵深推进全国统一大市场建设实施方案》明确重点任务。<br><br>▍要点：<br>• 要点1：政策聚焦交通运输领域，推进全国统一大市场建设。<br>• 要点2：明确6方面重点任务，包括基础设施建设、运输服务优化等。<br>• 要点3：涉及全国范围，对交通运输行业产生深远影响。<br><br>▍行业影响：积极推动交通运输行业转型升级，提升规划设计工作质量。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(260)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-260">
     <button class="vote-btn" onclick="vote(260,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(260,'normal')">📌 一般 <span class="c">0</span></button>
@@ -319,6 +362,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>自然资源部等四部门联合印发《黄岩岛国家级自然保护区管理办法》</h3>
   <div class="news-meta">🏛️ 自然资源部 · 08-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_4636a6e849163252" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：自然资源部等四部门联合发布《黄岩岛国家级自然保护区管理办法》。<br><br>▍要点：<br>• 要点1：明确黄岩岛国家级自然保护区管理机制和管护措施。<br>• 要点2：涉及自然资源部、国家林业和草原局、中国海警局、海南省人民政府等部门。<br>• 要点3：强调生态保护和可持续发展。<br><br>▍行业影响：有利于提升保护区规划设计质量，推动生态文明建设。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(258)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-258">
     <button class="vote-btn" onclick="vote(258,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(258,'normal')">📌 一般 <span class="c">0</span></button>
@@ -329,6 +373,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>提升通勤效率 促进都市圈一体化发展</h3>
   <div class="news-meta">🏛️ 交通运输部 · 08-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://cj.sina.com.cn/article/norm_detail?url=https%3A%2F%2Ffinance.sina.com.cn%2Fjjxw%2F2026-08-01%2Fdoc-inikurwm3948791.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：发布《都市圈城际通勤效率提升工程实施方案》，旨在提升都市圈通勤效率。<br><br>▍要点：<br>• 要点1：政策旨在打造综合通勤廊道，完善综合交通枢纽。<br>• 要点2：实施时间跨度为2026年至2030年。<br>• 要点3：涉及交通运输部等八部门联合发布。<br><br>▍行业影响：有利于推动城市规划与交通规划的协同发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(245)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-245">
     <button class="vote-btn" onclick="vote(245,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(245,'normal')">📌 一般 <span class="c">0</span></button>
@@ -339,6 +384,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>实施更加积极有为宏观政策 有效扩大国内需求</h3>
   <div class="news-meta">🏛️ 发改委 · 08-01 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.163.com/dy/article/L37OU58V053469RG_pdya11y.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国家发改委发布下半年宏观调控政策，强调扩大国内需求。<br><br>▍要点：<br>• 要点1：政策强调宏观调控、产业培育、市场改革。<br>• 要点2：具体措施包括扩大有效投资、促进消费、深化改革开放等。<br>• 要点3：政策旨在稳定经济增长，推动高质量发展。<br><br>▍行业影响：有利于推动城市规划与建设，促进城市可持续发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(244)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-244">
     <button class="vote-btn" onclick="vote(244,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(244,'normal')">📌 一般 <span class="c">0</span></button>
@@ -349,6 +395,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>《综合运输服务发展十五五规划》提出推动运输服务与旅游融合发展</h3>
   <div class="news-meta">🏛️ 交通运输部 · 07-29 · <span class="stars">★★★★</span> 8.0分 · <a href="https://new.qq.com/rain/a/20260729A04KVI00" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：交通运输部等四部门发布《综合运输服务发展十五五规划》，推动运输服务与旅游融合发展。<br><br>▍要点：<br>• 要点1：完善客运枢纽至旅游景区服务网络。<br>• 要点2：发展旅游包机、邮轮等新型运输方式。<br>• 要点3：促进运输服务与旅游产业深度融合。<br><br>▍行业影响：积极推动，有利于提升旅游业发展质量和效率。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(229)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-229">
     <button class="vote-btn" onclick="vote(229,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(229,'normal')">📌 一般 <span class="c">0</span></button>
@@ -359,6 +406,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>交通运输部 国家发展改革委联合印发《关于深化综合交通运输体系改革的意见》</h3>
   <div class="news-meta">🏛️ 交通运输部 · 07-29 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.toutiao.com/article/7667931891751846406" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：交通运输部与国家发展改革委联合发布深化综合交通运输体系改革的意见。<br><br>▍要点：<br>• 要点1：国务院同意，提出3方面18项改革任务。<br>• 要点2：涉及深化交通运输体系改革。<br>• 要点3：旨在提高交通运输效率和服务水平。<br><br>▍行业影响：有利于推动城市规划与交通规划的协同发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(228)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-228">
     <button class="vote-btn" onclick="vote(228,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(228,'normal')">📌 一般 <span class="c">0</span></button>
@@ -369,6 +417,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>住建部：进一步加强城市桥梁安全管理工作</h3>
   <div class="news-meta">🏛️ 住建部 · 07-29 · <span class="stars">★★★★</span> 8.0分 · <a href="http://mrdx.cn/h5/mrdx/content/20260729/Articel03010NR.htm" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：住建部发布通知，强化城市桥梁安全管理。<br><br>▍要点：<br>• 要点1：加强养护巡查、隐患排查、问题处置。<br>• 要点2：明确责任主体，强化监管力度。<br>• 要点3：提高桥梁安全标准，确保公共安全。<br><br>▍行业影响：有利于提升桥梁规划设计安全水平。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(227)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-227">
     <button class="vote-btn" onclick="vote(227,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(227,'normal')">📌 一般 <span class="c">0</span></button>
@@ -379,6 +428,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>自然资源部修订印发《临时用海管理办法》</h3>
   <div class="news-meta">🏛️ 自然资源部 · 07-30 · <span class="stars">★★★★</span> 8.0分 · <a href="https://news.xiancity.cn/system/2026/07/30/031261887.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：自然资源部发布《临时用海管理办法》，实施临时用海分类管理。<br><br>▍要点：<br>• 要点1：实施临时用海分类管理模式，提高管理效率。<br>• 要点2：简化审批流程，降低企业用海成本。<br>• 要点3：强化全链条管理，确保用海活动合规。<br><br>▍行业影响：有利于优化用海管理，提升规划设计工作质量。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(225)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-225">
     <button class="vote-btn" onclick="vote(225,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(225,'normal')">📌 一般 <span class="c">0</span></button>
@@ -389,6 +439,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>生态环境法典即将施行 生态环境部回应热点问题</h3>
   <div class="news-meta">🏛️ 生态环境部 · 07-30 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.toutiao.com/article/7668101489025384996/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：生态环境法典8月15日起施行，约75%事项由生态环境主管部门实施。<br><br>▍要点：<br>• 要点1：法典施行日期明确，强化生态环境主管部门职责。<br>• 要点2：法典实施范围广泛，涉及环境保护、污染防治等多个领域。<br>• 要点3：法典实施将推动生态环境治理体系和治理能力现代化。<br><br>▍行业影响：对规划设计工作影响深远，需加强生态环境规划与设计。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(220)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-220">
     <button class="vote-btn" onclick="vote(220,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(220,'normal')">📌 一般 <span class="c">0</span></button>
@@ -399,6 +450,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>发改委等部门印发《关于开展重点行业节能降碳改造攻坚三年行动的通知》</h3>
   <div class="news-meta">🏛️ 发改委 · 07-30 · <span class="stars">★★★★</span> 8.0分 · <a href="https://ysxw.cctv.cn/article.html?item_id=6860006075108768891" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：发布节能降碳改造三年行动，钢铁行业能效目标提升。<br><br>▍要点：<br>• 要点1：明确2028年钢铁行业能效目标，能效标杆产能占比提升至50%。<br>• 要点2：涉及产业绿色转型，推动城市空间优化。<br>• 要点3：政策针对钢铁行业，旨在实现节能降碳。<br><br>▍行业影响：推动城市规划与产业布局的绿色转型。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(219)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-219">
     <button class="vote-btn" onclick="vote(219,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(219,'normal')">📌 一般 <span class="c">0</span></button>
@@ -409,6 +461,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>生态环境法典将于8月15日生效施行 加快修订重点生态环境评价标准</h3>
   <div class="news-meta">🏛️ 生态环境部 · 07-29 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.stdaily.com/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：生态环境法典8月15日生效，加速修订评价标准。<br><br>▍要点：<br>• 要点1：法典确立新制度规则，细化配套措施。<br>• 要点2：发布3149项国家生态环境标准。<br>• 要点3：加速修订重点生态环境评价标准。<br><br>▍行业影响：有利于提升生态环境规划设计的规范性和科学性。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(213)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-213">
     <button class="vote-btn" onclick="vote(213,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(213,'normal')">📌 一般 <span class="c">0</span></button>
@@ -419,6 +472,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>四部门联合印发《综合运输服务发展十五五规划》</h3>
   <div class="news-meta">🏛️ 交通运输部 · 07-28 · <span class="stars">★★★★</span> 8.0分 · <a href="https://new.qq.com/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：四部门联合发布《综合运输服务发展十五五规划》，旨在到2030年建成现代化综合运输服务体系。<br><br>▍要点：<br>• 要点1：规划旨在提升综合运输服务效率，优化运输网络布局。<br>• 要点2：涉及铁路、民航、邮政等多领域，覆盖全国范围。<br>• 要点3：强调绿色、智能、高效发展，推动运输结构调整。<br><br>▍行业影响：积极。规划将推动规划设计工作向绿色、智能、高效方向发展</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(212)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-212">
     <button class="vote-btn" onclick="vote(212,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(212,'normal')">📌 一般 <span class="c">0</span></button>
@@ -429,6 +483,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>住房城乡建设部关于进一步加强建筑市场监管持续优化建筑市场环境的通知</h3>
   <div class="news-meta">🏛️ 住建部 · 07-28 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.mohurd.gov.cn/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：住建部发布通知，强化建筑市场监管，优化市场环境。<br><br>▍要点：<br>• 要点1：构建宽进、严管、重处监管机制。<br>• 要点2：推行招标投标评定分离与双盲评审。<br>• 要点3：提升建筑市场规范化水平。<br><br>▍行业影响：有利于规范建筑市场秩序，提升规划设计质量。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(211)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-211">
     <button class="vote-btn" onclick="vote(211,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(211,'normal')">📌 一般 <span class="c">0</span></button>
@@ -439,6 +494,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>住房城乡建设部 国家数据局联合发布《关于全面建立房屋建筑统一代码制度的通知》</h3>
   <div class="news-meta">🏛️ 住建部 · 07-29 · <span class="stars">★★★★</span> 8.0分 · <a href="https://cj.sina.cn/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：全国房屋建筑将统一赋码，实现数字化管理。<br><br>▍要点：<br>• 要点1：赋予每栋房屋唯一终身数字身份证。<br>• 要点2：2027年底实现新建房屋建筑赋码落图全覆盖。<br>• 要点3：统一代码制度将覆盖全国，涉及所有房屋建筑。<br><br>▍行业影响：有利于提高规划设计工作的信息化和精细化管理水平。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(210)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-210">
     <button class="vote-btn" onclick="vote(210,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(210,'normal')">📌 一般 <span class="c">0</span></button>
@@ -449,6 +505,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>交通运输部部署推动"四好农村路"建设</h3>
   <div class="news-meta">🏛️ 交通运输部 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.workercn.cn/papers/grrb/2026/08/03/4/news-6.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：交通运输部推动“四好农村路”建设，优化升级农村公路网络。<br><br>▍要点：<br>• 要点1：交通运输部部署优化升级农村公路网络。<br>• 要点2：重点任务包括提升农村公路质量、服务、管理和生态。<br>• 要点3：现场会旨在推动“四好农村路”高质量发展。<br><br>▍行业影响：有利于提升农村地区交通基础设施水平，促进城乡融合发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(278)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-278">
     <button class="vote-btn" onclick="vote(278,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(278,'normal')">📌 一般 <span class="c">0</span></button>
@@ -459,6 +516,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>自然资源部关于自然资源智库2026年度面向社会委托研究课题的公告</h3>
   <div class="news-meta">🏛️ 自然资源部 · <span class="stars">★★★★</span> 7.0分 · <a href="https://cj.sina.com.cn/article/norm_detail?url=https://finance.sina.com.cn/wm/2026-08-02/doc-inikwuvh9843112.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：自然资源部发布2026年度面向社会委托9项研究课题。<br><br>▍要点：<br>• 要点1：课题涵盖存量时代自然资源配置、资产配置与空间规划协同、城市体检评估等。<br>• 要点2：旨在推动自然资源领域政策研究与规划实践。<br>• 要点3：鼓励社会各界参与，促进智库建设。<br><br>▍行业影响：积极推动自然资源领域规划研究，提升行业实践水平。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(274)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-274">
     <button class="vote-btn" onclick="vote(274,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(274,'normal')">📌 一般 <span class="c">0</span></button>
@@ -469,6 +527,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>住建部通知：桥梁安全大排查启动，严格落实定期检测要求</h3>
   <div class="news-meta">🏛️ 住建部 · 08-01 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.163.com/dy/article/L394BE8505381WJG.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：住建部启动桥梁安全大排查，强化定期检测。<br><br>▍要点：<br>• 要点1：住建部发布《关于进一步加强城市桥梁安全管理工作的通知》，强调桥梁安全重要性。<br>• 要点2：要求各地加强桥梁养护巡查和隐患排查，确保桥梁安全。<br>• 要点3：实施定期检测，提高桥梁安全水平。<br><br>▍行业影响：有利于提升桥梁安全，对规划设计工作提出更高要求。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(259)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-259">
     <button class="vote-btn" onclick="vote(259,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(259,'normal')">📌 一般 <span class="c">0</span></button>
@@ -479,6 +538,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>浙江省人民政府印发"十五五"高质量发展建设共同富裕示范区规划</h3>
   <div class="news-meta">🏙️ 浙江省 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.zj.gov.cn/col/col1229019364/art/2026/art_aceff2018c3544929028425f13ab81d3.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：浙江省发布“十五五”高质量发展建设共同富裕示范区规划，设定2030年人均GDP和居民收入目标。<br>▍要点：<br>• 要点1：规划目标设定为2030年人均GDP达17万元左右，居民人均可支配收入达9万元。<br>• 要点2：规划旨在推动高质量发展和共同富裕。<br>• 要点3：规划涉及浙江省全域，涵盖经济、社会、生态等多个领域。<br>▍行业影响：对规划设计工作具有积极推动作用，需关注</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(286)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-286">
     <button class="vote-btn" onclick="vote(286,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(286,'normal')">📌 一般 <span class="c">0</span></button>
@@ -489,6 +549,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>珠海调整控规实施细则！适应城市内涵提质</h3>
   <div class="news-meta">🏙️ 广东省 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.sohu.com/a/1049634723_121106875" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：珠海市修订控制性详细规划管理实施细则，实施分级分类控规调整机制。<br>▍要点：<br>• 要点1：建立分级分类控规调整机制，提高规划灵活性。<br>• 要点2：自8月15日起施行，影响珠海市规划管理实践。<br>• 要点3：强调适应城市内涵提质，引导城市可持续发展。<br>▍行业影响：有利于提升规划设计工作的响应速度和灵活性，促进城市可持续发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(284)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-284">
     <button class="vote-btn" onclick="vote(284,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(284,'normal')">📌 一般 <span class="c">0</span></button>
@@ -499,6 +560,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>广东省自然资源厅关于《关于加强和规范规划实施监督管理工作的通知》公开征求意见</h3>
   <div class="news-meta">🏙️ 广东省 · <span class="stars">★★★★</span> 7.0分 · <a href="https://nr.gd.gov.cn/hdjlpt/yjzj/answer/51721" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：广东省自然资源厅公开征求意见，加强和规范规划实施监督管理。<br><br>▍要点：<br>• 要点1：深化工程建设项目规划用地审批改革。<br>• 要点2：公开征求意见，期限至8月11日。<br>• 要点3：旨在加强和规范规划实施监督管理。<br><br>▍行业影响：有利于提高规划实施效率，规范行业行为。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(283)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-283">
     <button class="vote-btn" onclick="vote(283,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(283,'normal')">📌 一般 <span class="c">0</span></button>
@@ -509,6 +571,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>蕾奥规划中标罗湖区清水河总部新城总设计师团队技术服务</h3>
   <div class="news-meta">📊 蕾奥规划 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.tianyancha.com/company/2943414551" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：蕾奥规划中标罗湖区清水河总部新城总设计师团队技术服务项目。<br><br>▍要点：<br>• 要点1：中标金额298万元，体现项目重要性。<br>• 要点2：罗湖区清水河总部新城为深圳市重点发展区域，项目影响深远。<br>• 要点3：总设计师团队技术服务，强调规划设计在项目中的核心地位。<br><br>▍行业影响：积极。此中标将提升蕾奥规划在行业内的知名度和影响力，对规划设计工作提出更高要</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(310)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-310">
     <button class="vote-btn" onclick="vote(310,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(310,'normal')">📌 一般 <span class="c">0</span></button>
@@ -519,6 +582,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>深城交携手沙特Elm公司共推智慧交通与数字化合作</h3>
   <div class="news-meta">📊 深城交 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.sutpc.com/home" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：深城交与沙特Elm公司合作，共推智慧交通与数字化。<br><br>▍要点：<br>• 要点1：深城交与Elm公司签署合作备忘录，旨在共同推进智慧交通和数字化建设。<br>• 要点2：合作服务于“一带一路”倡议，助力沙特“2030愿景”的数字转型。<br>• 要点3：合作内容涉及智慧交通领域的规划、设计和技术应用。<br><br>▍行业影响：推动智慧交通规划与设计行业国际化发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(309)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-309">
     <button class="vote-btn" onclick="vote(309,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(309,'normal')">📌 一般 <span class="c">0</span></button>
@@ -529,6 +593,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>深城交牵头项目获国家科学技术进步二等奖</h3>
   <div class="news-meta">📊 深城交 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.dutenews.com/n/article/60021852" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：深城交项目获国家科技进步二等奖，聚焦交通系统智能推演与调控。<br><br>▍要点：<br>• 要点1：项目聚焦大城市复杂交通系统，涉及智能推演与精准调控关键技术。<br>• 要点2：成果应用于实际，提升交通系统运行效率。<br>• 要点3：获奖表明项目在技术创新和实际应用方面取得显著成效。<br><br>▍行业影响：推动城市规划与交通系统智能化发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(308)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-308">
     <button class="vote-btn" onclick="vote(308,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(308,'normal')">📌 一般 <span class="c">0</span></button>
@@ -539,6 +604,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>清华同衡申请基于AI图推理的制造产业空间图谱构建方法专利</h3>
   <div class="news-meta">📊 清华同衡 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.sohu.com/a/1057505069_114984" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：清华同衡申请AI图推理制造产业空间图谱构建方法专利。<br><br>▍要点：<br>• 要点1：专利技术结合AI图推理，优化工业空间布局。<br>• 要点2：数据处理与空间布局结合，提升产业规划效率。<br>• 要点3：专利申请标志着AI技术在城市规划领域的应用探索。<br><br>▍行业影响：推动AI与城市规划深度融合，提升规划效率与科学性。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(307)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-307">
     <button class="vote-btn" onclick="vote(307,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(307,'normal')">📌 一般 <span class="c">0</span></button>
@@ -549,6 +615,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>清华同衡规划院荣获2025年度华夏建设科学技术奖一等奖</h3>
   <div class="news-meta">📊 清华同衡 · <span class="stars">★★★★</span> 7.0分 · <a href="https://c.m.163.com/news/a/KUTT9UC00519C1CN.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：清华同衡规划院在更新规划转型领域的研究成果荣获华夏建设科学技术奖一等奖。<br><br>▍要点：<br>• 要点1：研究成果聚焦于基于精准孪生和智能博弈的更新规划转型理论方法与关键技术。<br>• 要点2：该研究由清华同衡院长恽爽主持，体现了规划院在技术创新方面的实力。<br>• 要点3：获奖表明该研究成果在行业内具有较高的认可度和影响力。<br><br>▍行业影响：该成果的获奖将推动更新</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(306)">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-306">
     <button class="vote-btn" onclick="vote(306,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(306,'normal')">📌 一般 <span class="c">0</span></button>
@@ -586,6 +653,89 @@ async function vote(news_id,type){
   }catch(e){}
   btns.forEach(b=>b.disabled=false);
 }
+
+/* ===== 语音播报（Web Speech API）===== */
+const synth = window.speechSynthesis;
+let ttsVoices = [];
+function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
+loadVoices();
+if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
+
+function pickZhVoice(){
+  if(!ttsVoices.length) return null;
+  let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
+  if(v) return v;
+  return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
+}
+function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
+function speakOne(text, onend){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = pickZhVoice();
+  if(v) u.voice = v;
+  u.lang = v ? v.lang : 'zh-CN';
+  u.rate = 1; u.pitch = 1;
+  u.onend = onend; u.onerror = onend;
+  synth.speak(u);
+}
+function cardText(card){
+  const h = card.querySelector('h3');
+  const s = card.querySelector('.news-summary');
+  const title = h ? h.innerText : '';
+  const sum = s ? s.innerText : '';
+  return (title + '。' + sum).replace(/\s+/g,' ').trim();
+}
+function clearSpeaking(){
+  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
+  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
+}
+let ttsStop = false;
+function stopSpeak(){
+  ttsStop = true;
+  if(synth) synth.cancel();
+  clearSpeaking();
+  setStatus('已停止');
+}
+function speakAll(){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  stopSpeak();
+  ttsStop = false;
+  const cards = Array.from(document.querySelectorAll('.news-card'));
+  if(!cards.length){ setStatus('本页暂无新闻'); return; }
+  let i = 0;
+  function next(){
+    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
+    const card = cards[i];
+    card.classList.add('speaking');
+    const btn = card.querySelector('.speak-btn');
+    if(btn) btn.classList.add('playing');
+    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
+    speakOne(cardText(card), function(){
+      card.classList.remove('speaking');
+      if(btn) btn.classList.remove('playing');
+      i++; next();
+    });
+  }
+  next();
+}
+function speakNews(id){
+  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  const card = document.getElementById('news-' + id);
+  if(!card) return;
+  stopSpeak();
+  card.classList.add('speaking');
+  const btn = card.querySelector('.speak-btn');
+  if(btn) btn.classList.add('playing');
+  setStatus('朗读中…');
+  speakOne(cardText(card), function(){
+    card.classList.remove('speaking');
+    if(btn) btn.classList.remove('playing');
+    setStatus('');
+  });
+}
+/* 无新闻页隐藏语音条 */
+(function(){ if(!document.querySelector('.news-card')){ const b=document.querySelector('.tts-bar'); if(b) b.style.display='none'; } })();
 </script>
 </body>
 </html>
