@@ -317,7 +317,7 @@ function pickZhVoice(){
 }
 function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
 function speakOne(text, onend){
-  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
   synth.cancel();
   const u = new SpeechSynthesisUtterance(text);
   const v = pickZhVoice();
@@ -346,7 +346,7 @@ function stopSpeak(){
   setStatus('已停止');
 }
 function speakAll(){
-  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
   stopSpeak();
   ttsStop = false;
   const cards = Array.from(document.querySelectorAll('.news-card'));
@@ -368,7 +368,7 @@ function speakAll(){
   next();
 }
 function speakNews(id){
-  if(!synth){ alert('当前浏览器不支持语音朗读，请使用 Chrome / Edge / Safari 打开本页'); return; }
+  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
   const card = document.getElementById('news-' + id);
   if(!card) return;
   stopSpeak();
@@ -382,8 +382,21 @@ function speakNews(id){
     setStatus('');
   });
 }
-/* 无新闻页隐藏语音条 */
-(function(){ if(!document.querySelector('.news-card')){ const b=document.querySelector('.tts-bar'); if(b) b.style.display='none'; } })();
+/* 当前环境不支持语音合成（如企业微信内置浏览器）：直接给出明确引导，避免显示无效按钮 */
+(function(){
+  const bar=document.querySelector('.tts-bar');
+  if(!window.speechSynthesis){
+    if(bar){
+      bar.style.background='#fffbe6';
+      bar.style.color='#874d00';
+      bar.style.borderBottom='1px solid #ffe58f';
+      bar.innerHTML='<span style="font-size:13px">📢 当前为内置浏览器，暂不支持语音朗读。请点右上角 ⋯ 菜单 →「在浏览器打开」，即可使用朗读功能。</span>';
+    }
+    return;
+  }
+  /* 无新闻页隐藏语音条 */
+  if(!document.querySelector('.news-card')){ if(bar) bar.style.display='none'; }
+})();
 </script>
 </body>
 </html>
