@@ -76,7 +76,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>水利部：皖赣鄂湘黔启动洪水防御应急响应 龙舟水遇上梅雨季</h3>
   <div class="news-meta">🏛️ 水利部 · 06-23 · <span class="stars">★★</span> 3.0分 · <a href="https://www.chinawater.com.cn/yw/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：水利部启动五省洪水防御应急响应，应对梅雨季汛情。<br><br>▍要点：<br>• 要点1：针对安徽、江西、湖北、湖南、贵州五省启动IV级应急响应。<br>• 要点2：龙舟水与梅雨季叠加，汛情形势严峻。<br>• 要点3：水利部要求各地加强监测预警和应急处置。<br><br>▍行业影响：汛情应对将直接影响规划设计工作，需加强防洪排涝设施规划和建设。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(73)">🔊 朗读本条</button></div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-73">
     <button class="vote-btn" onclick="vote(73,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(73,'normal')">📌 一般 <span class="c">0</span></button>
@@ -87,7 +87,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>西安日报6月24日重要新闻：科技赋能城市治理 智慧城市建设新进展</h3>
   <div class="news-meta">🏙️ 西安市 · 06-24 · <span class="stars">★★</span> 3.0分 · <a href="https://www.sohu.com/a/1040717641_121956424" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：西安市多区县推进智慧城市建设，科技赋能城市治理。<br><br>▍要点：<br>• 要点1：政策要点：西安市多个区县推进智慧城市建设，强调科技在城市治理中的应用。<br>• 要点2：影响范围：涉及城市治理、文旅融合、生态环境等多个领域。<br>• 要点3：具体影响：推动城市规划与设计工作更加注重智能化、数据化。<br><br>▍行业影响：智慧城市建设将推动城市规划行业向智能化、数据化方向发</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(74)">🔊 朗读本条</button></div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-74">
     <button class="vote-btn" onclick="vote(74,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(74,'normal')">📌 一般 <span class="c">0</span></button>
@@ -206,11 +206,14 @@ function speakNews(id){
     setStatus('');
   });
 }
-/* 当前环境不支持语音合成（如企业微信内置浏览器）：直接给出明确引导，避免显示无效按钮 */
+/* 企业微信内置浏览器不支持 Web Speech：若卡片已内置 <audio> 播放器则隐藏连播条直接播；否则给出「在浏览器打开」引导 */
 (function(){
   const bar=document.querySelector('.tts-bar');
   if(!window.speechSynthesis){
-    if(bar){
+    const hasAudio = !!document.querySelector('.news-card audio');
+    if(hasAudio){
+      if(bar) bar.style.display='none';
+    } else if(bar){
       bar.style.background='#fffbe6';
       bar.style.color='#874d00';
       bar.style.borderBottom='1px solid #ffe58f';

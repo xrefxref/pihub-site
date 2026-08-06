@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026年8月6日 规划情报 | PiHub</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f7fa;color:#333;line-height:1.6}
+.header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;padding:24px 16px;text-align:center;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.15)}
+.header h1{font-size:22px;margin-bottom:4px}
+.subtitle{font-size:12px;color:#8892b0}
+.nav{background:#fff;border-bottom:1px solid #e8e8e8;padding:0;overflow-x:auto;white-space:nowrap}
+.nav a{display:inline-block;padding:12px 16px;color:#666;text-decoration:none;font-size:14px;border-bottom:2px solid transparent}
+.nav a:hover,.nav a.active{color:#1890ff;border-bottom-color:#1890ff}
+.container{max-width:800px;margin:0 auto;padding:16px}
+.stats{display:flex;justify-content:center;gap:24px;margin-top:12px}
+.stat-item{text-align:center}
+.stat-num{font-size:24px;font-weight:700}
+.stat-label{font-size:11px;color:#8892b0}
+.category-section{margin-bottom:20px}
+.category-title{font-size:16px;font-weight:700;padding:8px 12px;background:#fff;border-left:3px solid #1890ff;margin-bottom:12px;border-radius:4px}
+.news-card{background:#fff;border-radius:8px;padding:16px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,0.08)}
+.news-card h3{font-size:15px;margin-bottom:6px;color:#1a1a2e}
+.news-card h3 a{color:#1a1a2e;text-decoration:none}
+.news-card h3 a:hover{color:#1890ff}
+.news-meta{font-size:11px;color:#999;margin-bottom:8px}
+.stars{color:#faad14;font-size:12px}
+.news-summary{font-size:13px;color:#555;line-height:1.7;margin-bottom:10px}
+.vote-bar{display:flex;gap:12px;align-items:center;font-size:12px}
+.vote-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;transition:all 0.2s}
+.vote-btn:hover{border-color:#1890ff;color:#1890ff}
+.vote-btn.active{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.vote-count{color:#999;font-size:11px}
+.footer{text-align:center;padding:32px 16px;color:#bbb;font-size:11px}
+.footer a{color:#1890ff;text-decoration:none}
+.history-grid{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+.history-card{background:#fff;border-radius:8px;padding:12px 16px;text-decoration:none;color:#333;box-shadow:0 1px 3px rgba(0,0,0,0.06);display:flex;align-items:center;gap:12px;transition:transform 0.15s}
+.history-card:hover{transform:translateX(4px);box-shadow:0 2px 8px rgba(24,144,255,0.15);border-left:3px solid #1890ff}
+.history-card .month-num{font-size:22px;font-weight:700;color:#1890ff;min-width:32px;text-align:center}
+.history-card .month-label{font-size:14px;color:#666}
+.history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
+.year-section{margin-bottom:24px}
+.year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
+.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
+.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
+.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.tts-bar button:hover{background:#40a9ff}
+.tts-bar button.stop{background:#ff4d4f}
+.tts-bar button.stop:hover{background:#ff7875}
+.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
+.speak-btn:hover{border-color:#1890ff;color:#1890ff}
+.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>📰 2026年8月6日 规划情报</h1>
+  <div class="subtitle">PiHub · 历史新闻回顾</div>
+</div>
+<div class="tts-bar">
+  <span class="tts-title">🔊 语音播报</span>
+  <button onclick="speakAll()">▶ 朗读本页全部</button>
+  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
+  <span class="tts-status" id="tts-status"></span>
+</div>
+<div class="nav"><a href="/" class="">今日</a><a href="/top/week.html" class="">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="active">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
+<div class="stats">
+  <div class="stat-item"><div class="stat-num">12</div><div class="stat-label">精选新闻</div></div>
+  <div class="stat-item"><div class="stat-num">2026年8月6日</div><div class="stat-label">日期</div></div>
+  <div class="stat-item"><div class="stat-num"></div><div class="stat-label">参与投票</div></div>
+</div>
+</div><div class="container"><div class="category-section"><div class="category-title">👤 高层 (1)</div><div class="news-card" id="news-353">
+  <h3>中央政治局会议再提“规范”平台经济,释放什么信号?</h3>
+  <div class="news-meta">👤 党中央 · 08-05 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.thepaper.cn/newsDetail_forward_33718909" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
+  <div class="news-summary">▍核心：中央政治局会议强调规范平台经济，旨在营造公平竞争环境。<br><br>▍要点：<br>• 要点1：政策深化，强调平台经济规范健康发展。<br>• 要点2：将平台经济规范置于公平有序市场竞争环境框架下。<br>• 要点3：释放政策信号，引导行业健康发展。<br><br>▍行业影响：有利于规范平台经济发展，促进规划设计工作更加注重公平竞争和可持续发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
+  <div class="vote-bar" id="votes-353">
+    <button class="vote-btn" onclick="vote(353,'important')">🔥 重要 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(353,'normal')">📌 一般 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(353,'irrelevant')">➖ 无关 <span class="c">0</span></button>
+    <span class="vote-count">| <span class="c">0</span>票</span>
+  </div>
+</div></div><div class="category-section"><div class="category-title">🏛️ 部委 (3)</div><div class="news-card" id="news-354">
+  <h3>多部门勾勒新兴支柱产业发展路线图</h3>
+  <div class="news-meta">🏛️ 发改委 · 08-06 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.ce.cn/xwzx/gnsz/gdxw/202608/t20260806_3130523.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
+  <div class="news-summary">▍核心：多部门联合部署新兴支柱产业发展路线图。<br><br>▍要点：<br>• 要点1：国家发改委、工信部、国务院国资委等多部门联合部署下半年工作。<br>• 要点2：重点培育新兴支柱产业，推动产业升级。<br>• 要点3：涉及多个行业，包括高新技术、绿色环保等。<br><br>▍行业影响：积极。对规划设计工作提出更高要求，需关注产业布局与城市空间规划协同发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
+  <div class="vote-bar" id="votes-354">
+    <button class="vote-btn" onclick="vote(354,'important')">🔥 重要 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(354,'normal')">📌 一般 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(354,'irrelevant')">➖ 无关 <span class="c">0</span></button>
+    <span class="vote-count">| <span class="c">0</span>票</span>
+  </div>
+</div><div class="news-card" id="news-355">
+  <h3>自然资源部关于做好建设项目压覆矿产资源管理工作的通知</h3>
+  <div class="news-meta">🏛️ 自然资源部 · 08-06 · <span class="stars">★★★★</span> 8.0分 · <a href="https://zrzyhghj.xuchang.gov.cn/zcfg/005001/20260806/b7248bda-28d4-45bb-9f3a-19c0af7fc9b1.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
+  <div class="news-summary">▍核心：自然资源部发布通知，规范建设项目压覆矿产资源管理。<br><br>▍要点：<br>• 要点1：加强规划衔接与空间统筹，确保矿产资源合理利用。<br>• 要点2：规范压覆审批流程，提高审批效率。<br>• 要点3：明确责任主体，强化监管力度。<br><br>▍行业影响：有利于提高规划设计工作科学性和规范性。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
+  <div class="vote-bar" id="votes-355">
+    <button class="vote-btn" onclick="vote(355,'important')">🔥 重要 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(355,'normal')">📌 一般 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(355,'irrelevant')">➖ 无关 <span class="c">0</span></button>
+    <span class="vote-count">| <span class="c">0</span>票</span>
+  </div>
+</div><div class="news-card" id="news-356">
+  <h3>交通运输部发布多项公路规范及防汛指南</h3>
+  <div class="news-meta">🏛️ 交通运输部 · 08-05 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.mot.gov.cn" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
+  <div class="news-summary">▍核心：交通运输部发布多项公路规范及防汛指南，规范城市轨道交通运营防汛防台风。<br><br>▍要点：<br>• 要点1：发布城市轨道交通运营防汛防台风指南，强化城市轨道交通安全。<br>• 要点2：发布公路水泥混凝土路面设计规范，提升公路建设质量。<br>• 要点3：规范涉及全国公路、轨道交通建设与运营，影响广泛。<br><br>▍行业影响：有利于提高城市规划与建设安全标准，促进行业健康发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
+  <div class="vote-bar" id="votes-356">
+    <button class="vote-btn" onclick="vote(356,'important')">🔥 重要 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(356,'normal')">📌 一般 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(356,'irrelevant')">➖ 无关 <span class="c">0</span></button>
+    <span class="vote-count">| <span class="c">0</span>票</span>
+  </div>
+</div></div><div class="category-section"><div class="category-title">🏙️ 省市 (4)</div><div class="news-card" id="news-357">
+  <h3>广东首批市县国土空间总体规划动态维护成果启用</h3>
+  <div class="news-meta">🏙️ 广东省 · 08-05 · <span class="stars">★★★★</span> 7.0分 · <a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_4506a72bc0589752" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
+  <div class="news-summary">▍核心：广东省4市29县国土空间总体规划动态维护成果启用。<br><br>▍要点：<br>• 要点1：广东省自然资源厅核准4市29县国土空间总体规划动态维护方案。<br>• 要点2：动态维护成果将应用于实际规划管理。<br>• 要点3：标志着广东省国土空间规划管理进入成果应用阶段。<br><br>▍行业影响：推动规划管理精细化，提升规划实施效率。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
+  <div class="vote-bar" id="votes-357">
+    <button class="vote-btn" onclick="vote(357,'important')">🔥 重要 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(357,'normal')">📌 一般 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(357,'irrelevant')">➖ 无关 <span class="c">0</span></button>
+    <span class="vote-count">| <span class="c">0</span>票</span>
+  </div>
+</div><div class="news-card" id="news-360">
+  <h3>2026深圳城市更新新政解读:不强制配建保障房</h3>
+  <div class="news-meta">🏙️ 深圳市 · 08-05 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.toutiao.com/a7670072813377569280" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
+  <div class="news-summary">▍核心：深圳取消未完成规划审批项目的保障房强制配建。<br><br>▍要点：<br>• 要点1：取消未完成规划审批项目的保障房强制配建。<br>• 要点2：优化土地移交率核定方式。<br>• 要点3：政策旨在提高土地使用效率。<br><br>▍行业影响：有利于提高项目审批效率，减轻开发商负担，但需关注保障房供应保障。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
+  <div class="vote-bar" id="votes-360">
+    <button class="vote-btn" onclick="vote(360,'important')">🔥 重要 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(360,'normal')">📌 一般 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(360,'irrelevant')">➖ 无关 <span class="c">0</span></button>
+    <span class="vote-count">| <span class="c">0</span>票</span>
+  </div>
+</div><div class="news-card" id="news-358">
+  <h3>济南市印发《关于加强建设用地功能复合利用指导意见》</h3>
+  <div class="news-meta">🏙️ 山东省 · 08-05 · <span class="stars">★★</span> 5.0分 · <a href="http://www.shandong.gov.cn/jpaas-jpolicy-web-server/front/info/detail?iid=dead379578dd4f88ae781f8b4baf903a" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
+  <div class="news-summary">▍核心：济南市发布指导意见，推动建设用地功能复合利用。<br>▍要点：<br>• 要点1：明确混合用地和设施兼容两种情形。<br>• 要点2：鼓励建设用地功能复合利用。<br>• 要点3：旨在提高土地利用效率。<br>▍行业影响：有利于提升城市规划的灵活性和可持续性。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
+  <div class="vote-bar" id="votes-358">
+    <button class="vote-btn" onclick="vote(358,'important')">🔥 重要 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(358,'normal')">📌 一般 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(358,'irrelevant')">➖ 无关 <span class="c">0</span></button>
+    <span class="vote-count">| <span class="c">0</span>票</span>
+  </div>
+</div><div class="news-card" id="news-359">
+  <h3>边角用好 变闲为宝——重庆城市微空间治理实践</h3>
+  <div class="news-meta">🏙️ 重庆市 · 08-06 · <span class="stars">★★</span> 5.0分 · <a href="https://www.cq.news.cn/20260806/3465a5dc6d11499cab237b545272de90/c.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
+  <div class="news-summary">▍核心：重庆发布桥下空间体育设施规划建设指引，优化利用闲置土地。<br><br>▍要点：<br>• 要点1：多部门联合编制，制定桥下空间体育设施规划建设指引。<br>• 要点2：强调精细化管理，针对零碎闲置土地进行优化利用。<br>• 要点3：以绣花功夫精雕细琢，提升城市微空间品质。<br><br>▍行业影响：积极。该举措有助于推动城市微空间治理，提升城市品质，为规划设计工作提供实践案例。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
+  <div class="vote-bar" id="votes-359">
+    <button class="vote-btn" onclick="vote(359,'important')">🔥 重要 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(359,'normal')">📌 一般 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(359,'irrelevant')">➖ 无关 <span class="c">0</span></button>
+    <span class="vote-count">| <span class="c">0</span>票</span>
+  </div>
+</div></div><div class="category-section"><div class="category-title">📊 行业 (4)</div><div class="news-card" id="news-361">
+  <h3>World Governments Summit and Deloitte Report: Smart Cities</h3>
+  <div class="news-meta">📊 德勤 · 08-05 · <span class="stars">★★★★</span> 7.0分 · <a href="https://mea-biz.com/world-governments-summit-and-deloitte-report-smart-cities-and-the-future-of-sustainable-urban-resilience/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
+  <div class="news-summary">▍核心：德勤与世界政府峰会发布智慧城市报告，强调技术赋能可持续城市发展。<br><br>▍要点：<br>• 要点1：报告聚焦AI、数字孪生、物联网等前沿技术。<br>• 要点2：旨在推动智慧城市建设，实现可持续发展。<br>• 要点3：强调技术对城市规划与设计的变革作用。<br><br>▍行业影响：推动城市规划行业向智能化、数字化方向发展。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
+  <div class="vote-bar" id="votes-361">
+    <button class="vote-btn" onclick="vote(361,'important')">🔥 重要 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(361,'normal')">📌 一般 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(361,'irrelevant')">➖ 无关 <span class="c">0</span></button>
+    <span class="vote-count">| <span class="c">0</span>票</span>
+  </div>
+</div><div class="news-card" id="news-362">
+  <h3>专访清华同衡刘岩:城市更新将成城建主线</h3>
+  <div class="news-meta">📊 清华同衡 · 08-05 · <span class="stars">★★★★</span> 7.0分 · <a href="https://jg-static.eeo.com.cn/article/info?id=aad6eb58385ec0fc6a2bcdaf1e619b23" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
+  <div class="news-summary">▍核心：城市更新成为未来城市建设主线。<br><br>▍要点：<br>• 要点1：城市更新十五五规划标志着重大战略升级。<br>• 要点2：城市更新将作为未来城市建设的主线。<br>• 要点3：政策将推动城市空间优化、功能提升和品质改善。<br><br>▍行业影响：城市更新将成为规划设计工作的重点方向。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
+  <div class="vote-bar" id="votes-362">
+    <button class="vote-btn" onclick="vote(362,'important')">🔥 重要 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(362,'normal')">📌 一般 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(362,'irrelevant')">➖ 无关 <span class="c">0</span></button>
+    <span class="vote-count">| <span class="c">0</span>票</span>
+  </div>
+</div><div class="news-card" id="news-363">
+  <h3>同济大学建筑设计研究院取得无拉筋矩形多格钢结构污水处理水池专利</h3>
+  <div class="news-meta">📊 同济规划院 · 08-05 · <span class="stars">★★★★</span> 7.0分 · <a href="https://c.m.163.com/news/a/L1PPQOVT0519QIKK.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
+  <div class="news-summary">▍核心：同济大学建筑设计研究院获无拉筋矩形多格钢结构污水处理水池专利。<br><br>▍要点：<br>• 要点1：专利技术涉及无拉筋矩形多格钢结构污水处理水池设计。<br>• 要点2：专利技术可能提高污水处理效率，降低建设成本。<br>• 要点3：专利技术有望在污水处理设施规划设计中推广应用。<br><br>▍行业影响：专利技术有望推动污水处理设施规划设计创新。</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
+  <div class="vote-bar" id="votes-363">
+    <button class="vote-btn" onclick="vote(363,'important')">🔥 重要 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(363,'normal')">📌 一般 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(363,'irrelevant')">➖ 无关 <span class="c">0</span></button>
+    <span class="vote-count">| <span class="c">0</span>票</span>
+  </div>
+</div><div class="news-card" id="news-364">
+  <h3>蕾奥规划中标南京方山南片区控规调整项目</h3>
+  <div class="news-meta">📊 蕾奥规划 · 08-05 · <span class="stars">★★</span> 5.0分 · <a href="https://www.sohu.com/a/1059072321_121319643" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
+  <div class="news-summary">▍核心：蕾奥规划中标南京方山南片区控规调整项目，中标金额18万元。<br><br>▍要点：<br>• 要点1：蕾奥规划凭借专业能力中标南京方山南片区控规调整项目。<br>• 要点2：项目涉及控规调整，需综合考虑区域发展、生态环境、土地利用等因素。<br>• 要点3：中标金额18万元，体现了项目规模适中，对蕾奥规划业务拓展有积极意义。<br><br>▍行业影响：项目中标有利于蕾奥规划在控规调整领域拓</div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
+  <div class="vote-bar" id="votes-364">
+    <button class="vote-btn" onclick="vote(364,'important')">🔥 重要 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(364,'normal')">📌 一般 <span class="c">0</span></button>
+    <button class="vote-btn" onclick="vote(364,'irrelevant')">➖ 无关 <span class="c">0</span></button>
+    <span class="vote-count">| <span class="c">0</span>票</span>
+  </div>
+</div></div></div><div class="footer">PiHub · 规划情报中枢<br>每日自动更新 | <a href="https://github.com/xrefxref/pihub-site">GitHub</a></div>
+<script>
+const VOTE_API='https://yunkaifa20260626-d0el5yg4df33bbf-1406845757.ap-shanghai.app.tcloudbase.com/vote';
+const uid=(()=>{let u=localStorage.getItem('pihub_uid');if(!u){u='u_'+Math.random().toString(36).substr(2,9)+Date.now().toString(36);localStorage.setItem('pihub_uid',u)}return u})();
+async function vote(news_id,type){
+  const bar=document.getElementById('votes-'+news_id);
+  const btns=bar.querySelectorAll('.vote-btn');
+  btns.forEach(b=>b.disabled=true);
+  try{
+    const r=await fetch(VOTE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({news_id:String(news_id),vote_type:type,user_id:uid})});
+    const d=await r.json();
+    if(d.ok){
+      if(d.votes){
+        btns[0].innerHTML='🔥 重要 <span class=c>'+(d.votes.important||0)+'</span>';
+        btns[1].innerHTML='📌 一般 <span class=c>'+(d.votes.normal||0)+'</span>';
+        btns[2].innerHTML='➖ 无关 <span class=c>'+(d.votes.irrelevant||0)+'</span>';
+        bar.querySelector('.vote-count').innerHTML='| <span class=c>'+(d.votes.total||0)+'</span>票';
+      }
+    }else if(d.error==='已投过票'){
+      alert('您已经投过票了，可以改投其他选项');
+    }
+    // Always refresh counts
+    const s=await fetch(VOTE_API+'?news_id='+news_id);
+    const v=await s.json();
+    btns[0].innerHTML='🔥 重要 <span class=c>'+(v.important||0)+'</span>';
+    btns[1].innerHTML='📌 一般 <span class=c>'+(v.normal||0)+'</span>';
+    btns[2].innerHTML='➖ 无关 <span class=c>'+(v.irrelevant||0)+'</span>';
+    bar.querySelector('.vote-count').innerHTML='| <span class=c>'+(v.total||0)+'</span>票';
+  }catch(e){}
+  btns.forEach(b=>b.disabled=false);
+}
+
+/* ===== 语音播报（Web Speech API）===== */
+const synth = window.speechSynthesis;
+let ttsVoices = [];
+function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
+loadVoices();
+if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
+
+function pickZhVoice(){
+  if(!ttsVoices.length) return null;
+  let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
+  if(v) return v;
+  return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
+}
+function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
+function speakOne(text, onend){
+  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = pickZhVoice();
+  if(v) u.voice = v;
+  u.lang = v ? v.lang : 'zh-CN';
+  u.rate = 1; u.pitch = 1;
+  u.onend = onend; u.onerror = onend;
+  synth.speak(u);
+}
+function cardText(card){
+  const h = card.querySelector('h3');
+  const s = card.querySelector('.news-summary');
+  const title = h ? h.innerText : '';
+  const sum = s ? s.innerText : '';
+  return (title + '。' + sum).replace(/\s+/g,' ').trim();
+}
+function clearSpeaking(){
+  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
+  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
+}
+let ttsStop = false;
+function stopSpeak(){
+  ttsStop = true;
+  if(synth) synth.cancel();
+  clearSpeaking();
+  setStatus('已停止');
+}
+function speakAll(){
+  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
+  stopSpeak();
+  ttsStop = false;
+  const cards = Array.from(document.querySelectorAll('.news-card'));
+  if(!cards.length){ setStatus('本页暂无新闻'); return; }
+  let i = 0;
+  function next(){
+    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
+    const card = cards[i];
+    card.classList.add('speaking');
+    const btn = card.querySelector('.speak-btn');
+    if(btn) btn.classList.add('playing');
+    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
+    speakOne(cardText(card), function(){
+      card.classList.remove('speaking');
+      if(btn) btn.classList.remove('playing');
+      i++; next();
+    });
+  }
+  next();
+}
+function speakNews(id){
+  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
+  const card = document.getElementById('news-' + id);
+  if(!card) return;
+  stopSpeak();
+  card.classList.add('speaking');
+  const btn = card.querySelector('.speak-btn');
+  if(btn) btn.classList.add('playing');
+  setStatus('朗读中…');
+  speakOne(cardText(card), function(){
+    card.classList.remove('speaking');
+    if(btn) btn.classList.remove('playing');
+    setStatus('');
+  });
+}
+/* 企业微信内置浏览器不支持 Web Speech：若卡片已内置 <audio> 播放器则隐藏连播条直接播；否则给出「在浏览器打开」引导 */
+(function(){
+  const bar=document.querySelector('.tts-bar');
+  if(!window.speechSynthesis){
+    const hasAudio = !!document.querySelector('.news-card audio');
+    if(hasAudio){
+      if(bar) bar.style.display='none';
+    } else if(bar){
+      bar.style.background='#fffbe6';
+      bar.style.color='#874d00';
+      bar.style.borderBottom='1px solid #ffe58f';
+      bar.innerHTML='<span style="font-size:13px">📢 当前为内置浏览器，暂不支持语音朗读。请点右上角 ⋯ 菜单 →「在浏览器打开」，即可使用朗读功能。</span>';
+    }
+    return;
+  }
+  /* 无新闻页隐藏语音条 */
+  if(!document.querySelector('.news-card')){ if(bar) bar.style.display='none'; }
+})();
+</script>
+</body>
+</html>

@@ -76,7 +76,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>自贸港要闻7月5日 - 海南封关首年启新程</h3>
   <div class="news-meta">🏙️ 海南省 · 07-05 · <span class="stars">★★</span> 5.0分 · <a href="https://news.qq.com/rain/a/20260705A07MUX00" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：海南自贸港全岛封关首年，推进跨境资金自由与数据安全。<br><br>▍要点：<br>• 要点1：海南自贸港全岛封关，推进跨境资金自由便利与数据安全有序流动。<br>• 要点2：搭建EF多功能自由贸易账户，实现跨境资金高速通道。<br>• 要点3：政策旨在提升海南自贸港的国际竞争力。<br><br>▍行业影响：积极推动，为规划设计工作带来新机遇。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(144)">🔊 朗读本条</button></div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-144">
     <button class="vote-btn" onclick="vote(144,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(144,'normal')">📌 一般 <span class="c">0</span></button>
@@ -87,7 +87,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>清华同衡获2025年度华夏建设科学技术奖</h3>
   <div class="news-meta">📊 清华同衡 · 07-05 · <span class="stars">★★★★</span> 7.0分 · <a href="http://www.thupdi.com/news/?cid=1" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：清华同衡规划设计研究院获华夏建设科学技术奖，表彰其在更新规划转型领域的创新成果。<br><br>▍要点：<br>• 要点1：项目聚焦精准孪生和智能博弈的更新规划转型理论方法与关键技术。<br>• 要点2：该成果为华夏建设科学技术奖2025年度获奖项目。<br>• 要点3：表彰清华同衡在规划设计领域的创新与实践。<br><br>▍行业影响：该成果将推动更新规划转型领域的技术创新，对规划设计工</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews(145)">🔊 朗读本条</button></div>
+  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-145">
     <button class="vote-btn" onclick="vote(145,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(145,'normal')">📌 一般 <span class="c">0</span></button>
@@ -206,11 +206,14 @@ function speakNews(id){
     setStatus('');
   });
 }
-/* 当前环境不支持语音合成（如企业微信内置浏览器）：直接给出明确引导，避免显示无效按钮 */
+/* 企业微信内置浏览器不支持 Web Speech：若卡片已内置 <audio> 播放器则隐藏连播条直接播；否则给出「在浏览器打开」引导 */
 (function(){
   const bar=document.querySelector('.tts-bar');
   if(!window.speechSynthesis){
-    if(bar){
+    const hasAudio = !!document.querySelector('.news-card audio');
+    if(hasAudio){
+      if(bar) bar.style.display='none';
+    } else if(bar){
       bar.style.background='#fffbe6';
       bar.style.color='#874d00';
       bar.style.borderBottom='1px solid #ffe58f';

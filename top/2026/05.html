@@ -184,11 +184,14 @@ function speakNews(id){
     setStatus('');
   });
 }
-/* 当前环境不支持语音合成（如企业微信内置浏览器）：直接给出明确引导，避免显示无效按钮 */
+/* 企业微信内置浏览器不支持 Web Speech：若卡片已内置 <audio> 播放器则隐藏连播条直接播；否则给出「在浏览器打开」引导 */
 (function(){
   const bar=document.querySelector('.tts-bar');
   if(!window.speechSynthesis){
-    if(bar){
+    const hasAudio = !!document.querySelector('.news-card audio');
+    if(hasAudio){
+      if(bar) bar.style.display='none';
+    } else if(bar){
       bar.style.background='#fffbe6';
       bar.style.color='#874d00';
       bar.style.borderBottom='1px solid #ffe58f';
