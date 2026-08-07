@@ -42,16 +42,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
 .year-section{margin-bottom:24px}
 .year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
-.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
-.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
-.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
-.tts-bar button:hover{background:#40a9ff}
-.tts-bar button.stop{background:#ff4d4f}
-.tts-bar button.stop:hover{background:#ff7875}
-.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
-.speak-btn:hover{border-color:#1890ff;color:#1890ff}
-.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.listen-all-bar{padding:12px 16px;background:linear-gradient(135deg,#16213e,#0f3460);color:#fff;margin:0}
+.listen-all-bar .la-title{font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.listen-all-bar audio{width:100%;height:38px;outline:none}
+.speak-btn{padding:6px 18px;border-radius:16px;border:none;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.speak-btn:hover{background:#40a9ff}
 .news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
 </style>
 </head>
@@ -60,23 +55,65 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h1>📰 2026年6月17日 规划情报</h1>
   <div class="subtitle">PiHub · 历史新闻回顾</div>
 </div>
-<div class="tts-bar">
-  <span class="tts-title">🔊 语音播报</span>
-  <button onclick="speakAll()">▶ 朗读本页全部</button>
-  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
-  <span class="tts-status" id="tts-status"></span>
-</div>
 <div class="nav"><a href="/" class="">今日</a><a href="/top/week.html" class="">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="active">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
 <div class="stats">
   <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">精选新闻</div></div>
   <div class="stat-item"><div class="stat-num">2026年6月17日</div><div class="stat-label">日期</div></div>
   <div class="stat-item"><div class="stat-num"></div><div class="stat-label">参与投票</div></div>
 </div>
-</div><div class="container"><div class="category-section"><div class="category-title">👤 高层 (2)</div><div class="news-card" id="news-1">
+</div><div class="listen-all-bar"><div class="la-title">🎧 全文语音播报</div><button class="speak-btn" onclick="speakFull(document.getElementById('full-text').innerText)">🔊 听全文</button></div><div id="full-text" style="display:none">住建部：城市更新十五五规划提出10项指标23项重点任务。▍核心：住建部发布城市更新十五五规划，提出10项指标和23项重点任务。
+
+▍要点：
+• 要点1：规划涵盖危旧房、老旧小区、城中村、地下管网等多方面改造。
+• 要点2：设定10项主要指标，如改造面积、受益人数等。
+• 要点3：明确23项重点任务，包括政策支持、资金投入、项目管理等。
+
+▍行业影响：推动城市更新，提升城市规划与建设水平。发改委：2026年安排970亿元中央财政支持城市更新。▍核心：国家发改委安排970亿元中央财政支持2026年城市更新行动。
+
+▍要点：
+• 要点1：国家发改委统筹资金，重点支持城市更新。
+• 要点2：资金规模达970亿元，用于2026年城市更新项目。
+• 要点3：资金来源包括中央财政和相关渠道。
+
+▍行业影响：有利于推动城市更新项目加速实施，提升城市规划与设计工作质量。深圳深化38号文落地：全链条自然资源改革打通要素保障堵点。▍核心：深圳深化自然资源改革，全链条打通要素保障堵点，推动城市高质量发展。
+
+▍要点：
+• 要点1：实施全链条自然资源改革，实现规划审批存量三突破。
+• 要点2：改革旨在赋能城市高质量发展，提升资源配置效率。
+• 要点3：改革涉及土地、水资源、生态环境等多个领域。
+
+▍行业影响：积极。该政策将促进城市规划与自然资源管理深度融合，提升规划设计工作的科学性和效率。李强主持国务院第二十次专题学习。▍核心：国务院专题学习聚焦高质量发展和十五五开局。
+
+▍要点：
+• 要点1：强调高质量发展，推动经济结构优化。
+• 要点2：关注十五五开局，规划未来五年发展蓝图。
+• 要点3：专题学习旨在提升政策制定和执行能力。
+
+▍行业影响：有利于城市规划与经济发展同步，促进城市可持续发展。自然资源部：盘活存量土地 助力城市更新。▍核心：自然资源部强调盘活存量土地，作为城市更新核心任务。
+
+▍要点：
+• 要点1：政策强调盘活存量土地，优化土地利用效率。
+• 要点2：将城市更新与土地盘活相结合，推动城市可持续发展。
+• 要点3：要求各城市制定具体实施方案，确保政策落地。
+
+▍行业影响：有利于推动城市规划行业向高效、可持续方向发展。王毅出席国新办发布会：发布全球治理体系中国方案。▍核心：国新办发布全球治理体系中国方案，强调公正合理。
+
+▍要点：
+• 要点1：发布《构建更加公正合理的全球治理体系：中国的理念与实践》。
+• 要点2：强调中国在全球治理中的角色和理念。
+• 要点3：提出构建公正合理全球治理体系的方案。
+
+▍行业影响：积极推动全球治理体系改革，为城市规划提供更广泛的国际视野和合作机会。蕾奥规划中标深圳市规自局光明管理局采购项目 金额162万元。▍核心：蕾奥规划中标深圳市规自局光明管理局项目，金额162万元，涉及轨道13号线与6号线沿线用地开发研究。
+
+▍要点：
+• 要点1：项目聚焦轨道13号线与6号线光明段沿线低效与潜力用地开发。
+• 要点2：研究内容涉及用地规划、开发策略等，旨在提升土地利用效率。
+• 要点3：项目金额162万元，体现市场对专业规划服务的认可。
+
+▍行业影响：项目中标有利于推动深圳市光明区轨道交通沿线土地利用优化，对规划设计工作提出更高要求。</div><div class="container"><div class="category-section"><div class="category-title">👤 高层 (2)</div><div class="news-card" id="news-1">
   <h3>李强主持国务院第二十次专题学习</h3>
   <div class="news-meta">👤 国务院 · 06-16 · <span class="stars">★★★★</span> 7.0分 · <a href="https://cpc.people.com.cn/n1/2026/0616/c64094-40741157.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院专题学习聚焦高质量发展和十五五开局。<br><br>▍要点：<br>• 要点1：强调高质量发展，推动经济结构优化。<br>• 要点2：关注十五五开局，规划未来五年发展蓝图。<br>• 要点3：专题学习旨在提升政策制定和执行能力。<br><br>▍行业影响：有利于城市规划与经济发展同步，促进城市可持续发展。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-1">
     <button class="vote-btn" onclick="vote(1,'important')">🔥 重要 <span class="c">3</span></button>
     <button class="vote-btn" onclick="vote(1,'normal')">📌 一般 <span class="c">0</span></button>
@@ -87,7 +124,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>王毅出席国新办发布会：发布全球治理体系中国方案</h3>
   <div class="news-meta">👤 国务院 · 06-17 · <span class="stars">★★</span> 3.0分 · <a href="https://www.cnr.cn/news/20260617/t20260617_5270010.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国新办发布全球治理体系中国方案，强调公正合理。<br><br>▍要点：<br>• 要点1：发布《构建更加公正合理的全球治理体系：中国的理念与实践》。<br>• 要点2：强调中国在全球治理中的角色和理念。<br>• 要点3：提出构建公正合理全球治理体系的方案。<br><br>▍行业影响：积极推动全球治理体系改革，为城市规划提供更广泛的国际视野和合作机会。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-2">
     <button class="vote-btn" onclick="vote(2,'important')">🔥 重要 <span class="c">5</span></button>
     <button class="vote-btn" onclick="vote(2,'normal')">📌 一般 <span class="c">1</span></button>
@@ -98,7 +134,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>住建部：城市更新十五五规划提出10项指标23项重点任务</h3>
   <div class="news-meta">🏛️ 住建部 · 06-08 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.thepaper.cn/newsDetail_forward_33331903" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：住建部发布城市更新十五五规划，提出10项指标和23项重点任务。<br><br>▍要点：<br>• 要点1：规划涵盖危旧房、老旧小区、城中村、地下管网等多方面改造。<br>• 要点2：设定10项主要指标，如改造面积、受益人数等。<br>• 要点3：明确23项重点任务，包括政策支持、资金投入、项目管理等。<br><br>▍行业影响：推动城市更新，提升城市规划与建设水平。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-4">
     <button class="vote-btn" onclick="vote(4,'important')">🔥 重要 <span class="c">4</span></button>
     <button class="vote-btn" onclick="vote(4,'normal')">📌 一般 <span class="c">0</span></button>
@@ -109,7 +144,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>发改委：2026年安排970亿元中央财政支持城市更新</h3>
   <div class="news-meta">🏙️ 地方 · 06-08 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.thepaper.cn/newsDetail_forward_33331999" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国家发改委安排970亿元中央财政支持2026年城市更新行动。<br><br>▍要点：<br>• 要点1：国家发改委统筹资金，重点支持城市更新。<br>• 要点2：资金规模达970亿元，用于2026年城市更新项目。<br>• 要点3：资金来源包括中央财政和相关渠道。<br><br>▍行业影响：有利于推动城市更新项目加速实施，提升城市规划与设计工作质量。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-5">
     <button class="vote-btn" onclick="vote(5,'important')">🔥 重要 <span class="c">4</span></button>
     <button class="vote-btn" onclick="vote(5,'normal')">📌 一般 <span class="c">0</span></button>
@@ -120,7 +154,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>深圳深化38号文落地：全链条自然资源改革打通要素保障堵点</h3>
   <div class="news-meta">🏙️ 深圳市 · 06-06 · <span class="stars">★★★★</span> 8.0分 · <a href="http://www.gd.xinhuanet.com/20260606/6e688bf474db49c984effc1e1e72c66a/c.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：深圳深化自然资源改革，全链条打通要素保障堵点，推动城市高质量发展。<br><br>▍要点：<br>• 要点1：实施全链条自然资源改革，实现规划审批存量三突破。<br>• 要点2：改革旨在赋能城市高质量发展，提升资源配置效率。<br>• 要点3：改革涉及土地、水资源、生态环境等多个领域。<br><br>▍行业影响：积极。该政策将促进城市规划与自然资源管理深度融合，提升规划设计工作的科学性和效</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-6">
     <button class="vote-btn" onclick="vote(6,'important')">🔥 重要 <span class="c">5</span></button>
     <button class="vote-btn" onclick="vote(6,'normal')">📌 一般 <span class="c">0</span></button>
@@ -131,7 +164,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>自然资源部：盘活存量土地 助力城市更新</h3>
   <div class="news-meta">🏙️ 地方 · 06-08 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.chinanews.com.cn/gn/2026/06-08/10636247.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：自然资源部强调盘活存量土地，作为城市更新核心任务。<br><br>▍要点：<br>• 要点1：政策强调盘活存量土地，优化土地利用效率。<br>• 要点2：将城市更新与土地盘活相结合，推动城市可持续发展。<br>• 要点3：要求各城市制定具体实施方案，确保政策落地。<br><br>▍行业影响：有利于推动城市规划行业向高效、可持续方向发展。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-3">
     <button class="vote-btn" onclick="vote(3,'important')">🔥 重要 <span class="c">3</span></button>
     <button class="vote-btn" onclick="vote(3,'normal')">📌 一般 <span class="c">1</span></button>
@@ -142,7 +174,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>蕾奥规划中标深圳市规自局光明管理局采购项目 金额162万元</h3>
   <div class="news-meta">📊 蕾奥规划 · 06-11 · <span class="stars">★★</span> 3.0分 · <a href="https://baijiahao.baidu.com/s?id=1867709190667260859" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：蕾奥规划中标深圳市规自局光明管理局项目，金额162万元，涉及轨道13号线与6号线沿线用地开发研究。<br><br>▍要点：<br>• 要点1：项目聚焦轨道13号线与6号线光明段沿线低效与潜力用地开发。<br>• 要点2：研究内容涉及用地规划、开发策略等，旨在提升土地利用效率。<br>• 要点3：项目金额162万元，体现市场对专业规划服务的认可。<br><br>▍行业影响：项目中标有利于推动</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-7">
     <button class="vote-btn" onclick="vote(7,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(7,'normal')">📌 一般 <span class="c">3</span></button>
@@ -181,103 +212,44 @@ async function vote(news_id,type){
   btns.forEach(b=>b.disabled=false);
 }
 
-/* ===== 语音播报（Web Speech API）===== */
+/* ===== 语音播报（听全文 + Web Speech 兜底）===== */
 const synth = window.speechSynthesis;
 let ttsVoices = [];
 function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
 loadVoices();
 if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
-
 function pickZhVoice(){
   if(!ttsVoices.length) return null;
   let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
   if(v) return v;
   return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
 }
-function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
-function speakOne(text, onend){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
+function speakFull(text){
+  if(!synth){
+    alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。');
+    return;
+  }
   synth.cancel();
   const u = new SpeechSynthesisUtterance(text);
   const v = pickZhVoice();
   if(v) u.voice = v;
   u.lang = v ? v.lang : 'zh-CN';
   u.rate = 1; u.pitch = 1;
-  u.onend = onend; u.onerror = onend;
   synth.speak(u);
 }
-function cardText(card){
-  const h = card.querySelector('h3');
-  const s = card.querySelector('.news-summary');
-  const title = h ? h.innerText : '';
-  const sum = s ? s.innerText : '';
-  return (title + '。' + sum).replace(/\s+/g,' ').trim();
-}
-function clearSpeaking(){
-  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
-  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
-}
-let ttsStop = false;
-function stopSpeak(){
-  ttsStop = true;
-  if(synth) synth.cancel();
-  clearSpeaking();
-  setStatus('已停止');
-}
-function speakAll(){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
-  stopSpeak();
-  ttsStop = false;
-  const cards = Array.from(document.querySelectorAll('.news-card'));
-  if(!cards.length){ setStatus('本页暂无新闻'); return; }
-  let i = 0;
-  function next(){
-    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
-    const card = cards[i];
-    card.classList.add('speaking');
-    const btn = card.querySelector('.speak-btn');
-    if(btn) btn.classList.add('playing');
-    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
-    speakOne(cardText(card), function(){
-      card.classList.remove('speaking');
-      if(btn) btn.classList.remove('playing');
-      i++; next();
-    });
-  }
-  next();
-}
-function speakNews(id){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
-  const card = document.getElementById('news-' + id);
-  if(!card) return;
-  stopSpeak();
-  card.classList.add('speaking');
-  const btn = card.querySelector('.speak-btn');
-  if(btn) btn.classList.add('playing');
-  setStatus('朗读中…');
-  speakOne(cardText(card), function(){
-    card.classList.remove('speaking');
-    if(btn) btn.classList.remove('playing');
-    setStatus('');
-  });
-}
-/* 企业微信内置浏览器不支持 Web Speech：若卡片已内置 <audio> 播放器则隐藏连播条直接播；否则给出「在浏览器打开」引导 */
+/* 企业微信内置浏览器不支持 Web Speech：页面已有 <audio> 听全文播放器则无需提示；否则引导去浏览器打开 */
 (function(){
-  const bar=document.querySelector('.tts-bar');
   if(!window.speechSynthesis){
-    const hasAudio = !!document.querySelector('.news-card audio');
-    if(hasAudio){
-      if(bar) bar.style.display='none';
-    } else if(bar){
-      bar.style.background='#fffbe6';
-      bar.style.color='#874d00';
-      bar.style.borderBottom='1px solid #ffe58f';
-      bar.innerHTML='<span style="font-size:13px">📢 当前为内置浏览器，暂不支持语音朗读。请点右上角 ⋯ 菜单 →「在浏览器打开」，即可使用朗读功能。</span>';
+    const hasAudio = !!document.querySelector('.listen-all-bar audio');
+    if(!hasAudio){
+      const bar = document.querySelector('.listen-all-bar');
+      if(bar){
+        bar.style.background='#fffbe6';
+        bar.style.color='#874d00';
+        bar.innerHTML='<span style="font-size:13px">📢 当前为内置浏览器，暂不支持语音朗读。请点右上角 ⋯ 菜单 →「在浏览器打开」，即可收听全文。</span>';
+      }
     }
-    return;
   }
-  /* 无新闻页隐藏语音条 */
-  if(!document.querySelector('.news-card')){ if(bar) bar.style.display='none'; }
 })();
 </script>
 </body>

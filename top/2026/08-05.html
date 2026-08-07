@@ -42,16 +42,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
 .year-section{margin-bottom:24px}
 .year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
-.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
-.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
-.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
-.tts-bar button:hover{background:#40a9ff}
-.tts-bar button.stop{background:#ff4d4f}
-.tts-bar button.stop:hover{background:#ff7875}
-.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
-.speak-btn:hover{border-color:#1890ff;color:#1890ff}
-.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.listen-all-bar{padding:12px 16px;background:linear-gradient(135deg,#16213e,#0f3460);color:#fff;margin:0}
+.listen-all-bar .la-title{font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.listen-all-bar audio{width:100%;height:38px;outline:none}
+.speak-btn{padding:6px 18px;border-radius:16px;border:none;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.speak-btn:hover{background:#40a9ff}
 .news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
 </style>
 </head>
@@ -60,23 +55,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h1>📰 2026年8月5日 规划情报</h1>
   <div class="subtitle">PiHub · 历史新闻回顾</div>
 </div>
-<div class="tts-bar">
-  <span class="tts-title">🔊 语音播报</span>
-  <button onclick="speakAll()">▶ 朗读本页全部</button>
-  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
-  <span class="tts-status" id="tts-status"></span>
-</div>
 <div class="nav"><a href="/" class="">今日</a><a href="/top/week.html" class="">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="active">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
 <div class="stats">
   <div class="stat-item"><div class="stat-num">10</div><div class="stat-label">精选新闻</div></div>
   <div class="stat-item"><div class="stat-num">2026年8月5日</div><div class="stat-label">日期</div></div>
   <div class="stat-item"><div class="stat-num"></div><div class="stat-label">参与投票</div></div>
 </div>
-</div><div class="container"><div class="category-section"><div class="category-title">👤 高层 (4)</div><div class="news-card" id="news-345">
+</div><div class="listen-all-bar"><div class="la-title">🎧 全文语音播报</div><audio controls preload="none" src="/audio/full_2026-08-05.mp3">您的浏览器不支持音频播放</audio></div><div class="container"><div class="category-section"><div class="category-title">👤 高层 (4)</div><div class="news-card" id="news-345">
   <h3>中共中央政治局召开会议 决定召开二十届五中全会</h3>
   <div class="news-meta">👤 党中央 · 08-04 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.qfxc.gov.cn/contents/16/22818.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：中共中央政治局决定召开二十届五中全会，分析研究经济形势并部署下半年经济工作。<br><br>▍要点：<br>• 要点1：会议将分析研究当前经济形势，为政策制定提供依据。<br>• 要点2：部署下半年经济工作，涉及宏观经济政策调整。<br>• 要点3：会议对经济工作的重要性表明，政策将直接影响国家发展大局。<br><br>▍行业影响：对规划设计工作具有指导意义，需关注政策导向，调整规划策略。</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/345.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-345">
     <button class="vote-btn" onclick="vote(345,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(345,'normal')">📌 一般 <span class="c">0</span></button>
@@ -87,7 +75,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>顺应需求更好发挥住房公积金作用</h3>
   <div class="news-meta">👤 国务院 · 08-05 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.ce.cn/cysc/newmain/yc/jsxw/202608/t20260805_3128825.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院通过住房公积金管理条例修改，拓宽提取和使用范围。<br><br>▍要点：<br>• 要点1：住房公积金提取和使用范围拓宽。<br>• 要点2：扩大住房公积金制度覆盖面。<br>• 要点3：政策旨在顺应需求，更好地发挥住房公积金作用。<br><br>▍行业影响：有利于优化住房保障体系，提升规划设计工作的针对性。</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/342.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-342">
     <button class="vote-btn" onclick="vote(342,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(342,'normal')">📌 一般 <span class="c">0</span></button>
@@ -98,7 +85,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>早啊!新闻来了〔2026.08.05〕</h3>
   <div class="news-meta">👤 国务院 · 08-05 · <span class="stars">★★★★</span> 7.0分 · <a href="https://new.qq.com/rain/a/20260805A02VJH00" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院成立调查评估组，印发地质灾害防治实施方案。<br><br>▍要点：<br>• 要点1：成立调查评估组，针对重庆彭水山体崩塌灾害进行评估。<br>• 要点2：发布全国地质灾害防治十五五实施方案，强化地质灾害防治工作。<br>• 要点3：实施方案旨在提高地质灾害防治能力，保障人民生命财产安全。<br><br>▍行业影响：有利于提升地质灾害防治水平，对规划设计工作提出更高要求。</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/343.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-343">
     <button class="vote-btn" onclick="vote(343,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(343,'normal')">📌 一般 <span class="c">0</span></button>
@@ -109,7 +95,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>住房公积金,将有新变化!</h3>
   <div class="news-meta">👤 国务院 · 08-05 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.163.com/dy/article/L3I6BK2805458MRV.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院通过住房公积金管理条例修改，拓宽提取使用范围。<br><br>▍要点：<br>• 要点1：住房公积金提取使用范围扩大。<br>• 要点2：条例修改旨在提高资金使用效率。<br>• 要点3：新规对住房保障和消费市场有积极影响。<br><br>▍行业影响：有利于优化住房保障体系，提升规划设计工作针对性。</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/344.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-344">
     <button class="vote-btn" onclick="vote(344,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(344,'normal')">📌 一般 <span class="c">0</span></button>
@@ -120,7 +105,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>《全国地质灾害防治十五五实施方案》公布</h3>
   <div class="news-meta">🏛️ 自然资源部 · 08-05 · <span class="stars">★★★★</span> 8.0分 · <a href="https://cj.sina.com.cn/article/norm_detail?url=https%3A%2F%2Ffinance.sina.com.cn%2Fjjxw%2F2026-08-05%2Fdoc-inimffsv4835367.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：我国发布《全国地质灾害防治十五五实施方案》，部署地质灾害治理及避险搬迁。<br><br>▍要点：<br>• 要点1：实施地质灾害工程治理4200余处，排危除险6100余处，避险搬迁5万户。<br>• 要点2：方案涉及全国范围，覆盖城乡各类地质灾害防治。<br>• 要点3：方案强调预防为主，综合治理，提高地质灾害防治能力。<br><br>▍行业影响：有利于提升地质灾害防治水平，对规划设计工作</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/346.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-346">
     <button class="vote-btn" onclick="vote(346,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(346,'normal')">📌 一般 <span class="c">0</span></button>
@@ -131,7 +115,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>关于新化学物质环境管理登记有关事项的通知</h3>
   <div class="news-meta">🏛️ 生态环境部 · 08-04 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.mee.gov.cn/xxgk2018/xxgk/xxgk06/202608/t20260804_1163416.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：生态环境部通知自2026年8月15日起停止办理新化学物质环境管理备案。<br><br>▍要点：<br>• 要点1：政策调整，停止新化学物质备案办理。<br>• 要点2：时间节点明确，自2026年8月15日起实施。<br>• 要点3：涉及新化学物质的环境管理，影响相关产业和规划设计。<br><br>▍行业影响：对规划设计工作影响较大，需提前调整材料审查和风险评估流程。</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/348.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-348">
     <button class="vote-btn" onclick="vote(348,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(348,'normal')">📌 一般 <span class="c">0</span></button>
@@ -142,7 +125,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>生态环境部公开征求意见</h3>
   <div class="news-meta">🏛️ 生态环境部 · 08-04 · <span class="stars">★★★★</span> 8.0分 · <a href="https://new.qq.com/rain/a/20260804A0DNEQ00" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：生态环境部公开征求排污单位自行监测和监测技术服务机构管理办法意见。<br><br>▍要点：<br>• 要点1：征求意见针对排污单位自行监测管理办法。<br>• 要点2：征求意见针对生态环境监测技术服务机构管理办法。<br>• 要点3：旨在规范监测行为，提高监测质量。<br><br>▍行业影响：有利于提升环境监测管理水平，对规划设计工作提出更高要求。</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/349.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-349">
     <button class="vote-btn" onclick="vote(349,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(349,'normal')">📌 一般 <span class="c">0</span></button>
@@ -153,7 +135,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>多地发文鼓励居民装修既有住房</h3>
   <div class="news-meta">🏛️ 住建部 · 08-04 · <span class="stars">★★★★</span> 7.0分 · <a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_7666a717db394952" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：住建部推动既有住房装修政策，多地响应鼓励居民装修。<br><br>▍要点：<br>• 要点1：住建部发布《好房子建设指南》，征求第二次意见。<br>• 要点2：多地出台政策，支持既有住房装修，提升居住品质。<br>• 要点3：鼓励居民参与，推动老旧小区改造。<br><br>▍行业影响：有利于推动城市更新，提升居住环境，对规划设计工作提出更高要求。</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/347.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-347">
     <button class="vote-btn" onclick="vote(347,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(347,'normal')">📌 一般 <span class="c">0</span></button>
@@ -164,7 +145,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>小区取件难、电动车充电难?惠州城乡规划新规来了!</h3>
   <div class="news-meta">🏙️ 广东省 · 08-05 · <span class="stars">★★</span> 5.0分 · <a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_5256a5842b380852" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：惠州发布新规，解决小区快递取件和电动车充电难题。<br><br>▍要点：<br>• 要点1：新规明确了快递配套设施标准，旨在解决小区快递取件难问题。<br>• 要点2：新规对电动车充电设施进行了规范，缓解电动车充电难题。<br>• 要点3：新规的实施将提升居住环境，改善居民生活质量。<br><br>▍行业影响：新规有利于提升规划设计工作的精细化水平，推动城市居住环境优化。</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/350.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-350">
     <button class="vote-btn" onclick="vote(350,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(350,'normal')">📌 一般 <span class="c">0</span></button>
@@ -175,7 +155,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>强化政策支撑 多地谋篇算电协同</h3>
   <div class="news-meta">🏙️ 四川省 · 08-05 · <span class="stars">★★</span> 3.0分 · <a href="https://www.ce.cn/cysc/newmain/yc/jsxw/202608/t20260805_3128769.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：四川省发布算力设施优化布局实施方案，推动算电融合发展。<br><br>▍要点：<br>• 要点1：政策旨在优化算力设施布局，提升建设质量。<br>• 要点2：方案涉及算电融合发展，促进产业升级。<br>• 要点3：实施方案将指导地方规划算力设施建设。<br><br>▍行业影响：有利于推动城市规划与算力设施协同发展。</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/351.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-351">
     <button class="vote-btn" onclick="vote(351,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(351,'normal')">📌 一般 <span class="c">0</span></button>
@@ -214,103 +193,44 @@ async function vote(news_id,type){
   btns.forEach(b=>b.disabled=false);
 }
 
-/* ===== 语音播报（Web Speech API）===== */
+/* ===== 语音播报（听全文 + Web Speech 兜底）===== */
 const synth = window.speechSynthesis;
 let ttsVoices = [];
 function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
 loadVoices();
 if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
-
 function pickZhVoice(){
   if(!ttsVoices.length) return null;
   let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
   if(v) return v;
   return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
 }
-function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
-function speakOne(text, onend){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
+function speakFull(text){
+  if(!synth){
+    alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。');
+    return;
+  }
   synth.cancel();
   const u = new SpeechSynthesisUtterance(text);
   const v = pickZhVoice();
   if(v) u.voice = v;
   u.lang = v ? v.lang : 'zh-CN';
   u.rate = 1; u.pitch = 1;
-  u.onend = onend; u.onerror = onend;
   synth.speak(u);
 }
-function cardText(card){
-  const h = card.querySelector('h3');
-  const s = card.querySelector('.news-summary');
-  const title = h ? h.innerText : '';
-  const sum = s ? s.innerText : '';
-  return (title + '。' + sum).replace(/\s+/g,' ').trim();
-}
-function clearSpeaking(){
-  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
-  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
-}
-let ttsStop = false;
-function stopSpeak(){
-  ttsStop = true;
-  if(synth) synth.cancel();
-  clearSpeaking();
-  setStatus('已停止');
-}
-function speakAll(){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
-  stopSpeak();
-  ttsStop = false;
-  const cards = Array.from(document.querySelectorAll('.news-card'));
-  if(!cards.length){ setStatus('本页暂无新闻'); return; }
-  let i = 0;
-  function next(){
-    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
-    const card = cards[i];
-    card.classList.add('speaking');
-    const btn = card.querySelector('.speak-btn');
-    if(btn) btn.classList.add('playing');
-    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
-    speakOne(cardText(card), function(){
-      card.classList.remove('speaking');
-      if(btn) btn.classList.remove('playing');
-      i++; next();
-    });
-  }
-  next();
-}
-function speakNews(id){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
-  const card = document.getElementById('news-' + id);
-  if(!card) return;
-  stopSpeak();
-  card.classList.add('speaking');
-  const btn = card.querySelector('.speak-btn');
-  if(btn) btn.classList.add('playing');
-  setStatus('朗读中…');
-  speakOne(cardText(card), function(){
-    card.classList.remove('speaking');
-    if(btn) btn.classList.remove('playing');
-    setStatus('');
-  });
-}
-/* 企业微信内置浏览器不支持 Web Speech：若卡片已内置 <audio> 播放器则隐藏连播条直接播；否则给出「在浏览器打开」引导 */
+/* 企业微信内置浏览器不支持 Web Speech：页面已有 <audio> 听全文播放器则无需提示；否则引导去浏览器打开 */
 (function(){
-  const bar=document.querySelector('.tts-bar');
   if(!window.speechSynthesis){
-    const hasAudio = !!document.querySelector('.news-card audio');
-    if(hasAudio){
-      if(bar) bar.style.display='none';
-    } else if(bar){
-      bar.style.background='#fffbe6';
-      bar.style.color='#874d00';
-      bar.style.borderBottom='1px solid #ffe58f';
-      bar.innerHTML='<span style="font-size:13px">📢 当前为内置浏览器，暂不支持语音朗读。请点右上角 ⋯ 菜单 →「在浏览器打开」，即可使用朗读功能。</span>';
+    const hasAudio = !!document.querySelector('.listen-all-bar audio');
+    if(!hasAudio){
+      const bar = document.querySelector('.listen-all-bar');
+      if(bar){
+        bar.style.background='#fffbe6';
+        bar.style.color='#874d00';
+        bar.innerHTML='<span style="font-size:13px">📢 当前为内置浏览器，暂不支持语音朗读。请点右上角 ⋯ 菜单 →「在浏览器打开」，即可收听全文。</span>';
+      }
     }
-    return;
   }
-  /* 无新闻页隐藏语音条 */
-  if(!document.querySelector('.news-card')){ if(bar) bar.style.display='none'; }
 })();
 </script>
 </body>

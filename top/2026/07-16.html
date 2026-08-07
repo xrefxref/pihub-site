@@ -42,16 +42,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
 .year-section{margin-bottom:24px}
 .year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
-.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
-.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
-.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
-.tts-bar button:hover{background:#40a9ff}
-.tts-bar button.stop{background:#ff4d4f}
-.tts-bar button.stop:hover{background:#ff7875}
-.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
-.speak-btn:hover{border-color:#1890ff;color:#1890ff}
-.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.listen-all-bar{padding:12px 16px;background:linear-gradient(135deg,#16213e,#0f3460);color:#fff;margin:0}
+.listen-all-bar .la-title{font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.listen-all-bar audio{width:100%;height:38px;outline:none}
+.speak-btn{padding:6px 18px;border-radius:16px;border:none;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.speak-btn:hover{background:#40a9ff}
 .news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
 </style>
 </head>
@@ -60,23 +55,63 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h1>📰 2026年7月16日 规划情报</h1>
   <div class="subtitle">PiHub · 历史新闻回顾</div>
 </div>
-<div class="tts-bar">
-  <span class="tts-title">🔊 语音播报</span>
-  <button onclick="speakAll()">▶ 朗读本页全部</button>
-  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
-  <span class="tts-status" id="tts-status"></span>
-</div>
 <div class="nav"><a href="/" class="">今日</a><a href="/top/week.html" class="">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="active">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
 <div class="stats">
   <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">精选新闻</div></div>
   <div class="stat-item"><div class="stat-num">2026年7月16日</div><div class="stat-label">日期</div></div>
   <div class="stat-item"><div class="stat-num"></div><div class="stat-label">参与投票</div></div>
 </div>
-</div><div class="container"><div class="category-section"></div><div class="category-section"><div class="category-title">🏛️ 部委 (3)</div><div class="news-card" id="news-175">
+</div><div class="listen-all-bar"><div class="la-title">🎧 全文语音播报</div><button class="speak-btn" onclick="speakFull(document.getElementById('full-text').innerText)">🔊 听全文</button></div><div id="full-text" style="display:none">《公共资源交易中心招标投标现场管理暂行办法》2026年第43号令。▍核心：国家发展改革委发布第43号令，规范公共资源交易中心招标投标现场管理。
+
+▍要点：
+• 要点1：明确招标投标现场管理规范，提高公共资源交易透明度。
+• 要点2：强化招标投标过程监管，防范腐败风险。
+• 要点3：细化招标投标行为规范，保障交易公平公正。
+
+▍行业影响：有利于提升规划设计项目招标投标的规范性和透明度。水利部印发《建立健全泉水调查监测评价制度工作方案（2026-2028年）》。▍核心：水利部发布泉水调查监测评价制度，旨在2028年前全面掌握全国泉水现状。
+
+▍要点：
+• 要点1：建立全国泉水信息数据库，形成重要泉水名录。
+• 要点2：2026-2028年实施，基本摸清全国泉水现状。
+• 要点3：人民日报报道，政策已印发。
+
+▍行业影响：有利于提升泉水保护与规划设计的科学性，促进可持续发展。广东省2026年第三批4个全域土地综合整治实施方案获省级批复。▍核心：广东省批复4个全域土地综合整治实施方案，助力高质量发展。
+
+▍要点：
+• 要点1：批复涉及深圳坪山区等4个地区。
+• 要点2：实施方案旨在推动全域土地综合整治。
+• 要点3：支持百县千镇万村高质量发展工程。
+
+▍行业影响：积极推动，为规划设计工作提供政策导向。成渝地区双城经济圈重点项目名单公布 350个项目总投资约3.83万亿元。▍核心：成渝地区双城经济圈重点项目名单公布，总投资约3.83万亿元，旨在打造第四增长极。
+
+▍要点：
+• 要点1：政策要点：川渝联合印发2026年重点项目名单，聚焦基础设施、产业协同等领域。
+• 要点2：影响范围：覆盖川渝两地，涉及经济、社会、生态等多个方面。
+• 要点3：对规划设计工作具体影响：需加强区域协同规划，注重可持续发展。
+
+▍行业影响：对规划设计工作提出更高要求，推动区域协同发展。深城交设立北京深舟 布局工业AI与边缘智能。▍核心：深城交成立北京深舟，布局工业AI与边缘智能。
+
+▍要点：
+• 要点1：深城交联合专业团队成立北京深舟，专注于工业AI与边缘智能技术。
+• 要点2：项目旨在补齐云端城市大脑与端边智能监测底座的技术闭环。
+• 要点3：此举将推动城市规划中智能化技术的应用与发展。
+
+▍行业影响：积极。该举措将促进城市规划行业智能化升级，提升城市治理效率。水利部部署西北地区暴雨洪水防御。▍核心：水利部针对西北地区暴雨洪水部署防御措施。
+
+▍要点：
+• 要点1：水利部针对山西、陕西等地区部署防御措施，应对7月14日至17日的强降雨。
+• 要点2：重点确保水库安全度汛，防止洪水灾害。
+• 要点3：涉及地区包括山西、陕西等，影响范围较广。
+
+▍行业影响：有利于提升区域防洪安全，对规划设计工作提出更高要求。蕾奥规划中标深圳龙华区重点区域建设推进中心项目 金额458万元。▍核心：蕾奥规划中标深圳龙华区重点区域建设推进中心项目，金额458万元。
+▍要点：
+• 要点1：蕾奥规划获得龙华区重点区域建设推进中心项目，金额458万元。
+• 要点2：项目涉及智慧城市规划运营，体现公司战略转型。
+• 要点3：项目推进将助力龙华区智慧城市建设。
+▍行业影响：积极，项目中标将提升蕾奥规划在智慧城市规划领域的竞争力。</div><div class="container"><div class="category-section"></div><div class="category-section"><div class="category-title">🏛️ 部委 (3)</div><div class="news-card" id="news-175">
   <h3>《公共资源交易中心招标投标现场管理暂行办法》2026年第43号令</h3>
   <div class="news-meta">🏛️ 发改委 · 07-15 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.ndrc.gov.cn?from=app/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国家发展改革委发布第43号令，规范公共资源交易中心招标投标现场管理。<br><br>▍要点：<br>• 要点1：明确招标投标现场管理规范，提高公共资源交易透明度。<br>• 要点2：强化招标投标过程监管，防范腐败风险。<br>• 要点3：细化招标投标行为规范，保障交易公平公正。<br><br>▍行业影响：有利于提升规划设计项目招标投标的规范性和透明度。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-175">
     <button class="vote-btn" onclick="vote(175,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(175,'normal')">📌 一般 <span class="c">0</span></button>
@@ -87,7 +122,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>水利部印发《建立健全泉水调查监测评价制度工作方案（2026-2028年）》</h3>
   <div class="news-meta">🏛️ 水利部 · 07-15 · <span class="stars">★★★★</span> 7.0分 · <a href="https://new.qq.com/rain/a/20260715A0245800" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：水利部发布泉水调查监测评价制度，旨在2028年前全面掌握全国泉水现状。<br><br>▍要点：<br>• 要点1：建立全国泉水信息数据库，形成重要泉水名录。<br>• 要点2：2026-2028年实施，基本摸清全国泉水现状。<br>• 要点3：人民日报报道，政策已印发。<br><br>▍行业影响：有利于提升泉水保护与规划设计的科学性，促进可持续发展。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-176">
     <button class="vote-btn" onclick="vote(176,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(176,'normal')">📌 一般 <span class="c">0</span></button>
@@ -98,7 +132,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>水利部部署西北地区暴雨洪水防御</h3>
   <div class="news-meta">🏛️ 水利部 · 07-15 · <span class="stars">★★</span> 5.0分 · <a href="https://news.gmw.cn/2026-07/15/content_38885894.htm" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：水利部针对西北地区暴雨洪水部署防御措施。<br><br>▍要点：<br>• 要点1：水利部针对山西、陕西等地区部署防御措施，应对7月14日至17日的强降雨。<br>• 要点2：重点确保水库安全度汛，防止洪水灾害。<br>• 要点3：涉及地区包括山西、陕西等，影响范围较广。<br><br>▍行业影响：有利于提升区域防洪安全，对规划设计工作提出更高要求。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-177">
     <button class="vote-btn" onclick="vote(177,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(177,'normal')">📌 一般 <span class="c">0</span></button>
@@ -109,7 +142,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>广东省2026年第三批4个全域土地综合整治实施方案获省级批复</h3>
   <div class="news-meta">🏙️ 广东省 · 07-15 · <span class="stars">★★★★</span> 7.0分 · <a href="https://nr.gd.gov.cn/gkmlpt/content/4/4884/post_4884828.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：广东省批复4个全域土地综合整治实施方案，助力高质量发展。<br><br>▍要点：<br>• 要点1：批复涉及深圳坪山区等4个地区。<br>• 要点2：实施方案旨在推动全域土地综合整治。<br>• 要点3：支持百县千镇万村高质量发展工程。<br><br>▍行业影响：积极推动，为规划设计工作提供政策导向。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-178">
     <button class="vote-btn" onclick="vote(178,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(178,'normal')">📌 一般 <span class="c">0</span></button>
@@ -120,7 +152,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>成渝地区双城经济圈重点项目名单公布 350个项目总投资约3.83万亿元</h3>
   <div class="news-meta">🏙️ 四川省 · 07-15 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.toutiao.com/article/7659694440416412175/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：成渝地区双城经济圈重点项目名单公布，总投资约3.83万亿元，旨在打造第四增长极。<br><br>▍要点：<br>• 要点1：政策要点：川渝联合印发2026年重点项目名单，聚焦基础设施、产业协同等领域。<br>• 要点2：影响范围：覆盖川渝两地，涉及经济、社会、生态等多个方面。<br>• 要点3：对规划设计工作具体影响：需加强区域协同规划，注重可持续发展。<br><br>▍行业影响：对规划设</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-179">
     <button class="vote-btn" onclick="vote(179,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(179,'normal')">📌 一般 <span class="c">0</span></button>
@@ -131,7 +162,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>深城交设立北京深舟 布局工业AI与边缘智能</h3>
   <div class="news-meta">📊 深城交 · 07-15 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.sutpc.com/cn/news/240.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：深城交成立北京深舟，布局工业AI与边缘智能。<br><br>▍要点：<br>• 要点1：深城交联合专业团队成立北京深舟，专注于工业AI与边缘智能技术。<br>• 要点2：项目旨在补齐云端城市大脑与端边智能监测底座的技术闭环。<br>• 要点3：此举将推动城市规划中智能化技术的应用与发展。<br><br>▍行业影响：积极。该举措将促进城市规划行业智能化升级，提升城市治理效率。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-180">
     <button class="vote-btn" onclick="vote(180,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(180,'normal')">📌 一般 <span class="c">0</span></button>
@@ -142,7 +172,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>蕾奥规划中标深圳龙华区重点区域建设推进中心项目 金额458万元</h3>
   <div class="news-meta">📊 蕾奥规划 · 07-15 · <span class="stars">★★</span> 5.0分 · <a href="https://guba.eastmoney.com/news,cfhpl,1744170529,z.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：蕾奥规划中标深圳龙华区重点区域建设推进中心项目，金额458万元。<br>▍要点：<br>• 要点1：蕾奥规划获得龙华区重点区域建设推进中心项目，金额458万元。<br>• 要点2：项目涉及智慧城市规划运营，体现公司战略转型。<br>• 要点3：项目推进将助力龙华区智慧城市建设。<br>▍行业影响：积极，项目中标将提升蕾奥规划在智慧城市规划领域的竞争力。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-181">
     <button class="vote-btn" onclick="vote(181,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(181,'normal')">📌 一般 <span class="c">0</span></button>
@@ -181,103 +210,44 @@ async function vote(news_id,type){
   btns.forEach(b=>b.disabled=false);
 }
 
-/* ===== 语音播报（Web Speech API）===== */
+/* ===== 语音播报（听全文 + Web Speech 兜底）===== */
 const synth = window.speechSynthesis;
 let ttsVoices = [];
 function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
 loadVoices();
 if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
-
 function pickZhVoice(){
   if(!ttsVoices.length) return null;
   let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
   if(v) return v;
   return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
 }
-function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
-function speakOne(text, onend){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
+function speakFull(text){
+  if(!synth){
+    alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。');
+    return;
+  }
   synth.cancel();
   const u = new SpeechSynthesisUtterance(text);
   const v = pickZhVoice();
   if(v) u.voice = v;
   u.lang = v ? v.lang : 'zh-CN';
   u.rate = 1; u.pitch = 1;
-  u.onend = onend; u.onerror = onend;
   synth.speak(u);
 }
-function cardText(card){
-  const h = card.querySelector('h3');
-  const s = card.querySelector('.news-summary');
-  const title = h ? h.innerText : '';
-  const sum = s ? s.innerText : '';
-  return (title + '。' + sum).replace(/\s+/g,' ').trim();
-}
-function clearSpeaking(){
-  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
-  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
-}
-let ttsStop = false;
-function stopSpeak(){
-  ttsStop = true;
-  if(synth) synth.cancel();
-  clearSpeaking();
-  setStatus('已停止');
-}
-function speakAll(){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
-  stopSpeak();
-  ttsStop = false;
-  const cards = Array.from(document.querySelectorAll('.news-card'));
-  if(!cards.length){ setStatus('本页暂无新闻'); return; }
-  let i = 0;
-  function next(){
-    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
-    const card = cards[i];
-    card.classList.add('speaking');
-    const btn = card.querySelector('.speak-btn');
-    if(btn) btn.classList.add('playing');
-    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
-    speakOne(cardText(card), function(){
-      card.classList.remove('speaking');
-      if(btn) btn.classList.remove('playing');
-      i++; next();
-    });
-  }
-  next();
-}
-function speakNews(id){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
-  const card = document.getElementById('news-' + id);
-  if(!card) return;
-  stopSpeak();
-  card.classList.add('speaking');
-  const btn = card.querySelector('.speak-btn');
-  if(btn) btn.classList.add('playing');
-  setStatus('朗读中…');
-  speakOne(cardText(card), function(){
-    card.classList.remove('speaking');
-    if(btn) btn.classList.remove('playing');
-    setStatus('');
-  });
-}
-/* 企业微信内置浏览器不支持 Web Speech：若卡片已内置 <audio> 播放器则隐藏连播条直接播；否则给出「在浏览器打开」引导 */
+/* 企业微信内置浏览器不支持 Web Speech：页面已有 <audio> 听全文播放器则无需提示；否则引导去浏览器打开 */
 (function(){
-  const bar=document.querySelector('.tts-bar');
   if(!window.speechSynthesis){
-    const hasAudio = !!document.querySelector('.news-card audio');
-    if(hasAudio){
-      if(bar) bar.style.display='none';
-    } else if(bar){
-      bar.style.background='#fffbe6';
-      bar.style.color='#874d00';
-      bar.style.borderBottom='1px solid #ffe58f';
-      bar.innerHTML='<span style="font-size:13px">📢 当前为内置浏览器，暂不支持语音朗读。请点右上角 ⋯ 菜单 →「在浏览器打开」，即可使用朗读功能。</span>';
+    const hasAudio = !!document.querySelector('.listen-all-bar audio');
+    if(!hasAudio){
+      const bar = document.querySelector('.listen-all-bar');
+      if(bar){
+        bar.style.background='#fffbe6';
+        bar.style.color='#874d00';
+        bar.innerHTML='<span style="font-size:13px">📢 当前为内置浏览器，暂不支持语音朗读。请点右上角 ⋯ 菜单 →「在浏览器打开」，即可收听全文。</span>';
+      }
     }
-    return;
   }
-  /* 无新闻页隐藏语音条 */
-  if(!document.querySelector('.news-card')){ if(bar) bar.style.display='none'; }
 })();
 </script>
 </body>

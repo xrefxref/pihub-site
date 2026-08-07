@@ -42,16 +42,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
 .year-section{margin-bottom:24px}
 .year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
-.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
-.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
-.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
-.tts-bar button:hover{background:#40a9ff}
-.tts-bar button.stop{background:#ff4d4f}
-.tts-bar button.stop:hover{background:#ff7875}
-.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
-.speak-btn:hover{border-color:#1890ff;color:#1890ff}
-.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.listen-all-bar{padding:12px 16px;background:linear-gradient(135deg,#16213e,#0f3460);color:#fff;margin:0}
+.listen-all-bar .la-title{font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.listen-all-bar audio{width:100%;height:38px;outline:none}
+.speak-btn{padding:6px 18px;border-radius:16px;border:none;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.speak-btn:hover{background:#40a9ff}
 .news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
 </style>
 </head>
@@ -60,23 +55,222 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h1>📰 2026年8月4日 规划情报</h1>
   <div class="subtitle">PiHub · 历史新闻回顾</div>
 </div>
-<div class="tts-bar">
-  <span class="tts-title">🔊 语音播报</span>
-  <button onclick="speakAll()">▶ 朗读本页全部</button>
-  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
-  <span class="tts-status" id="tts-status"></span>
-</div>
 <div class="nav"><a href="/" class="">今日</a><a href="/top/week.html" class="">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="active">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
 <div class="stats">
   <div class="stat-item"><div class="stat-num">30</div><div class="stat-label">精选新闻</div></div>
   <div class="stat-item"><div class="stat-num">2026年8月4日</div><div class="stat-label">日期</div></div>
   <div class="stat-item"><div class="stat-num"></div><div class="stat-label">参与投票</div></div>
 </div>
-</div><div class="container"><div class="category-section"><div class="category-title">👤 高层 (2)</div><div class="news-card" id="news-313">
+</div><div class="listen-all-bar"><div class="la-title">🎧 全文语音播报</div><button class="speak-btn" onclick="speakFull(document.getElementById('full-text').innerText)">🔊 听全文</button></div><div id="full-text" style="display:none">东风浩荡开新局——习近平经济思想指引中国经济高质量发展行稳致远。▍核心：习近平总书记强调城市治理，城市更新十五五规划明确未来五年任务，推动现代化人民城市建设。
+
+▍要点：
+• 要点1：强调城市治理，提升城市品质。
+• 要点2：城市更新十五五规划，明确未来五年城市发展方向。
+• 要点3：建设现代化人民城市，提升居民生活品质。
+
+▍行业影响：推动城市规划行业向高质量发展转型。国家发改委、国家能源局发布《新型电力系统建设十五五规划》。▍核心：国家发布《新型电力系统建设十五五规划》，部署电力行业发展目标与任务。
+
+▍要点：
+• 要点1：明确电力行业发展的主要目标和重大工程。
+• 要点2：提出重点任务，包括技术创新、基础设施建设等。
+• 要点3：规划覆盖全国，影响电力行业全产业链。
+
+▍行业影响：积极推动电力行业转型升级，对规划设计工作提出更高要求。工信部、国家发改委、市场监管总局开展2026年度重点行业能效碳效领跑者推荐。▍核心：三部门联合开展2026年度重点行业能效碳效领跑者企业推荐。
+
+▍要点：
+• 要点1：工信部、国家发改委、市场监管总局联合发布通知。
+• 要点2：推荐对象为2026年度重点行业能效、碳效领跑者企业。
+• 要点3：旨在推动行业节能减排，提升企业能效水平。
+
+▍行业影响：有利于推动城市规划行业绿色、低碳发展。自然资源部印发《全国地质灾害防治十五五实施方案》。▍核心：自然资源部发布地质灾害防治实施方案，明确防治重点和区域划分。
+
+▍要点：
+• 要点1：明确七项地质灾害防治重点任务。
+• 要点2：划分21个重点防治区，覆盖全国范围。
+• 要点3：实施方案旨在提升地质灾害防治能力。
+
+▍行业影响：有利于提高地质灾害防治水平，对规划设计工作提出更高要求。住房公积金将更好满足居民多样化住房消费需求。▍核心：住建部拓宽住房公积金提取和使用范围，满足居民多样化住房需求。
+
+▍要点：
+• 要点1：住房公积金提取和使用范围扩大。
+• 要点2：旨在满足居民多样化住房消费需求。
+• 要点3：政策调整将涉及更多居民。
+
+▍行业影响：有利于提升住房公积金使用效率，对规划设计工作提出更高要求。《综合运输服务发展十五五规划》印发。▍核心：《综合运输服务发展十五五规划》印发，旨在2030年建成现代化综合运输服务体系。
+
+▍要点：
+• 要点1：规划提出到2030年基本实现综合运输服务现代化。
+• 要点2：涉及交通运输部等四部门联合发布，政策层级高。
+• 要点3：规划涵盖运输服务各领域，包括交通基础设施、运输方式等。
+
+▍行业影响：对规划设计工作具有深远影响，推动城市交通系统升级。交通运输纵深推进全国统一大市场建设实施方案印发。▍核心：交通运输部等四部门发布实施方案，推进政务服务跨省通办。
+▍要点：
+• 要点1：实施方案旨在深化交通运输领域改革，促进全国统一大市场建设。
+• 要点2：政务服务跨省通办将提高行政效率，降低企业运营成本。
+• 要点3：方案涉及交通运输、政务服务等多个领域，需跨部门协作实施。
+▍行业影响：积极。方案将优化规划设计工作流程，提升区域间交通运输协同效率。解读《国家应对气候变化十五五规划》。▍核心：发布《国家应对气候变化十五五规划》，构建全领域应对气候变化目标体系。
+
+▍要点：
+• 要点1：首次系统构建全领域全口径应对气候变化目标体系。
+• 要点2：生态环境部联合国家发展改革委等部门共同发布。
+• 要点3：规划涵盖能源、工业、交通等多个领域。
+
+▍行业影响：对规划设计工作具有深远影响。划分21个重点防治区 十五五全国地质灾害防治部署。▍核心：发布全国地质灾害防治十五五实施方案，划分21个重点防治区。
+
+▍要点：
+• 要点1：实施精细化、智能化防治策略。
+• 要点2：全国划分21个重点防治区。
+• 要点3：推动防治工作向精细化、智能化迈进。
+
+▍行业影响：有利于提升地质灾害防治水平，对规划设计工作提出更高要求。李强签署国务院令 公布修订后的《集成电路布图设计保护条例》。▍核心：国务院修订《集成电路布图设计保护条例》将于2026年10月15日起施行。
+
+▍要点：
+• 要点1：修订后的条例强化了集成电路布图设计的知识产权保护。
+• 要点2：新规旨在促进集成电路产业创新，提升国家竞争力。
+• 要点3：实施日期为2026年10月15日。
+
+▍行业影响：有利于推动城市规划中集成电路产业布局的优化和创新。重庆市印发十五五现代服务业发展规划。▍核心：重庆发布《十五五现代服务业发展规划》，服务业年均增长5.5%。
+
+▍要点：
+• 要点1：规划明确服务业年均增长目标为5.5%。
+• 要点2：涉及现代服务业各领域发展，包括科技创新、金融服务等。
+• 要点3：规划期为2026-2030年，旨在推动重庆服务业高质量发展。
+
+▍行业影响：对规划设计工作具有积极推动作用。深圳公交场站盘活政策通道已打开 闲置公配资产待唤醒。▍核心：深圳发布政策，为闲置公交场站功能转换提供政策支持。
+
+▍要点：
+• 要点1：深圳市规划和自然资源局、市住房建设局联合发布《深圳市既有非居住建筑物功能转换实施办法》。
+• 要点2：政策旨在盘活闲置公交场站，允许其功能转换。
+• 要点3：政策为相关转换提供明确的实施路径和规范。
+
+▍行业影响：政策将促进城市规划与土地利用的灵活性，推动城市更新和功能优化。深圳城市更新周报 11大项目新进展。▍核心：深圳城市更新项目数量及面积持续增长。
+
+▍要点：
+• 要点1：深圳城市更新项目累计达1062个，拆除范围面积达8961.2公顷。
+• 要点2：项目进展迅速，反映城市更新政策成效显著。
+• 要点3：更新项目涉及住宅、商业、工业等多种类型，覆盖面广。
+
+▍行业影响：积极。城市更新项目增多，为规划设计工作带来更多机遇，需关注项目类型多样性及更新效果。十五五广州计划推进城市更新片区35个。▍核心：广州发布《十五五规划》，计划推进35个城市更新片区。
+
+▍要点：
+• 要点1：公开征求意见，聚焦城中村改造和城市更新。
+• 要点2：规划涉及35个城市更新片区，共计75个城中村改造项目。
+• 要点3：旨在提升城市品质，优化空间布局。
+
+▍行业影响：推动城市更新，对规划设计工作提出更高要求。广州住房发展十五五规划公开征求意见 去库存推现房。▍核心：广州市发布住房发展十五五规划，推动现房去库存。
+▍要点：
+• 要点1：规划提出多措并举释放住房消费潜力。
+• 要点2：重点推动现房销售，去库存。
+• 要点3：公开征求意见，广泛吸纳社会反馈。
+▍行业影响：有利于优化住房市场结构，提升规划设计工作的针对性。德勤发布《Urban Future with a Purpose》城市未来12大趋势报告。▍核心：德勤发布城市未来12大趋势报告，聚焦智慧健康社区、15分钟城市、AI城市运营等领域。
+
+▍要点：
+• 要点1：报告提出智慧健康社区、15分钟城市、AI城市运营等12大趋势。
+• 要点2：趋势涉及城市规划、建设、运营等多个环节。
+• 要点3：报告强调城市可持续发展与技术创新的重要性。
+
+▍行业影响：对规划设计工作具有深远影响，推动行业向智能化、绿色化方向发展。中规院举办人民城市人民建规划月度大讲堂暨技术交流会。▍核心：中规院举办规划月度大讲堂，探讨人民城市理念与规划设计转型。
+
+▍要点：
+• 要点1：聚焦人民城市理念，强调规划设计的民生导向。
+• 要点2：探讨规划设计转型，关注新技术、新方法的应用。
+• 要点3：举办技术交流会，促进行业经验分享与交流。
+
+▍行业影响：推动规划设计行业向更人性化、技术化方向发展。中规院申请气候适应型国土空间生态基础设施规划布局系统专利。▍核心：中规院申请气候适应型国土空间生态基础设施规划布局系统专利。
+
+▍要点：
+• 要点1：中规院申请专利，涉及气候适应型国土空间生态基础设施规划布局系统。
+• 要点2：专利内容包含规划布局方法，旨在提升生态基础设施适应性。
+• 要点3：系统旨在应对气候变化，优化国土空间规划。
+
+▍行业影响：推动行业技术进步，提升生态基础设施规划的科学性和适应性。同济规划院牵头编制首个城市消防无人场站标准。▍核心：同济规划院编制首个城市消防无人场站标准，创新低空应急模式。
+
+▍要点：
+• 要点1：制定首个城市消防无人场站标准，规范无人消防设施建设。
+• 要点2：定义低空应急新范式，提升城市消防应急能力。
+• 要点3：推动无人消防技术应用，优化城市消防安全布局。
+
+▍行业影响：积极推动无人消防技术应用，对城市规划与设计提出更高要求。深城交与南科大共建AI+海洋和低空经济联合实验室。▍核心：深城交与南科大共建AI+海洋和低空经济联合实验室，推动城市规划智能化。
+
+▍要点：
+• 要点1：深城交与南科大签署战略合作，共建AI和数字孪生实验室。
+• 要点2：实验室聚焦海洋和低空经济领域，应用AI技术。
+• 要点3：合作旨在提升城市规划的智能化水平。
+
+▍行业影响：积极。该合作将促进城市规划领域AI技术的应用，推动行业智能化转型。江苏沿海干线公路绿色廊道行动纲领发布 盐连通三市共建零碳货运走廊。▍核心：江苏三市共建零碳货运示范廊道。
+
+▍要点：
+• 要点1：盐城、连云港、南通三市联合编制《行动纲领》。
+• 要点2：目标打造全国领先的沿海干线零碳货运示范廊道。
+• 要点3：涉及公路绿色廊道建设，强调生态环保与货运效率。
+
+▍行业影响：推动绿色货运廊道建设，提升规划设计对生态与交通融合的重视。蕾奥规划中标罗湖区清水河总部新城总设计师团队技术服务项目。▍核心：蕾奥规划中标罗湖区清水河总部新城总设计师团队技术服务项目。
+
+▍要点：
+• 要点1：中标金额298万元，体现项目重要性。
+• 要点2：罗湖区清水河总部新城为项目地点，涉及区域发展。
+• 要点3：总设计师团队技术服务，强调规划设计专业性。
+
+▍行业影响：积极，有利于提升蕾奥规划在行业内的知名度和影响力。海南将实施98个交通枢纽体系重大工程。▍核心：海南启动98个交通枢纽体系重大工程，加速构建现代化交通网络。
+
+▍要点：
+• 要点1：海南计划在“十五五”期间实施98个重大交通枢纽工程。
+• 要点2：旨在构建现代化综合交通运输体系，提升自贸港的互联互通水平。
+• 要点3：工程涵盖公路、铁路、航空等多种交通方式。
+
+▍行业影响：积极。该举措将推动海南交通基础设施升级，为城市规划提供更多发展机遇。中乌AEO互认8月起实施 新疆外贸企业通关更顺畅。▍核心：中乌AEO互认8月起实施，新疆外贸企业通关便利化。
+
+▍要点：
+• 要点1：中乌AEO互认，简化新疆外贸企业通关流程。
+• 要点2：互认实施日期为8月1日，覆盖新疆中小外贸企业。
+• 要点3：政策旨在提升新疆外贸竞争力，促进区域经济发展。
+
+▍行业影响：积极。该政策将提升新疆外贸企业的通关效率，对城市规划中的产业布局和物流规划产生正面影响。山东省地理空间数据管理办法8月25日起实施。▍核心：山东省实施《地理空间数据管理办法》，规范地理空间数据管理。
+
+▍要点：
+• 要点1：构建覆盖地理空间数据全链条制度体系。
+• 要点2：涉及自然资源厅、大数据局联合印发。
+• 要点3：自8月25日起正式实施。
+
+▍行业影响：有利于提升地理空间数据管理规范化水平，对规划设计工作提出更高要求。海南自贸港十五五全面加快服务业国际化进程。▍核心：海南自贸港全面加速服务业国际化发展。
+
+▍要点：
+• 要点1：发布《推进服务业扩能提质增效的实施意见》。
+• 要点2：目标打造服务业开放发展新高地。
+• 要点3：全面加快服务业国际化进程。
+
+▍行业影响：利好海南服务业规划设计，需关注国际化趋势与开放政策。《西安都市圈建设十五五实施方案》出炉。▍核心：西安都市圈建设十五五实施方案发布，聚焦交通、科创、产业等六大方向。
+
+▍要点：
+• 要点1：实施方案涵盖交通、科创、产业等六大方向，实施20项重点任务。
+• 要点2：政策旨在推动西安都市圈一体化发展，提升区域竞争力。
+• 要点3：实施方案将引导城市空间布局优化，促进区域协同发展。
+
+▍行业影响：积极。方案将推动城市规划与实施更加注重区域协同和产业升级，对规划设计工作提出更高要求。西安印发《实施方案》推动场景创新与规模化应用。▍核心：西安市发布《实施方案》，推动场景创新与规模化应用。
+
+▍要点：
+• 要点1：政策旨在加快场景培育和开放，促进新场景大规模应用。
+• 要点2：实施方案涵盖多个领域，包括科技、文化、旅游等。
+• 要点3：政策强调创新驱动，鼓励企业和社会资本参与。
+
+▍行业影响：积极推动，为规划设计工作带来新机遇。海口市出台展会知识产权保护办法 8月10日起施行。▍核心：海口市实施展会知识产权保护办法。
+
+▍要点：
+• 要点1：海口市成为海南省首个实施展会知识产权专项保护的城市。
+• 要点2：办法由多部门联合制定，旨在加强展会知识产权保护。
+• 要点3：办法自8月10日起正式施行。
+
+▍行业影响：有利于提升展会知识产权保护水平，对规划设计工作提出更高要求。陕西10市1区“十五五”规划纲要均已发布。▍核心：陕西省10市1区“十五五”规划纲要全部发布，西安强化国家中心城市引领作用。
+
+▍要点：
+• 要点1：陕西10市1区“十五五”规划纲要全面印发，标志着区域发展规划进入实施阶段。
+• 要点2：西安作为国家中心城市，其规划纲要强调引领和辐射作用，对周边城市产生重要影响。
+• 要点3：规划纲要中可能包含城市空间布局、产业升级、生态环境保护等关键内容。
+
+▍行业影响：对规划设计工作具有指导意义，需关注区域协同发展和中心城市辐射效应。</div><div class="container"><div class="category-section"><div class="category-title">👤 高层 (2)</div><div class="news-card" id="news-313">
   <h3>东风浩荡开新局——习近平经济思想指引中国经济高质量发展行稳致远</h3>
   <div class="news-meta">👤 党中央 · <span class="stars">★★★★</span> 8.0分 · <a href="https://touzi.ningbo.gov.cn/col/col1229396854/art/2026/art_40623904d20d4146b06144926641879b.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：习近平总书记强调城市治理，城市更新十五五规划明确未来五年任务，推动现代化人民城市建设。<br><br>▍要点：<br>• 要点1：强调城市治理，提升城市品质。<br>• 要点2：城市更新十五五规划，明确未来五年城市发展方向。<br>• 要点3：建设现代化人民城市，提升居民生活品质。<br><br>▍行业影响：推动城市规划行业向高质量发展转型。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-313">
     <button class="vote-btn" onclick="vote(313,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(313,'normal')">📌 一般 <span class="c">0</span></button>
@@ -87,7 +281,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>李强签署国务院令 公布修订后的《集成电路布图设计保护条例》</h3>
   <div class="news-meta">👤 国务院 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.gov.cn/yaowen/liebiao/202608/content_7077404.htm" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国务院修订《集成电路布图设计保护条例》将于2026年10月15日起施行。<br><br>▍要点：<br>• 要点1：修订后的条例强化了集成电路布图设计的知识产权保护。<br>• 要点2：新规旨在促进集成电路产业创新，提升国家竞争力。<br>• 要点3：实施日期为2026年10月15日。<br><br>▍行业影响：有利于推动城市规划中集成电路产业布局的优化和创新。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-312">
     <button class="vote-btn" onclick="vote(312,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(312,'normal')">📌 一般 <span class="c">0</span></button>
@@ -98,7 +291,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>国家发改委、国家能源局发布《新型电力系统建设十五五规划》</h3>
   <div class="news-meta">🏛️ 发改委 · <span class="stars">★★★★</span> 8.0分 · <a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_7856a705c4293652" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：国家发布《新型电力系统建设十五五规划》，部署电力行业发展目标与任务。<br><br>▍要点：<br>• 要点1：明确电力行业发展的主要目标和重大工程。<br>• 要点2：提出重点任务，包括技术创新、基础设施建设等。<br>• 要点3：规划覆盖全国，影响电力行业全产业链。<br><br>▍行业影响：积极推动电力行业转型升级，对规划设计工作提出更高要求。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-314">
     <button class="vote-btn" onclick="vote(314,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(314,'normal')">📌 一般 <span class="c">0</span></button>
@@ -109,7 +301,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>工信部、国家发改委、市场监管总局开展2026年度重点行业能效碳效领跑者推荐</h3>
   <div class="news-meta">🏛️ 发改委 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.163.com/dy/article/L3EO188C05568W0A.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：三部门联合开展2026年度重点行业能效碳效领跑者企业推荐。<br><br>▍要点：<br>• 要点1：工信部、国家发改委、市场监管总局联合发布通知。<br>• 要点2：推荐对象为2026年度重点行业能效、碳效领跑者企业。<br>• 要点3：旨在推动行业节能减排，提升企业能效水平。<br><br>▍行业影响：有利于推动城市规划行业绿色、低碳发展。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-315">
     <button class="vote-btn" onclick="vote(315,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(315,'normal')">📌 一般 <span class="c">0</span></button>
@@ -120,7 +311,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>自然资源部印发《全国地质灾害防治十五五实施方案》</h3>
   <div class="news-meta">🏛️ 自然资源部 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.chinanews.com/gn/2026/08-04/10671577.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：自然资源部发布地质灾害防治实施方案，明确防治重点和区域划分。<br><br>▍要点：<br>• 要点1：明确七项地质灾害防治重点任务。<br>• 要点2：划分21个重点防治区，覆盖全国范围。<br>• 要点3：实施方案旨在提升地质灾害防治能力。<br><br>▍行业影响：有利于提高地质灾害防治水平，对规划设计工作提出更高要求。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-316">
     <button class="vote-btn" onclick="vote(316,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(316,'normal')">📌 一般 <span class="c">0</span></button>
@@ -131,7 +321,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>住房公积金将更好满足居民多样化住房消费需求</h3>
   <div class="news-meta">🏛️ 住建部 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.mohurd.gov.cn/xinwen/gzdt/index.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：住建部拓宽住房公积金提取和使用范围，满足居民多样化住房需求。<br><br>▍要点：<br>• 要点1：住房公积金提取和使用范围扩大。<br>• 要点2：旨在满足居民多样化住房消费需求。<br>• 要点3：政策调整将涉及更多居民。<br><br>▍行业影响：有利于提升住房公积金使用效率，对规划设计工作提出更高要求。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-317">
     <button class="vote-btn" onclick="vote(317,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(317,'normal')">📌 一般 <span class="c">0</span></button>
@@ -142,7 +331,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>《综合运输服务发展十五五规划》印发</h3>
   <div class="news-meta">🏛️ 交通运输部 · <span class="stars">★★★★</span> 8.0分 · <a href="https://new.qq.com/rain/a/20260803A03QLF00" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：《综合运输服务发展十五五规划》印发，旨在2030年建成现代化综合运输服务体系。<br><br>▍要点：<br>• 要点1：规划提出到2030年基本实现综合运输服务现代化。<br>• 要点2：涉及交通运输部等四部门联合发布，政策层级高。<br>• 要点3：规划涵盖运输服务各领域，包括交通基础设施、运输方式等。<br><br>▍行业影响：对规划设计工作具有深远影响，推动城市交通系统升级。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-318">
     <button class="vote-btn" onclick="vote(318,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(318,'normal')">📌 一般 <span class="c">0</span></button>
@@ -153,7 +341,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>交通运输纵深推进全国统一大市场建设实施方案印发</h3>
   <div class="news-meta">🏛️ 交通运输部 · <span class="stars">★★★★</span> 8.0分 · <a href="https://jx.people.com.cn/BIG5/n2/2026/0804/c186330-41658334.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：交通运输部等四部门发布实施方案，推进政务服务跨省通办。<br>▍要点：<br>• 要点1：实施方案旨在深化交通运输领域改革，促进全国统一大市场建设。<br>• 要点2：政务服务跨省通办将提高行政效率，降低企业运营成本。<br>• 要点3：方案涉及交通运输、政务服务等多个领域，需跨部门协作实施。<br>▍行业影响：积极。方案将优化规划设计工作流程，提升区域间交通运输协同效率。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-319">
     <button class="vote-btn" onclick="vote(319,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(319,'normal')">📌 一般 <span class="c">0</span></button>
@@ -164,7 +351,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>解读《国家应对气候变化十五五规划》</h3>
   <div class="news-meta">🏛️ 生态环境部 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.chinatt315.org.cn/zcjd/2026-8/4/262976.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：发布《国家应对气候变化十五五规划》，构建全领域应对气候变化目标体系。<br><br>▍要点：<br>• 要点1：首次系统构建全领域全口径应对气候变化目标体系。<br>• 要点2：生态环境部联合国家发展改革委等部门共同发布。<br>• 要点3：规划涵盖能源、工业、交通等多个领域。<br><br>▍行业影响：对规划设计工作具有深远影响。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-320">
     <button class="vote-btn" onclick="vote(320,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(320,'normal')">📌 一般 <span class="c">0</span></button>
@@ -175,7 +361,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>划分21个重点防治区 十五五全国地质灾害防治部署</h3>
   <div class="news-meta">🏛️ 自然资源部 · 08-04 · <span class="stars">★★★★</span> 8.0分 · <a href="https://new.qq.com/rain/a/20260804A04I0P00" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：发布全国地质灾害防治十五五实施方案，划分21个重点防治区。<br><br>▍要点：<br>• 要点1：实施精细化、智能化防治策略。<br>• 要点2：全国划分21个重点防治区。<br>• 要点3：推动防治工作向精细化、智能化迈进。<br><br>▍行业影响：有利于提升地质灾害防治水平，对规划设计工作提出更高要求。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-339">
     <button class="vote-btn" onclick="vote(339,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(339,'normal')">📌 一般 <span class="c">0</span></button>
@@ -186,7 +371,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>重庆市印发十五五现代服务业发展规划</h3>
   <div class="news-meta">🏙️ 重庆市 · <span class="stars">★★★★</span> 7.0分 · <a href="https://cq.gov.cn/zwgk/zfxxgkml/szfwj/qtgw/202608/t20260803_15886542.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：重庆发布《十五五现代服务业发展规划》，服务业年均增长5.5%。<br><br>▍要点：<br>• 要点1：规划明确服务业年均增长目标为5.5%。<br>• 要点2：涉及现代服务业各领域发展，包括科技创新、金融服务等。<br>• 要点3：规划期为2026-2030年，旨在推动重庆服务业高质量发展。<br><br>▍行业影响：对规划设计工作具有积极推动作用。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-325">
     <button class="vote-btn" onclick="vote(325,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(325,'normal')">📌 一般 <span class="c">0</span></button>
@@ -197,7 +381,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>深圳公交场站盘活政策通道已打开 闲置公配资产待唤醒</h3>
   <div class="news-meta">🏙️ 深圳市 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.163.com/dy/article/L3G0JQLV05129QAF.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：深圳发布政策，为闲置公交场站功能转换提供政策支持。<br><br>▍要点：<br>• 要点1：深圳市规划和自然资源局、市住房建设局联合发布《深圳市既有非居住建筑物功能转换实施办法》。<br>• 要点2：政策旨在盘活闲置公交场站，允许其功能转换。<br>• 要点3：政策为相关转换提供明确的实施路径和规范。<br><br>▍行业影响：政策将促进城市规划与土地利用的灵活性，推动城市更新和功能优化</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-326">
     <button class="vote-btn" onclick="vote(326,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(326,'normal')">📌 一般 <span class="c">0</span></button>
@@ -208,7 +391,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>深圳城市更新周报 11大项目新进展</h3>
   <div class="news-meta">🏙️ 深圳市 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.163.com/dy/article/L3EERP7K05380MPT.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：深圳城市更新项目数量及面积持续增长。<br><br>▍要点：<br>• 要点1：深圳城市更新项目累计达1062个，拆除范围面积达8961.2公顷。<br>• 要点2：项目进展迅速，反映城市更新政策成效显著。<br>• 要点3：更新项目涉及住宅、商业、工业等多种类型，覆盖面广。<br><br>▍行业影响：积极。城市更新项目增多，为规划设计工作带来更多机遇，需关注项目类型多样性及更新效果。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-327">
     <button class="vote-btn" onclick="vote(327,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(327,'normal')">📌 一般 <span class="c">0</span></button>
@@ -219,7 +401,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>十五五广州计划推进城市更新片区35个</h3>
   <div class="news-meta">🏙️ 广州市 · <span class="stars">★★★★</span> 7.0分 · <a href="https://k.sina.cn/article_5787187353_v158f17899020026600.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：广州发布《十五五规划》，计划推进35个城市更新片区。<br><br>▍要点：<br>• 要点1：公开征求意见，聚焦城中村改造和城市更新。<br>• 要点2：规划涉及35个城市更新片区，共计75个城中村改造项目。<br>• 要点3：旨在提升城市品质，优化空间布局。<br><br>▍行业影响：推动城市更新，对规划设计工作提出更高要求。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-330">
     <button class="vote-btn" onclick="vote(330,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(330,'normal')">📌 一般 <span class="c">0</span></button>
@@ -230,7 +411,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>广州住房发展十五五规划公开征求意见 去库存推现房</h3>
   <div class="news-meta">🏙️ 广州市 · <span class="stars">★★★★</span> 7.0分 · <a href="https://cj.sina.com.cn/articles/view/5787187353/158f17899020025zpo" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：广州市发布住房发展十五五规划，推动现房去库存。<br>▍要点：<br>• 要点1：规划提出多措并举释放住房消费潜力。<br>• 要点2：重点推动现房销售，去库存。<br>• 要点3：公开征求意见，广泛吸纳社会反馈。<br>▍行业影响：有利于优化住房市场结构，提升规划设计工作的针对性。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-331">
     <button class="vote-btn" onclick="vote(331,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(331,'normal')">📌 一般 <span class="c">0</span></button>
@@ -241,7 +421,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>江苏沿海干线公路绿色廊道行动纲领发布 盐连通三市共建零碳货运走廊</h3>
   <div class="news-meta">🏙️ 江苏省 · <span class="stars">★★</span> 5.0分 · <a href="https://www.toutiao.com/article/7668922419700859443/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：江苏三市共建零碳货运示范廊道。<br><br>▍要点：<br>• 要点1：盐城、连云港、南通三市联合编制《行动纲领》。<br>• 要点2：目标打造全国领先的沿海干线零碳货运示范廊道。<br>• 要点3：涉及公路绿色廊道建设，强调生态环保与货运效率。<br><br>▍行业影响：推动绿色货运廊道建设，提升规划设计对生态与交通融合的重视。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-321">
     <button class="vote-btn" onclick="vote(321,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(321,'normal')">📌 一般 <span class="c">0</span></button>
@@ -252,7 +431,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>海南将实施98个交通枢纽体系重大工程</h3>
   <div class="news-meta">🏙️ 海南省 · 08-03 · <span class="stars">★★</span> 5.0分 · <a href="https://new.qq.com/rain/a/20260803A057Q600" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：海南启动98个交通枢纽体系重大工程，加速构建现代化交通网络。<br><br>▍要点：<br>• 要点1：海南计划在“十五五”期间实施98个重大交通枢纽工程。<br>• 要点2：旨在构建现代化综合交通运输体系，提升自贸港的互联互通水平。<br>• 要点3：工程涵盖公路、铁路、航空等多种交通方式。<br><br>▍行业影响：积极。该举措将推动海南交通基础设施升级，为城市规划提供更多发展机遇。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-340">
     <button class="vote-btn" onclick="vote(340,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(340,'normal')">📌 一般 <span class="c">0</span></button>
@@ -263,7 +441,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>中乌AEO互认8月起实施 新疆外贸企业通关更顺畅</h3>
   <div class="news-meta">🏙️ 新疆 · <span class="stars">★★</span> 3.0分 · <a href="https://www.xinjiangnet.com.cn/yclm/202607/t20260730_35707029.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：中乌AEO互认8月起实施，新疆外贸企业通关便利化。<br><br>▍要点：<br>• 要点1：中乌AEO互认，简化新疆外贸企业通关流程。<br>• 要点2：互认实施日期为8月1日，覆盖新疆中小外贸企业。<br>• 要点3：政策旨在提升新疆外贸竞争力，促进区域经济发展。<br><br>▍行业影响：积极。该政策将提升新疆外贸企业的通关效率，对城市规划中的产业布局和物流规划产生正面影响。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-322">
     <button class="vote-btn" onclick="vote(322,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(322,'normal')">📌 一般 <span class="c">0</span></button>
@@ -274,7 +451,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>山东省地理空间数据管理办法8月25日起实施</h3>
   <div class="news-meta">🏙️ 山东省 · <span class="stars">★★</span> 3.0分 · <a href="https://www.toutiao.com/article/7667173567109153331/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：山东省实施《地理空间数据管理办法》，规范地理空间数据管理。<br><br>▍要点：<br>• 要点1：构建覆盖地理空间数据全链条制度体系。<br>• 要点2：涉及自然资源厅、大数据局联合印发。<br>• 要点3：自8月25日起正式实施。<br><br>▍行业影响：有利于提升地理空间数据管理规范化水平，对规划设计工作提出更高要求。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-323">
     <button class="vote-btn" onclick="vote(323,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(323,'normal')">📌 一般 <span class="c">0</span></button>
@@ -285,7 +461,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>海南自贸港十五五全面加快服务业国际化进程</h3>
   <div class="news-meta">🏙️ 海南省 · <span class="stars">★★</span> 3.0分 · <a href="https://www.chinanews.com/aseaninfo/2026/08-04/10671615.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：海南自贸港全面加速服务业国际化发展。<br><br>▍要点：<br>• 要点1：发布《推进服务业扩能提质增效的实施意见》。<br>• 要点2：目标打造服务业开放发展新高地。<br>• 要点3：全面加快服务业国际化进程。<br><br>▍行业影响：利好海南服务业规划设计，需关注国际化趋势与开放政策。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-324">
     <button class="vote-btn" onclick="vote(324,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(324,'normal')">📌 一般 <span class="c">0</span></button>
@@ -296,7 +471,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>《西安都市圈建设十五五实施方案》出炉</h3>
   <div class="news-meta">🏙️ 西安市 · <span class="stars">★★</span> 3.0分 · <a href="https://o.xiancity.cn/system/2026/07/31/031262066.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：西安都市圈建设十五五实施方案发布，聚焦交通、科创、产业等六大方向。<br><br>▍要点：<br>• 要点1：实施方案涵盖交通、科创、产业等六大方向，实施20项重点任务。<br>• 要点2：政策旨在推动西安都市圈一体化发展，提升区域竞争力。<br>• 要点3：实施方案将引导城市空间布局优化，促进区域协同发展。<br><br>▍行业影响：积极。方案将推动城市规划与实施更加注重区域协同和产业升</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-328">
     <button class="vote-btn" onclick="vote(328,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(328,'normal')">📌 一般 <span class="c">0</span></button>
@@ -307,7 +481,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>西安印发《实施方案》推动场景创新与规模化应用</h3>
   <div class="news-meta">🏙️ 西安市 · <span class="stars">★★</span> 3.0分 · <a href="https://www.toutiao.com/article/7668904545979826722/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：西安市发布《实施方案》，推动场景创新与规模化应用。<br><br>▍要点：<br>• 要点1：政策旨在加快场景培育和开放，促进新场景大规模应用。<br>• 要点2：实施方案涵盖多个领域，包括科技、文化、旅游等。<br>• 要点3：政策强调创新驱动，鼓励企业和社会资本参与。<br><br>▍行业影响：积极推动，为规划设计工作带来新机遇。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-329">
     <button class="vote-btn" onclick="vote(329,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(329,'normal')">📌 一般 <span class="c">0</span></button>
@@ -318,7 +491,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>海口市出台展会知识产权保护办法 8月10日起施行</h3>
   <div class="news-meta">🏙️ 海口市 · <span class="stars">★★</span> 3.0分 · <a href="https://www.legaldaily.com.cn/index_article/content/2026-07/27/content_9430432.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：海口市实施展会知识产权保护办法。<br><br>▍要点：<br>• 要点1：海口市成为海南省首个实施展会知识产权专项保护的城市。<br>• 要点2：办法由多部门联合制定，旨在加强展会知识产权保护。<br>• 要点3：办法自8月10日起正式施行。<br><br>▍行业影响：有利于提升展会知识产权保护水平，对规划设计工作提出更高要求。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-332">
     <button class="vote-btn" onclick="vote(332,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(332,'normal')">📌 一般 <span class="c">0</span></button>
@@ -329,7 +501,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>陕西10市1区“十五五”规划纲要均已发布</h3>
   <div class="news-meta">🏙️ 西安市 · 08-03 · <span class="stars">★★</span> 3.0分 · <a href="https://new.qq.com/rain/a/20260803A048QN00" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：陕西省10市1区“十五五”规划纲要全部发布，西安强化国家中心城市引领作用。<br><br>▍要点：<br>• 要点1：陕西10市1区“十五五”规划纲要全面印发，标志着区域发展规划进入实施阶段。<br>• 要点2：西安作为国家中心城市，其规划纲要强调引领和辐射作用，对周边城市产生重要影响。<br>• 要点3：规划纲要中可能包含城市空间布局、产业升级、生态环境保护等关键内容。<br><br>▍</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-341">
     <button class="vote-btn" onclick="vote(341,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(341,'normal')">📌 一般 <span class="c">0</span></button>
@@ -340,7 +511,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>德勤发布《Urban Future with a Purpose》城市未来12大趋势报告</h3>
   <div class="news-meta">📊 德勤 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.deloitte.com/global/en/Industries/government-public/perspectives/urban-future-with-a-purpose.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：德勤发布城市未来12大趋势报告，聚焦智慧健康社区、15分钟城市、AI城市运营等领域。<br><br>▍要点：<br>• 要点1：报告提出智慧健康社区、15分钟城市、AI城市运营等12大趋势。<br>• 要点2：趋势涉及城市规划、建设、运营等多个环节。<br>• 要点3：报告强调城市可持续发展与技术创新的重要性。<br><br>▍行业影响：对规划设计工作具有深远影响，推动行业向智能化、绿色化</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-333">
     <button class="vote-btn" onclick="vote(333,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(333,'normal')">📌 一般 <span class="c">0</span></button>
@@ -351,7 +521,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>中规院举办人民城市人民建规划月度大讲堂暨技术交流会</h3>
   <div class="news-meta">📊 中规院 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.caupd.com/news/hospital/detail/3047.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：中规院举办规划月度大讲堂，探讨人民城市理念与规划设计转型。<br><br>▍要点：<br>• 要点1：聚焦人民城市理念，强调规划设计的民生导向。<br>• 要点2：探讨规划设计转型，关注新技术、新方法的应用。<br>• 要点3：举办技术交流会，促进行业经验分享与交流。<br><br>▍行业影响：推动规划设计行业向更人性化、技术化方向发展。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-334">
     <button class="vote-btn" onclick="vote(334,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(334,'normal')">📌 一般 <span class="c">0</span></button>
@@ -362,7 +531,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>中规院申请气候适应型国土空间生态基础设施规划布局系统专利</h3>
   <div class="news-meta">📊 中规院 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.163.com/dy/article/KU5QHLTV0519QIKK.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：中规院申请气候适应型国土空间生态基础设施规划布局系统专利。<br><br>▍要点：<br>• 要点1：中规院申请专利，涉及气候适应型国土空间生态基础设施规划布局系统。<br>• 要点2：专利内容包含规划布局方法，旨在提升生态基础设施适应性。<br>• 要点3：系统旨在应对气候变化，优化国土空间规划。<br><br>▍行业影响：推动行业技术进步，提升生态基础设施规划的科学性和适应性。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-335">
     <button class="vote-btn" onclick="vote(335,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(335,'normal')">📌 一般 <span class="c">0</span></button>
@@ -373,7 +541,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>同济规划院牵头编制首个城市消防无人场站标准</h3>
   <div class="news-meta">📊 同济规划院 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.toutiao.com/article/7637105684500333066" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：同济规划院编制首个城市消防无人场站标准，创新低空应急模式。<br><br>▍要点：<br>• 要点1：制定首个城市消防无人场站标准，规范无人消防设施建设。<br>• 要点2：定义低空应急新范式，提升城市消防应急能力。<br>• 要点3：推动无人消防技术应用，优化城市消防安全布局。<br><br>▍行业影响：积极推动无人消防技术应用，对城市规划与设计提出更高要求。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-336">
     <button class="vote-btn" onclick="vote(336,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(336,'normal')">📌 一般 <span class="c">0</span></button>
@@ -384,7 +551,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>深城交与南科大共建AI+海洋和低空经济联合实验室</h3>
   <div class="news-meta">📊 深城交 · <span class="stars">★★★★</span> 7.0分 · <a href="https://www.toutiao.com/article/7651761984156844607" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：深城交与南科大共建AI+海洋和低空经济联合实验室，推动城市规划智能化。<br><br>▍要点：<br>• 要点1：深城交与南科大签署战略合作，共建AI和数字孪生实验室。<br>• 要点2：实验室聚焦海洋和低空经济领域，应用AI技术。<br>• 要点3：合作旨在提升城市规划的智能化水平。<br><br>▍行业影响：积极。该合作将促进城市规划领域AI技术的应用，推动行业智能化转型。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-337">
     <button class="vote-btn" onclick="vote(337,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(337,'normal')">📌 一般 <span class="c">0</span></button>
@@ -395,7 +561,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>蕾奥规划中标罗湖区清水河总部新城总设计师团队技术服务项目</h3>
   <div class="news-meta">📊 蕾奥规划 · <span class="stars">★★</span> 5.0分 · <a href="https://www.sohu.com/a/1057533784_121319643" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：蕾奥规划中标罗湖区清水河总部新城总设计师团队技术服务项目。<br><br>▍要点：<br>• 要点1：中标金额298万元，体现项目重要性。<br>• 要点2：罗湖区清水河总部新城为项目地点，涉及区域发展。<br>• 要点3：总设计师团队技术服务，强调规划设计专业性。<br><br>▍行业影响：积极，有利于提升蕾奥规划在行业内的知名度和影响力。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-338">
     <button class="vote-btn" onclick="vote(338,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(338,'normal')">📌 一般 <span class="c">0</span></button>
@@ -434,103 +599,44 @@ async function vote(news_id,type){
   btns.forEach(b=>b.disabled=false);
 }
 
-/* ===== 语音播报（Web Speech API）===== */
+/* ===== 语音播报（听全文 + Web Speech 兜底）===== */
 const synth = window.speechSynthesis;
 let ttsVoices = [];
 function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
 loadVoices();
 if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
-
 function pickZhVoice(){
   if(!ttsVoices.length) return null;
   let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
   if(v) return v;
   return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
 }
-function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
-function speakOne(text, onend){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
+function speakFull(text){
+  if(!synth){
+    alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。');
+    return;
+  }
   synth.cancel();
   const u = new SpeechSynthesisUtterance(text);
   const v = pickZhVoice();
   if(v) u.voice = v;
   u.lang = v ? v.lang : 'zh-CN';
   u.rate = 1; u.pitch = 1;
-  u.onend = onend; u.onerror = onend;
   synth.speak(u);
 }
-function cardText(card){
-  const h = card.querySelector('h3');
-  const s = card.querySelector('.news-summary');
-  const title = h ? h.innerText : '';
-  const sum = s ? s.innerText : '';
-  return (title + '。' + sum).replace(/\s+/g,' ').trim();
-}
-function clearSpeaking(){
-  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
-  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
-}
-let ttsStop = false;
-function stopSpeak(){
-  ttsStop = true;
-  if(synth) synth.cancel();
-  clearSpeaking();
-  setStatus('已停止');
-}
-function speakAll(){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
-  stopSpeak();
-  ttsStop = false;
-  const cards = Array.from(document.querySelectorAll('.news-card'));
-  if(!cards.length){ setStatus('本页暂无新闻'); return; }
-  let i = 0;
-  function next(){
-    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
-    const card = cards[i];
-    card.classList.add('speaking');
-    const btn = card.querySelector('.speak-btn');
-    if(btn) btn.classList.add('playing');
-    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
-    speakOne(cardText(card), function(){
-      card.classList.remove('speaking');
-      if(btn) btn.classList.remove('playing');
-      i++; next();
-    });
-  }
-  next();
-}
-function speakNews(id){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
-  const card = document.getElementById('news-' + id);
-  if(!card) return;
-  stopSpeak();
-  card.classList.add('speaking');
-  const btn = card.querySelector('.speak-btn');
-  if(btn) btn.classList.add('playing');
-  setStatus('朗读中…');
-  speakOne(cardText(card), function(){
-    card.classList.remove('speaking');
-    if(btn) btn.classList.remove('playing');
-    setStatus('');
-  });
-}
-/* 企业微信内置浏览器不支持 Web Speech：若卡片已内置 <audio> 播放器则隐藏连播条直接播；否则给出「在浏览器打开」引导 */
+/* 企业微信内置浏览器不支持 Web Speech：页面已有 <audio> 听全文播放器则无需提示；否则引导去浏览器打开 */
 (function(){
-  const bar=document.querySelector('.tts-bar');
   if(!window.speechSynthesis){
-    const hasAudio = !!document.querySelector('.news-card audio');
-    if(hasAudio){
-      if(bar) bar.style.display='none';
-    } else if(bar){
-      bar.style.background='#fffbe6';
-      bar.style.color='#874d00';
-      bar.style.borderBottom='1px solid #ffe58f';
-      bar.innerHTML='<span style="font-size:13px">📢 当前为内置浏览器，暂不支持语音朗读。请点右上角 ⋯ 菜单 →「在浏览器打开」，即可使用朗读功能。</span>';
+    const hasAudio = !!document.querySelector('.listen-all-bar audio');
+    if(!hasAudio){
+      const bar = document.querySelector('.listen-all-bar');
+      if(bar){
+        bar.style.background='#fffbe6';
+        bar.style.color='#874d00';
+        bar.innerHTML='<span style="font-size:13px">📢 当前为内置浏览器，暂不支持语音朗读。请点右上角 ⋯ 菜单 →「在浏览器打开」，即可收听全文。</span>';
+      }
     }
-    return;
   }
-  /* 无新闻页隐藏语音条 */
-  if(!document.querySelector('.news-card')){ if(bar) bar.style.display='none'; }
 })();
 </script>
 </body>

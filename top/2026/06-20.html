@@ -42,16 +42,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
 .year-section{margin-bottom:24px}
 .year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
-.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
-.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
-.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
-.tts-bar button:hover{background:#40a9ff}
-.tts-bar button.stop{background:#ff4d4f}
-.tts-bar button.stop:hover{background:#ff7875}
-.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
-.speak-btn:hover{border-color:#1890ff;color:#1890ff}
-.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.listen-all-bar{padding:12px 16px;background:linear-gradient(135deg,#16213e,#0f3460);color:#fff;margin:0}
+.listen-all-bar .la-title{font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.listen-all-bar audio{width:100%;height:38px;outline:none}
+.speak-btn{padding:6px 18px;border-radius:16px;border:none;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.speak-btn:hover{background:#40a9ff}
 .news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
 </style>
 </head>
@@ -60,23 +55,58 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h1>📰 2026年6月20日 规划情报</h1>
   <div class="subtitle">PiHub · 历史新闻回顾</div>
 </div>
-<div class="tts-bar">
-  <span class="tts-title">🔊 语音播报</span>
-  <button onclick="speakAll()">▶ 朗读本页全部</button>
-  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
-  <span class="tts-status" id="tts-status"></span>
-</div>
 <div class="nav"><a href="/" class="">今日</a><a href="/top/week.html" class="">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="active">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
 <div class="stats">
   <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">精选新闻</div></div>
   <div class="stat-item"><div class="stat-num">2026年6月20日</div><div class="stat-label">日期</div></div>
   <div class="stat-item"><div class="stat-num"></div><div class="stat-label">参与投票</div></div>
 </div>
-</div><div class="container"><div class="category-section"></div><div class="category-section"><div class="category-title">🏛️ 部委 (2)</div><div class="news-card" id="news-34">
+</div><div class="listen-all-bar"><div class="la-title">🎧 全文语音播报</div><button class="speak-btn" onclick="speakFull(document.getElementById('full-text').innerText)">🔊 听全文</button></div><div id="full-text" style="display:none">十部门联合印发促进小微型客车租赁高质量发展三年行动方案。▍核心：十部门联合发布小微型客车租赁高质量发展三年行动方案。
+
+▍要点：
+• 要点1：方案旨在2026-2028年提升小微型客车租赁行业质量。
+• 要点2：涉及规范租赁市场、优化车辆结构、加强基础设施建设等。
+• 要点3：强调技术创新和绿色出行。
+
+▍行业影响：有利于推动城市交通规划与租赁行业协同发展。交通运输部：7省份县区连续降雨，公路交通存在高风险。▍核心：7省份县区连续降雨，公路交通存在高风险。
+
+▍要点：
+• 要点1：交通运输部发布预警，7省份县区因连续降雨，公路交通面临高风险。
+• 要点2：涉及安徽、江西、广东、广西、重庆、贵州、云南等省份。
+• 要点3：降雨对公路交通造成严重影响，需加强监测和应急处理。
+
+▍行业影响：对规划设计工作影响较大。2026年交通运输行业节能宣传周启动。▍核心：交通运输部启动2026年节能宣传周，推动绿色低碳转型。
+
+▍要点：
+• 要点1：活动时间为6月15日至21日，主题为“绿色化转型低碳先行”。
+• 要点2：旨在推动交通运输行业的绿色低碳转型。
+• 要点3：活动由交通运输部主导，涉及全国交通运输行业。
+
+▍行业影响：积极推动，有利于行业绿色发展。2026年度全省应对气候变化工作会议在威海召开。▍核心：山东省召开会议部署碳达峰目标实现任务。
+
+▍要点：
+• 要点1：会议部署下半年重点任务，旨在推动实现2030年前碳达峰目标。
+• 要点2：会议在威海召开，体现了对沿海地区气候变化的关注。
+• 要点3：会议强调政策实施，对城市规划与建设提出新要求。
+
+▍行业影响：对规划设计工作提出更高要求，需注重绿色低碳理念。数看海南自贸港封关这半年：政策红利加速释放 企业跑通新业务。▍核心：海南自贸港封关半年，政策红利加速释放，企业活跃度提升。
+
+▍要点：
+• 要点1：新增注册经营主体17.21万家，同比增长61.07%，显示政策吸引力。
+• 要点2：零关税进口货物规模达26.45亿元，同比增长1.2倍，贸易便利化成效显著。
+• 要点3：企业跑通新业务，产业活力增强。
+
+▍行业影响：积极。海南自贸港政策对规划设计工作带来新机遇，需关注产业布局与空间规划。潮涌天涯千帆竞——海南自贸港封关半年回眸。▍核心：海南自贸港封关半年，深化制度创新，推动全岛封关运作。
+
+▍要点：
+• 要点1：海南自贸港持续深化制度集成创新。
+• 要点2：全力推动全岛封关运作，确保行稳致远。
+• 要点3：半年内取得初步成果。
+
+▍行业影响：海南自贸港政策对规划设计工作具有积极推动作用。</div><div class="container"><div class="category-section"></div><div class="category-section"><div class="category-title">🏛️ 部委 (2)</div><div class="news-card" id="news-34">
   <h3>十部门联合印发促进小微型客车租赁高质量发展三年行动方案</h3>
   <div class="news-meta">🏛️ 交通运输部 · 06-14 · <span class="stars">★★</span> 3.0分 · <a href="https://www.sohu.com/a/1037003663_121332524" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：十部门联合发布小微型客车租赁高质量发展三年行动方案。<br><br>▍要点：<br>• 要点1：方案旨在2026-2028年提升小微型客车租赁行业质量。<br>• 要点2：涉及规范租赁市场、优化车辆结构、加强基础设施建设等。<br>• 要点3：强调技术创新和绿色出行。<br><br>▍行业影响：有利于推动城市交通规划与租赁行业协同发展。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-34">
     <button class="vote-btn" onclick="vote(34,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(34,'normal')">📌 一般 <span class="c">0</span></button>
@@ -87,7 +117,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>2026年交通运输行业节能宣传周启动</h3>
   <div class="news-meta">🏛️ 交通运输部 · 06-15 · <span class="stars">★★</span> 3.0分 · <a href="https://finance.sina.com.cn/wm/2026-06-15/doc-inicnpys6812478.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：交通运输部启动2026年节能宣传周，推动绿色低碳转型。<br><br>▍要点：<br>• 要点1：活动时间为6月15日至21日，主题为“绿色化转型低碳先行”。<br>• 要点2：旨在推动交通运输行业的绿色低碳转型。<br>• 要点3：活动由交通运输部主导，涉及全国交通运输行业。<br><br>▍行业影响：积极推动，有利于行业绿色发展。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-36">
     <button class="vote-btn" onclick="vote(36,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(36,'normal')">📌 一般 <span class="c">0</span></button>
@@ -98,7 +127,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>交通运输部：7省份县区连续降雨，公路交通存在高风险</h3>
   <div class="news-meta">🏙️ 地方 · 06-19 · <span class="stars">★★</span> 3.0分 · <a href="https://finance.sina.com.cn/roll/2026-06-19/doc-inicwxpf9889409.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：7省份县区连续降雨，公路交通存在高风险。<br><br>▍要点：<br>• 要点1：交通运输部发布预警，7省份县区因连续降雨，公路交通面临高风险。<br>• 要点2：涉及安徽、江西、广东、广西、重庆、贵州、云南等省份。<br>• 要点3：降雨对公路交通造成严重影响，需加强监测和应急处理。<br><br>▍行业影响：对规划设计工作影响较大。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-35">
     <button class="vote-btn" onclick="vote(35,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(35,'normal')">📌 一般 <span class="c">0</span></button>
@@ -109,7 +137,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>2026年度全省应对气候变化工作会议在威海召开</h3>
   <div class="news-meta">🏙️ 山东省 · 06-15 · <span class="stars">★★</span> 3.0分 · <a href="http://sthj.shandong.gov.cn/dtxx/hbyw/202606/t20260615_4971940.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：山东省召开会议部署碳达峰目标实现任务。<br><br>▍要点：<br>• 要点1：会议部署下半年重点任务，旨在推动实现2030年前碳达峰目标。<br>• 要点2：会议在威海召开，体现了对沿海地区气候变化的关注。<br>• 要点3：会议强调政策实施，对城市规划与建设提出新要求。<br><br>▍行业影响：对规划设计工作提出更高要求，需注重绿色低碳理念。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-37">
     <button class="vote-btn" onclick="vote(37,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(37,'normal')">📌 一般 <span class="c">0</span></button>
@@ -120,7 +147,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>数看海南自贸港封关这半年：政策红利加速释放 企业跑通新业务</h3>
   <div class="news-meta">🏙️ 海南省 · 06-19 · <span class="stars">★★</span> 3.0分 · <a href="https://news.yunnan.cn/system/2026/06/19/034050951.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：海南自贸港封关半年，政策红利加速释放，企业活跃度提升。<br><br>▍要点：<br>• 要点1：新增注册经营主体17.21万家，同比增长61.07%，显示政策吸引力。<br>• 要点2：零关税进口货物规模达26.45亿元，同比增长1.2倍，贸易便利化成效显著。<br>• 要点3：企业跑通新业务，产业活力增强。<br><br>▍行业影响：积极。海南自贸港政策对规划设计工作带来新机遇，需关注</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-38">
     <button class="vote-btn" onclick="vote(38,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(38,'normal')">📌 一般 <span class="c">0</span></button>
@@ -131,7 +157,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>潮涌天涯千帆竞——海南自贸港封关半年回眸</h3>
   <div class="news-meta">🏙️ 海南省 · 06-20 · <span class="stars">★★</span> 3.0分 · <a href="https://finance.people.com.cn/n1/2026/0620/c1004-40743745.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：海南自贸港封关半年，深化制度创新，推动全岛封关运作。<br><br>▍要点：<br>• 要点1：海南自贸港持续深化制度集成创新。<br>• 要点2：全力推动全岛封关运作，确保行稳致远。<br>• 要点3：半年内取得初步成果。<br><br>▍行业影响：海南自贸港政策对规划设计工作具有积极推动作用。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-39">
     <button class="vote-btn" onclick="vote(39,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(39,'normal')">📌 一般 <span class="c">0</span></button>
@@ -170,103 +195,44 @@ async function vote(news_id,type){
   btns.forEach(b=>b.disabled=false);
 }
 
-/* ===== 语音播报（Web Speech API）===== */
+/* ===== 语音播报（听全文 + Web Speech 兜底）===== */
 const synth = window.speechSynthesis;
 let ttsVoices = [];
 function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
 loadVoices();
 if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
-
 function pickZhVoice(){
   if(!ttsVoices.length) return null;
   let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
   if(v) return v;
   return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
 }
-function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
-function speakOne(text, onend){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
+function speakFull(text){
+  if(!synth){
+    alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。');
+    return;
+  }
   synth.cancel();
   const u = new SpeechSynthesisUtterance(text);
   const v = pickZhVoice();
   if(v) u.voice = v;
   u.lang = v ? v.lang : 'zh-CN';
   u.rate = 1; u.pitch = 1;
-  u.onend = onend; u.onerror = onend;
   synth.speak(u);
 }
-function cardText(card){
-  const h = card.querySelector('h3');
-  const s = card.querySelector('.news-summary');
-  const title = h ? h.innerText : '';
-  const sum = s ? s.innerText : '';
-  return (title + '。' + sum).replace(/\s+/g,' ').trim();
-}
-function clearSpeaking(){
-  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
-  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
-}
-let ttsStop = false;
-function stopSpeak(){
-  ttsStop = true;
-  if(synth) synth.cancel();
-  clearSpeaking();
-  setStatus('已停止');
-}
-function speakAll(){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
-  stopSpeak();
-  ttsStop = false;
-  const cards = Array.from(document.querySelectorAll('.news-card'));
-  if(!cards.length){ setStatus('本页暂无新闻'); return; }
-  let i = 0;
-  function next(){
-    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
-    const card = cards[i];
-    card.classList.add('speaking');
-    const btn = card.querySelector('.speak-btn');
-    if(btn) btn.classList.add('playing');
-    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
-    speakOne(cardText(card), function(){
-      card.classList.remove('speaking');
-      if(btn) btn.classList.remove('playing');
-      i++; next();
-    });
-  }
-  next();
-}
-function speakNews(id){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
-  const card = document.getElementById('news-' + id);
-  if(!card) return;
-  stopSpeak();
-  card.classList.add('speaking');
-  const btn = card.querySelector('.speak-btn');
-  if(btn) btn.classList.add('playing');
-  setStatus('朗读中…');
-  speakOne(cardText(card), function(){
-    card.classList.remove('speaking');
-    if(btn) btn.classList.remove('playing');
-    setStatus('');
-  });
-}
-/* 企业微信内置浏览器不支持 Web Speech：若卡片已内置 <audio> 播放器则隐藏连播条直接播；否则给出「在浏览器打开」引导 */
+/* 企业微信内置浏览器不支持 Web Speech：页面已有 <audio> 听全文播放器则无需提示；否则引导去浏览器打开 */
 (function(){
-  const bar=document.querySelector('.tts-bar');
   if(!window.speechSynthesis){
-    const hasAudio = !!document.querySelector('.news-card audio');
-    if(hasAudio){
-      if(bar) bar.style.display='none';
-    } else if(bar){
-      bar.style.background='#fffbe6';
-      bar.style.color='#874d00';
-      bar.style.borderBottom='1px solid #ffe58f';
-      bar.innerHTML='<span style="font-size:13px">📢 当前为内置浏览器，暂不支持语音朗读。请点右上角 ⋯ 菜单 →「在浏览器打开」，即可使用朗读功能。</span>';
+    const hasAudio = !!document.querySelector('.listen-all-bar audio');
+    if(!hasAudio){
+      const bar = document.querySelector('.listen-all-bar');
+      if(bar){
+        bar.style.background='#fffbe6';
+        bar.style.color='#874d00';
+        bar.innerHTML='<span style="font-size:13px">📢 当前为内置浏览器，暂不支持语音朗读。请点右上角 ⋯ 菜单 →「在浏览器打开」，即可收听全文。</span>';
+      }
     }
-    return;
   }
-  /* 无新闻页隐藏语音条 */
-  if(!document.querySelector('.news-card')){ if(bar) bar.style.display='none'; }
 })();
 </script>
 </body>

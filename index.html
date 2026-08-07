@@ -42,16 +42,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
 .year-section{margin-bottom:24px}
 .year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
-.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
-.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
-.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
-.tts-bar button:hover{background:#40a9ff}
-.tts-bar button.stop{background:#ff4d4f}
-.tts-bar button.stop:hover{background:#ff7875}
-.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
-.speak-btn:hover{border-color:#1890ff;color:#1890ff}
-.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.listen-all-bar{padding:12px 16px;background:linear-gradient(135deg,#16213e,#0f3460);color:#fff;margin:0}
+.listen-all-bar .la-title{font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.listen-all-bar audio{width:100%;height:38px;outline:none}
+.speak-btn{padding:6px 18px;border-radius:16px;border:none;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.speak-btn:hover{background:#40a9ff}
 .news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
 </style>
 </head>
@@ -60,23 +55,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h1>📰 规划情报日报｜2026-08-07</h1>
   <div class="subtitle">PiHub · 规划行业政策情报每日速递</div>
 </div>
-<div class="tts-bar">
-  <span class="tts-title">🔊 语音播报</span>
-  <button onclick="speakAll()">▶ 朗读本页全部</button>
-  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
-  <span class="tts-status" id="tts-status"></span>
-</div>
 <div class="nav"><a href="/" class="active">今日</a><a href="/top/week.html" class="">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
 <div class="stats">
   <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">精选新闻</div></div>
   <div class="stat-item"><div class="stat-num">今日</div><div class="stat-label">日期</div></div>
   <div class="stat-item"><div class="stat-num"></div><div class="stat-label">参与投票</div></div>
 </div>
-</div><div class="container"><div class="category-section"><div class="category-title">👤 高层 (1)</div><div class="news-card" id="news-365">
+</div><div class="listen-all-bar"><div class="la-title">🎧 全文语音播报</div><audio controls preload="none" src="/audio/full_2026-08-07.mp3">您的浏览器不支持音频播放</audio></div><div class="container"><div class="category-section"><div class="category-title">👤 高层 (1)</div><div class="news-card" id="news-365">
   <h3>领航 夯实基础开新局</h3>
   <div class="news-meta">👤 党中央 · 08-07 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.cnr.cn/newscenter/native/gd/sz/20260807/t20260807_527751320.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：习近平总书记提出十五五时期重大战略任务，上半年GDP增长4.7%。<br><br>▍要点：<br>• 要点1：十五五时期重大战略任务为未来五年国家发展指明方向。<br>• 要点2：上半年GDP增长4.7%，显示经济稳定恢复。<br>• 要点3：政策强调夯实基础，为未来发展奠定坚实根基。<br><br>▍行业影响：对规划设计工作具有积极推动作用。</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/365.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-365">
     <button class="vote-btn" onclick="vote(365,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(365,'normal')">📌 一般 <span class="c">0</span></button>
@@ -87,7 +75,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>水利部扎实推进现代化水网规划建设加快数字孪生水利体系建设</h3>
   <div class="news-meta">🏛️ 水利部 · 08-06 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.163.com/dy/article/L3M3TCUO0534A4SC_pdya11y.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：水利部推进现代化水网规划，加速数字孪生水利体系建设。<br><br>▍要点：<br>• 要点1：水利部传达政治局会议精神，强调加快数字孪生水利体系建设。<br>• 要点2：现代化水网规划旨在提升水利设施现代化水平。<br>• 要点3：数字孪生技术应用于水利，提高管理效率和应急响应能力。<br><br>▍行业影响：积极推动，对规划设计工作提出更高要求。</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/368.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-368">
     <button class="vote-btn" onclick="vote(368,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(368,'normal')">📌 一般 <span class="c">0</span></button>
@@ -98,7 +85,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>擦亮监测慧眼护航美丽中国——生态环境监测十五五规划解读</h3>
   <div class="news-meta">🏛️ 生态环境部 · 08-06 · <span class="stars">★★★★</span> 8.0分 · <a href="https://www.toutiao.com/article/7670730987747197440/" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：生态环境部与国家发改委联合发布“十五五”生态环境监测规划。<br><br>▍要点：<br>• 要点1：规划系统部署未来5年生态环境监测发展路径。<br>• 要点2：强调提升监测能力，强化数据质量，保障生态环境安全。<br>• 要点3：涉及全国各级生态环境监测网络建设。<br><br>▍行业影响：积极推动生态环境监测体系完善，对规划设计工作提出更高要求。</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/366.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-366">
     <button class="vote-btn" onclick="vote(366,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(366,'normal')">📌 一般 <span class="c">0</span></button>
@@ -109,7 +95,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>14项黄河流域强制性用水定额国家标准正式实施</h3>
   <div class="news-meta">🏛️ 水利部 · 08-06 · <span class="stars">★★★★</span> 7.0分 · <a href="http://www.mwr.gov.cn/xw/sjzs/202608/t20260806_2137825.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：黄河流域14个行业强制性用水定额国家标准正式实施。<br><br>▍要点：<br>• 要点1：强制性用水定额标准覆盖钢铁、石油炼制等14个行业。<br>• 要点2：实施日期为8月1日，由水利部和国家市场监管总局联合制定。<br>• 要点3：旨在提高水资源利用效率，促进黄河流域生态保护和高质量发展。<br><br>▍行业影响：有利于推动规划设计工作更加注重水资源节约与保护。</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/367.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-367">
     <button class="vote-btn" onclick="vote(367,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(367,'normal')">📌 一般 <span class="c">0</span></button>
@@ -120,7 +105,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>水利部向13省份发出一省一单靶向预警</h3>
   <div class="news-meta">🏛️ 水利部 · 08-06 · <span class="stars">★★</span> 5.0分 · <a href="https://www.ce.cn/xwzx/gnsz/gdxw/202608/t20260806_3130430.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：水利部向13省发出强降雨靶向预警。<br><br>▍要点：<br>• 要点1：预警针对山西、黑龙江、广东等13省。<br>• 要点2：预警内容为强降雨。<br>• 要点3：预警性质为靶向预警。<br><br>▍行业影响：预警将增加规划设计应对极端天气的紧迫性。</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/369.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-369">
     <button class="vote-btn" onclick="vote(369,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(369,'normal')">📌 一般 <span class="c">0</span></button>
@@ -131,7 +115,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>广州越秀荔湾白云三区十五五规划纲要发布</h3>
   <div class="news-meta">🏙️ 广州市 · 08-07 · <span class="stars">★★★★</span> 7.0分 · <a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_8846a7517b800252" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：广州市越秀、荔湾、白云三区发布“十四五”规划纲要。<br><br>▍要点：<br>• 要点1：越秀区提出“3+3”核心产业体系。<br>• 要点2：白云区设定2030年GDP目标突破4300亿元。<br>• 要点3：规划纲要涉及产业、经济、城市空间等多方面。<br><br>▍行业影响：对规划设计工作具有指导意义，需关注产业布局与城市空间规划。</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/371.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-371">
     <button class="vote-btn" onclick="vote(371,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(371,'normal')">📌 一般 <span class="c">0</span></button>
@@ -142,7 +125,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>广州越秀在城市更新中留住烟火气</h3>
   <div class="news-meta">🏙️ 广州市 · 08-06 · <span class="stars">★★</span> 5.0分 · <a href="https://www.nfnews.com/content/O3GA4DrDo0.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：广州越秀区加速城中村改造，注重保留城市烟火气。<br><br>▍要点：<br>• 要点1：聚焦广州火车站、环市东、五羊新城等区域，加快城中村改造。<br>• 要点2：改造过程中强调保留和提升城市文化特色，特别是“烟火气”。<br>• 要点3：政策旨在提升城市品质，改善居民生活环境。<br><br>▍行业影响：有利于推动城市更新，提升规划设计工作对文化传承的重视。</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/372.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-372">
     <button class="vote-btn" onclick="vote(372,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(372,'normal')">📌 一般 <span class="c">0</span></button>
@@ -153,7 +135,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>山东印发地理空间数据管理办法</h3>
   <div class="news-meta">🏙️ 山东省 · 08-06 · <span class="stars">★★</span> 3.0分 · <a href="http://www.shandong.gov.cn/art/2026/8/6/art_97560_735279.html" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：山东省发布地理空间数据管理办法，规范数据管理。<br><br>▍要点：<br>• 要点1：规范地理空间数据采集、处理、存储、共享等环节。<br>• 要点2：强化数据安全，明确数据使用权限和责任。<br>• 要点3：推动地理空间数据在规划、建设、管理等方面的应用。<br><br>▍行业影响：有利于提升地理空间数据质量，促进规划设计工作科学化、规范化。</div>
-  <div style="margin-bottom:8px"><audio controls preload="none" src="/audio/370.mp3">您的浏览器不支持音频播放</audio></div>
   <div class="vote-bar" id="votes-370">
     <button class="vote-btn" onclick="vote(370,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(370,'normal')">📌 一般 <span class="c">0</span></button>
@@ -192,103 +173,44 @@ async function vote(news_id,type){
   btns.forEach(b=>b.disabled=false);
 }
 
-/* ===== 语音播报（Web Speech API）===== */
+/* ===== 语音播报（听全文 + Web Speech 兜底）===== */
 const synth = window.speechSynthesis;
 let ttsVoices = [];
 function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
 loadVoices();
 if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
-
 function pickZhVoice(){
   if(!ttsVoices.length) return null;
   let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
   if(v) return v;
   return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
 }
-function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
-function speakOne(text, onend){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
+function speakFull(text){
+  if(!synth){
+    alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。');
+    return;
+  }
   synth.cancel();
   const u = new SpeechSynthesisUtterance(text);
   const v = pickZhVoice();
   if(v) u.voice = v;
   u.lang = v ? v.lang : 'zh-CN';
   u.rate = 1; u.pitch = 1;
-  u.onend = onend; u.onerror = onend;
   synth.speak(u);
 }
-function cardText(card){
-  const h = card.querySelector('h3');
-  const s = card.querySelector('.news-summary');
-  const title = h ? h.innerText : '';
-  const sum = s ? s.innerText : '';
-  return (title + '。' + sum).replace(/\s+/g,' ').trim();
-}
-function clearSpeaking(){
-  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
-  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
-}
-let ttsStop = false;
-function stopSpeak(){
-  ttsStop = true;
-  if(synth) synth.cancel();
-  clearSpeaking();
-  setStatus('已停止');
-}
-function speakAll(){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
-  stopSpeak();
-  ttsStop = false;
-  const cards = Array.from(document.querySelectorAll('.news-card'));
-  if(!cards.length){ setStatus('本页暂无新闻'); return; }
-  let i = 0;
-  function next(){
-    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
-    const card = cards[i];
-    card.classList.add('speaking');
-    const btn = card.querySelector('.speak-btn');
-    if(btn) btn.classList.add('playing');
-    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
-    speakOne(cardText(card), function(){
-      card.classList.remove('speaking');
-      if(btn) btn.classList.remove('playing');
-      i++; next();
-    });
-  }
-  next();
-}
-function speakNews(id){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
-  const card = document.getElementById('news-' + id);
-  if(!card) return;
-  stopSpeak();
-  card.classList.add('speaking');
-  const btn = card.querySelector('.speak-btn');
-  if(btn) btn.classList.add('playing');
-  setStatus('朗读中…');
-  speakOne(cardText(card), function(){
-    card.classList.remove('speaking');
-    if(btn) btn.classList.remove('playing');
-    setStatus('');
-  });
-}
-/* 企业微信内置浏览器不支持 Web Speech：若卡片已内置 <audio> 播放器则隐藏连播条直接播；否则给出「在浏览器打开」引导 */
+/* 企业微信内置浏览器不支持 Web Speech：页面已有 <audio> 听全文播放器则无需提示；否则引导去浏览器打开 */
 (function(){
-  const bar=document.querySelector('.tts-bar');
   if(!window.speechSynthesis){
-    const hasAudio = !!document.querySelector('.news-card audio');
-    if(hasAudio){
-      if(bar) bar.style.display='none';
-    } else if(bar){
-      bar.style.background='#fffbe6';
-      bar.style.color='#874d00';
-      bar.style.borderBottom='1px solid #ffe58f';
-      bar.innerHTML='<span style="font-size:13px">📢 当前为内置浏览器，暂不支持语音朗读。请点右上角 ⋯ 菜单 →「在浏览器打开」，即可使用朗读功能。</span>';
+    const hasAudio = !!document.querySelector('.listen-all-bar audio');
+    if(!hasAudio){
+      const bar = document.querySelector('.listen-all-bar');
+      if(bar){
+        bar.style.background='#fffbe6';
+        bar.style.color='#874d00';
+        bar.innerHTML='<span style="font-size:13px">📢 当前为内置浏览器，暂不支持语音朗读。请点右上角 ⋯ 菜单 →「在浏览器打开」，即可收听全文。</span>';
+      }
     }
-    return;
   }
-  /* 无新闻页隐藏语音条 */
-  if(!document.querySelector('.news-card')){ if(bar) bar.style.display='none'; }
 })();
 </script>
 </body>

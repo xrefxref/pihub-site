@@ -42,16 +42,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .history-card .month-desc{font-size:12px;color:#bbb;margin-left:auto}
 .year-section{margin-bottom:24px}
 .year-title{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:12px;border-bottom:2px solid #e8e8e8;padding-bottom:8px}
-.tts-bar{display:flex;gap:8px;align-items:center;padding:10px 16px;background:#0f3460;color:#fff;position:sticky;top:0;z-index:50}
-.tts-bar .tts-title{font-size:13px;font-weight:600;white-space:nowrap}
-.tts-bar button{padding:6px 14px;border:none;border-radius:16px;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
-.tts-bar button:hover{background:#40a9ff}
-.tts-bar button.stop{background:#ff4d4f}
-.tts-bar button.stop:hover{background:#ff7875}
-.tts-bar .tts-status{font-size:12px;color:#c9d6ea;margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.speak-btn{padding:4px 12px;border-radius:14px;border:1px solid #d9d9d9;background:#fff;cursor:pointer;font-size:12px;color:#666;transition:all 0.2s}
-.speak-btn:hover{border-color:#1890ff;color:#1890ff}
-.speak-btn.playing{background:#e6f7ff;border-color:#1890ff;color:#1890ff}
+.listen-all-bar{padding:12px 16px;background:linear-gradient(135deg,#16213e,#0f3460);color:#fff;margin:0}
+.listen-all-bar .la-title{font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.listen-all-bar audio{width:100%;height:38px;outline:none}
+.speak-btn{padding:6px 18px;border-radius:16px;border:none;background:#1890ff;color:#fff;font-size:13px;cursor:pointer;transition:background 0.2s}
+.speak-btn:hover{background:#40a9ff}
 .news-card.speaking{border-left:3px solid #1890ff;box-shadow:0 2px 10px rgba(24,144,255,0.25)}
 </style>
 </head>
@@ -60,23 +55,51 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h1>📰 2026年6月26日 规划情报</h1>
   <div class="subtitle">PiHub · 历史新闻回顾</div>
 </div>
-<div class="tts-bar">
-  <span class="tts-title">🔊 语音播报</span>
-  <button onclick="speakAll()">▶ 朗读本页全部</button>
-  <button class="stop" onclick="stopSpeak()">⏹ 停止</button>
-  <span class="tts-status" id="tts-status"></span>
-</div>
 <div class="nav"><a href="/" class="">今日</a><a href="/top/week.html" class="">过去一周</a><a href="/top/month.html" class="">过去一月</a><a href="/top/year.html" class="">过去一年</a><a href="/top/" class="active">历史</a><a href="/study/" class="">深圳规划考察助手</a></div><div class="container">
 <div class="stats">
   <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">精选新闻</div></div>
   <div class="stat-item"><div class="stat-num">2026年6月26日</div><div class="stat-label">日期</div></div>
   <div class="stat-item"><div class="stat-num"></div><div class="stat-label">参与投票</div></div>
 </div>
-</div><div class="container"><div class="category-section"></div><div class="category-section"></div><div class="category-section"><div class="category-title">🏙️ 省市 (4)</div><div class="news-card" id="news-90">
+</div><div class="listen-all-bar"><div class="la-title">🎧 全文语音播报</div><button class="speak-btn" onclick="speakFull(document.getElementById('full-text').innerText)">🔊 听全文</button></div><div id="full-text" style="display:none">18条新政精准赋能 湖北以土地集约利用助力高质量发展。▍核心：湖北发布18条新政，推动土地集约利用，助力高质量发展。
+
+▍要点：
+• 要点1：湖北省政府发布《进一步做好自然资源要素保障若干措施》，包含18条具体措施。
+• 要点2：措施旨在提高土地集约利用效率，优化资源配置。
+• 要点3：新政将影响土地供应、使用和退出机制，强化规划引领。
+
+▍行业影响：新政将促进规划设计工作更加注重土地集约利用，提升规划实施效率。2026江苏省国民经济和社会发展第十五个五年规划纲要。▍核心：江苏省发布“十五五”规划纲要，描绘未来发展蓝图。
+
+▍要点：
+• 要点1：规划纲要详细描绘了江苏省未来五年的国民经济和社会发展蓝图。
+• 要点2：规划纲要包含172页内容，涵盖经济发展、科技创新、环境保护等多个方面。
+• 要点3：规划纲要强调高质量发展，推动产业结构优化升级。
+
+▍行业影响：对规划设计工作具有指导意义，需紧密结合规划纲要进行项目规划和设计。高标准建设海南自由贸易港 自然资源和规划领域改革创新成果专场。▍核心：海南省发布自然资源和规划领域改革创新成果。
+
+▍要点：
+• 要点1：海南省封关半年，自然资源规划创新成果显著。
+• 要点2：发布会介绍改革创新成果，涉及高标准建设自由贸易港。
+• 要点3：成果涵盖自然资源保护和规划领域。
+
+▍行业影响：对规划设计工作具有积极推动作用。东西问|海南自贸港如何开放前行？封关半年成绩单解读。▍核心：海南自贸港封关半年，开放型经济呈现三大特点。
+
+▍要点：
+• 要点1：封关核心政策红利加快释放，推动经济快速增长。
+• 要点2：产业集聚加速，吸引国内外企业投资。
+• 要点3：开放型经济特点显著，对外贸易和投资活跃。
+
+▍行业影响：海南自贸港政策对规划设计工作具有积极推动作用。蕾奥规划：6月25日主力资金净买入176.19万元。▍核心：蕾奥规划6月25日主力资金净买入176.19万元，股价下跌。
+
+▍要点：
+• 要点1：蕾奥规划6月25日主力资金净买入176.19万元，显示市场对其未来发展有一定信心。
+• 要点2：股价下跌1.13%，可能受市场情绪或行业政策变动影响。
+• 要点3：换手率1.62%，表明市场交易活跃度一般。
+
+▍行业影响：蕾奥规划股价波动对规划设计行业影响有限。</div><div class="container"><div class="category-section"></div><div class="category-section"></div><div class="category-section"><div class="category-title">🏙️ 省市 (4)</div><div class="news-card" id="news-90">
   <h3>18条新政精准赋能 湖北以土地集约利用助力高质量发展</h3>
   <div class="news-meta">🏙️ 湖北省 · 06-25 · <span class="stars">★★</span> 5.0分 · <a href="https://news.qq.com/rain/a/20260625A0BN3A00" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：湖北发布18条新政，推动土地集约利用，助力高质量发展。<br><br>▍要点：<br>• 要点1：湖北省政府发布《进一步做好自然资源要素保障若干措施》，包含18条具体措施。<br>• 要点2：措施旨在提高土地集约利用效率，优化资源配置。<br>• 要点3：新政将影响土地供应、使用和退出机制，强化规划引领。<br><br>▍行业影响：新政将促进规划设计工作更加注重土地集约利用，提升规划实施效</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-90">
     <button class="vote-btn" onclick="vote(90,'important')">🔥 重要 <span class="c">1</span></button>
     <button class="vote-btn" onclick="vote(90,'normal')">📌 一般 <span class="c">0</span></button>
@@ -87,7 +110,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>2026江苏省国民经济和社会发展第十五个五年规划纲要</h3>
   <div class="news-meta">🏙️ 江苏省 · <span class="stars">★★</span> 5.0分 · <a href="https://www.sohu.com/a/1017482670_121851958" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：江苏省发布“十五五”规划纲要，描绘未来发展蓝图。<br><br>▍要点：<br>• 要点1：规划纲要详细描绘了江苏省未来五年的国民经济和社会发展蓝图。<br>• 要点2：规划纲要包含172页内容，涵盖经济发展、科技创新、环境保护等多个方面。<br>• 要点3：规划纲要强调高质量发展，推动产业结构优化升级。<br><br>▍行业影响：对规划设计工作具有指导意义，需紧密结合规划纲要进行项目规划</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-91">
     <button class="vote-btn" onclick="vote(91,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(91,'normal')">📌 一般 <span class="c">0</span></button>
@@ -98,7 +120,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>高标准建设海南自由贸易港 自然资源和规划领域改革创新成果专场</h3>
   <div class="news-meta">🏙️ 海南省 · 06-25 · <span class="stars">★★</span> 5.0分 · <a href="https://news.qq.com/rain/a/20260625A054K000" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：海南省发布自然资源和规划领域改革创新成果。<br><br>▍要点：<br>• 要点1：海南省封关半年，自然资源规划创新成果显著。<br>• 要点2：发布会介绍改革创新成果，涉及高标准建设自由贸易港。<br>• 要点3：成果涵盖自然资源保护和规划领域。<br><br>▍行业影响：对规划设计工作具有积极推动作用。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-92">
     <button class="vote-btn" onclick="vote(92,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(92,'normal')">📌 一般 <span class="c">0</span></button>
@@ -109,7 +130,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>东西问|海南自贸港如何开放前行？封关半年成绩单解读</h3>
   <div class="news-meta">🏙️ 海南省 · 06-25 · <span class="stars">★★</span> 3.0分 · <a href="https://www.chinanews.com/gn/2026/06-25/10647267.shtml" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：海南自贸港封关半年，开放型经济呈现三大特点。<br><br>▍要点：<br>• 要点1：封关核心政策红利加快释放，推动经济快速增长。<br>• 要点2：产业集聚加速，吸引国内外企业投资。<br>• 要点3：开放型经济特点显著，对外贸易和投资活跃。<br><br>▍行业影响：海南自贸港政策对规划设计工作具有积极推动作用。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-93">
     <button class="vote-btn" onclick="vote(93,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(93,'normal')">📌 一般 <span class="c">0</span></button>
@@ -120,7 +140,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <h3>蕾奥规划：6月25日主力资金净买入176.19万元</h3>
   <div class="news-meta">📊 蕾奥规划 · 06-25 · <span class="stars">★★</span> 3.0分 · <a href="https://www.msn.cn/zh-cn/money/热门股/蕾奥规划-300989-6月25日主力资金净买入176-19万元/ar-AA26vvQ6" target="_blank" style="color:#1890ff;font-size:12px;text-decoration:none">📄 阅读原文</a></div>
   <div class="news-summary">▍核心：蕾奥规划6月25日主力资金净买入176.19万元，股价下跌。<br><br>▍要点：<br>• 要点1：蕾奥规划6月25日主力资金净买入176.19万元，显示市场对其未来发展有一定信心。<br>• 要点2：股价下跌1.13%，可能受市场情绪或行业政策变动影响。<br>• 要点3：换手率1.62%，表明市场交易活跃度一般。<br><br>▍行业影响：蕾奥规划股价波动对规划设计行业影响有限。</div>
-  <div style="margin-bottom:8px"><button class="speak-btn" onclick="speakNews({news.id})">🔊 朗读本条</button></div>
   <div class="vote-bar" id="votes-94">
     <button class="vote-btn" onclick="vote(94,'important')">🔥 重要 <span class="c">0</span></button>
     <button class="vote-btn" onclick="vote(94,'normal')">📌 一般 <span class="c">0</span></button>
@@ -159,103 +178,44 @@ async function vote(news_id,type){
   btns.forEach(b=>b.disabled=false);
 }
 
-/* ===== 语音播报（Web Speech API）===== */
+/* ===== 语音播报（听全文 + Web Speech 兜底）===== */
 const synth = window.speechSynthesis;
 let ttsVoices = [];
 function loadVoices(){ if(synth){ ttsVoices = synth.getVoices(); } }
 loadVoices();
 if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
-
 function pickZhVoice(){
   if(!ttsVoices.length) return null;
   let v = ttsVoices.find(x=>x.lang && x.lang.toLowerCase().startsWith('zh'));
   if(v) return v;
   return ttsVoices.find(x=>x.lang && x.lang.toLowerCase().indexOf('cn')>=0) || null;
 }
-function setStatus(t){ const s=document.getElementById('tts-status'); if(s) s.textContent=t||''; }
-function speakOne(text, onend){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
+function speakFull(text){
+  if(!synth){
+    alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。');
+    return;
+  }
   synth.cancel();
   const u = new SpeechSynthesisUtterance(text);
   const v = pickZhVoice();
   if(v) u.voice = v;
   u.lang = v ? v.lang : 'zh-CN';
   u.rate = 1; u.pitch = 1;
-  u.onend = onend; u.onerror = onend;
   synth.speak(u);
 }
-function cardText(card){
-  const h = card.querySelector('h3');
-  const s = card.querySelector('.news-summary');
-  const title = h ? h.innerText : '';
-  const sum = s ? s.innerText : '';
-  return (title + '。' + sum).replace(/\s+/g,' ').trim();
-}
-function clearSpeaking(){
-  document.querySelectorAll('.news-card.speaking').forEach(c=>c.classList.remove('speaking'));
-  document.querySelectorAll('.speak-btn.playing').forEach(b=>b.classList.remove('playing'));
-}
-let ttsStop = false;
-function stopSpeak(){
-  ttsStop = true;
-  if(synth) synth.cancel();
-  clearSpeaking();
-  setStatus('已停止');
-}
-function speakAll(){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
-  stopSpeak();
-  ttsStop = false;
-  const cards = Array.from(document.querySelectorAll('.news-card'));
-  if(!cards.length){ setStatus('本页暂无新闻'); return; }
-  let i = 0;
-  function next(){
-    if(ttsStop || i>=cards.length){ if(!ttsStop) setStatus('朗读完成'); clearSpeaking(); return; }
-    const card = cards[i];
-    card.classList.add('speaking');
-    const btn = card.querySelector('.speak-btn');
-    if(btn) btn.classList.add('playing');
-    setStatus('朗读中 ' + (i+1) + '/' + cards.length);
-    speakOne(cardText(card), function(){
-      card.classList.remove('speaking');
-      if(btn) btn.classList.remove('playing');
-      i++; next();
-    });
-  }
-  next();
-}
-function speakNews(id){
-  if(!synth){ alert('当前环境不支持语音朗读。请在右上角 ⋯ 菜单选择「在浏览器打开」，用系统浏览器（Chrome / Safari / Edge）即可收听。'); return; }
-  const card = document.getElementById('news-' + id);
-  if(!card) return;
-  stopSpeak();
-  card.classList.add('speaking');
-  const btn = card.querySelector('.speak-btn');
-  if(btn) btn.classList.add('playing');
-  setStatus('朗读中…');
-  speakOne(cardText(card), function(){
-    card.classList.remove('speaking');
-    if(btn) btn.classList.remove('playing');
-    setStatus('');
-  });
-}
-/* 企业微信内置浏览器不支持 Web Speech：若卡片已内置 <audio> 播放器则隐藏连播条直接播；否则给出「在浏览器打开」引导 */
+/* 企业微信内置浏览器不支持 Web Speech：页面已有 <audio> 听全文播放器则无需提示；否则引导去浏览器打开 */
 (function(){
-  const bar=document.querySelector('.tts-bar');
   if(!window.speechSynthesis){
-    const hasAudio = !!document.querySelector('.news-card audio');
-    if(hasAudio){
-      if(bar) bar.style.display='none';
-    } else if(bar){
-      bar.style.background='#fffbe6';
-      bar.style.color='#874d00';
-      bar.style.borderBottom='1px solid #ffe58f';
-      bar.innerHTML='<span style="font-size:13px">📢 当前为内置浏览器，暂不支持语音朗读。请点右上角 ⋯ 菜单 →「在浏览器打开」，即可使用朗读功能。</span>';
+    const hasAudio = !!document.querySelector('.listen-all-bar audio');
+    if(!hasAudio){
+      const bar = document.querySelector('.listen-all-bar');
+      if(bar){
+        bar.style.background='#fffbe6';
+        bar.style.color='#874d00';
+        bar.innerHTML='<span style="font-size:13px">📢 当前为内置浏览器，暂不支持语音朗读。请点右上角 ⋯ 菜单 →「在浏览器打开」，即可收听全文。</span>';
+      }
     }
-    return;
   }
-  /* 无新闻页隐藏语音条 */
-  if(!document.querySelector('.news-card')){ if(bar) bar.style.display='none'; }
 })();
 </script>
 </body>
